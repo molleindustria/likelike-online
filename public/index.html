@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>LIKELIKE Online</title>
+    <!-- This is a standard p5.js index, NOTE the p5.dom.min.js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+    <script src="p5.play.js"></script>
+    <script defer src="client.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+</head>
+
+<body>
+
+    <div id="canvas-container" oncontextmenu="return false;">
+        <!-- the lobby element is displayed before the canvas is loaded -->
+        <div id="lobby-container" style="display: none;">
+            <div class="content-center">
+
+                <div class="lobby-message">What's your name?</div>
+                <form action="" onsubmit="return nameOk()">
+                    <input id="lobby-field" class="lobby-field" placeholder="username" maxlength="16" autocomplete="off"
+                        autocorrect="off" autocapitalize="off" spellcheck="false" />
+                </form>
+                <div id="lobby-error" class="lobby-error-message"></div>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <div id="interface">
+        <!-- talk form is below canvas getTalkInput is what happens when return is pressed-->
+        <form id="join-form" action="" onsubmit="return joinGame()" style="display: none;">
+            <!-- call the function below on button press-->
+            <button class="join-button" type="button" onclick="joinGame();">JOIN</button>
+        </form>
+
+        <form id="user-form" action="" onsubmit="return nameOk()" style="display: none;">
+            <!-- call the function below on button press-->
+            <button class="user-button" type="button" onclick="nameOk();">CONTINUE</button>
+        </form>
+
+        <form id="avatar-form" action="" onsubmit="return bodyOk()" style="display: none;">
+            <!-- call the function below on button press-->
+            <button class="avatar-button" type="button" onclick="bodyOk();">CONTINUE</button>
+        </form>
+
+        <form id="talk-form" action="" onsubmit="return getTalkInput()" style="display: none;">
+            <input class="talk-field" placeholder="TYPE HERE" maxlength="40" id="chatField" autocomplete="off" />
+            <!-- call the function below on button press-->
+            <button class="talk-button" type="button" onclick="getTalkInput();">TALK</button>
+        </form>
+
+
+    </div>
+    <div id="info" class="info"><a href="http://likelike.org/shows/" target="_blank">>LIKELIKE.ORG</a></div>
+
+</body>
+
+</html>
