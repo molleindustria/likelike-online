@@ -5,9 +5,7 @@
 
 /*
 The client and server version strings MUST be the same!
-They can be used to force clients to hard refresh to load the latest client.
 If the server gets updated it can be restarted, but if there are active clients (users' open browsers) they could be outdated and create issues.
-If the VERSION vars are mismatched they will send all clients in an infinite refresh loop. Make sure you update sketch.js before restarting server.js
 */
 var VERSION = "1.0";
 
@@ -391,9 +389,12 @@ function setup() {
         function (serverVersion, DATA) {
             if (socket.id) {
                 console.log("Welcome! Server version: " + serverVersion + " - client version " + VERSION);
+
+                //this is before canvas so I have to html brutally
                 if (serverVersion != VERSION) {
-                    console.log("VERSION MISMATCH: FORCE RELOAD");
-                    location.reload(true);
+                    errorMessage = "VERSION MISMATCH: PLEASE HARD REFRESH";
+                    document.body.innerHTML = errorMessage;
+                    socket.disconnect();
                 }
 
                 ROOMS = DATA.ROOMS;
@@ -568,8 +569,12 @@ function newGame() {
             players = {};
 
             //ayay: connection lost while setting up character, just force a refresh
-            if (screen == "avatar" || screen == "user")
-                location.reload();
+            if (screen == "avatar" || screen == "user") {
+                screen = "error";
+                errorMessage = "SERVER RESTARTED: PLEASE REFRESH";
+                socket.disconnect();
+            }
+
 
             bubbles = [];
 
@@ -968,6 +973,7 @@ function newGame() {
 
     //server forces refresh (on disconnect or to force load a new version of the client)
     socket.on('refresh', function () {
+        socket.disconnect();
         location.reload(true);
     });
 
@@ -1007,7 +1013,8 @@ function update() {
         fill(UI_BG);
         rect(0, 0, WIDTH, HEIGHT);
         fill(LABEL_NEUTRAL_COLOR);
-        text(errorMessage, floor(WIDTH / 8), floor(HEIGHT / 8), WIDTH - floor(WIDTH / 4), HEIGHT - floor(HEIGHT / 4));
+
+        text(errorMessage, floor(WIDTH / 8), floor(HEIGHT / 8), WIDTH - floor(WIDTH / 4), HEIGHT - floor(HEIGHT / 4) + 1);
     }
     else if (screen == "game") {
         //draw a background
@@ -1748,7 +1755,6 @@ function canvasReleased() {
     //print("CLICK " + mouseButton);
 
     if (screen == "error") {
-        location.reload();
     }
     else if (nickName != "" && screen == "game" && mouseButton == RIGHT) {
         if (me.destinationX == me.x && me.destinationY == me.y)

@@ -16,12 +16,14 @@ body {
 	background-color: #000;
 	font-smooth: never;
 	-webkit-font-smoothing: none;
+	color: white;
 }
 
 #canvas-container {
 	width: 800px;
 	height: 600px;
 	margin: auto;
+	color:#000;
 }
 
 canvas {

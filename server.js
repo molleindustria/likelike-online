@@ -164,7 +164,7 @@ io.on('connection', function (socket) {
             else if ((serverPlayers > MAX_PLAYERS && MAX_PLAYERS != -1) || (roomPlayers > MAX_PLAYERS_PER_ROOM && MAX_PLAYERS_PER_ROOM != -1)) {
                 //limit the number of players
                 console.log("ATTENTION: " + playerInfo.room + " reached maximum capacity");
-                socket.emit("errorMessage", "The server is full, please try again later. Click to refresh.");
+                socket.emit("errorMessage", "The server is full, please try again later.");
                 socket.disconnect();
             }
             else {
