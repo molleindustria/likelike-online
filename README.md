@@ -25,12 +25,12 @@ Glitch provides free hosting for node.js projects. Most web hosts don't give you
 Glitch offers a code editor, file storage, and an intergrated terminal. You can create node applications from scratch via browser.
 Glitch allows you to browse and remix other people projects.
 
-**Warning** A free Glitch account has a limit of 4000 requests per hour, this projects loads a lot of individual image assets so you can go over the limit pretty easily. Consider purchasing a paid account for a public-facing project.
-
 LIKELIKE Online is already structured for glitch deployment with a server.js and a package.json on the root, and a "public" folder.
 You can deploy this app to Glitch via github or [other git repositories](https://medium.com/glitch/import-code-from-anywhere-83fb60ea4875)
 
-Alternatively you can follow this process to deploy it starting from a zipped project folder:
+You can clone LIKELIKE online by creating a Glitch account and remixing it from the web interface <a href="https://glitch.com/edit/#!/likelike" target="_blank">>>> here <<<</a>
+
+Alternatively you can follow this process to deploy it starting from a zip of the project folder:
 
 * Create a ZIP file of the project.
 * Upload it to the assets folder in your project, click it and click **Copy Url**
@@ -47,11 +47,13 @@ Alternatively you can follow this process to deploy it starting from a zipped pr
 * Refresh our app so the new files are shown in the editor and published
 `refresh`  
 
+**Warning** A free Glitch account has a limit of 4000 requests per hour, this projects loads a lot of individual image assets so you can go over the limit pretty easily. Consider purchasing a paid account for a public-facing project.
+
 ## The .env file
 
 .env is a text file in the root folder that contains private variables, in this case admin usernames and passwords and the port used by the project. It's not published on github and it's not automatically published on glitch so you may have to create it manually and/or copy paste the content in the glitch editor and/or in your code editor if you are running is as a local project.
 
-An example of .env file for LIKELIKE online:
+An example of .env file for LIKELIKE online is:
 
 ```javascript
 ADMINS=adminname1|pass1,adminname2|pass2  
