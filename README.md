@@ -49,7 +49,7 @@ Alternatively you can follow this process to deploy it starting from a zipped pr
 
 ## The .env file
 
-.env is a text file in the root folder that contains private variables, in this case admin usernames and passwords and the port used by the project. It's not published on github and it's not automatically published on glitch so you have to create it manually and copy paste the content in the glitch editor and/or in your code editor if you are running is as a local project.
+.env is a text file in the root folder that contains private variables, in this case admin usernames and passwords and the port used by the project. It's not published on github and it's not automatically published on glitch so you may have to create it manually and/or copy paste the content in the glitch editor and/or in your code editor if you are running is as a local project.
 
 An example of .env file for LIKELIKE online:
 
