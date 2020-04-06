@@ -1,6 +1,8 @@
 # LIKELIKE Online
 
-The tiniest MMORPG. Choose an avatar and hang out with your friends in a virtual version of [LIKELIKE](http://likelike.org/) a videogame gallery in Pittsburgh, PA.
+The tiniest MMORPG. Choose an avatar and hang out with your friends in a virtual version of [LIKELIKE](http://likelike.org/shows) a videogame gallery in Pittsburgh, PA.
+
+<a href="https://likelike.glitch.me/" target="_blank">>>>Try it here<<<</a>
 
 This project was created during the COVID-19 quarantine and was meant to evoke the social aspect of LIKELIKE's exhibitions.  
 You can mod it to create your own virtual exhibitions, multi-user environments or games.  
@@ -45,11 +47,15 @@ Alternatively you can follow this process to deploy it starting from a zipped pr
 * Refresh our app so the new files are shown in the editor and published
 `refresh`  
 
-* **Important** The .env file contains the private variables like admin usernames and passwords. It won't be zipped or overwritten so if you have to copy its content manually in the glitch editor
+## The .env file
 
-An example of .env file:
+.env is a text file in the root folder that contains private variables, in this case admin usernames and passwords and the port used by the project. It's not published on github and it's not automatically published on glitch so you have to create it manually and copy paste the content in the glitch editor and/or in your code editor if you are running is as a local project.
+
+An example of .env file for LIKELIKE online:
 
 ```javascript
-ADMINS=username1|pass1,username2|pass2  
+ADMINS=adminname1|pass1,adminname2|pass2  
 PORT = 3000
 ```
+
+The admin names are reserved. Logging in as "adminname|pass" (nickname and password separated by a "|") will grant the user admin priviledges such as banning IP or sending special messages.

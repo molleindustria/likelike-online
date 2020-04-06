@@ -58,7 +58,9 @@ and it's never shared to other clients, unlike player.nickName
 
 admins can call admin commands from the chat like /kick nickName
 */
-var admins = process.env.ADMINS.split(",");
+var admins = [];
+if (process.env.ADMINS != null)
+    admins = process.env.ADMINS.split(",");
 
 //We want the server to keep track of the whole game state
 //in this case the game state are the attributes of each player

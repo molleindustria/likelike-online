@@ -18,7 +18,7 @@ var QUICK_LOGIN = false;
 //true: preview the room as invisible user
 //false: go directly to the login without previewing the room
 //ignored if QUICK_LOGIN is true
-var LURK_MODE = false;
+var LURK_MODE = true;
 
 //expose the room locations on the url and make them them shareable
 //you can access the world from any point. False ignores
