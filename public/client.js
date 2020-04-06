@@ -1515,9 +1515,12 @@ function Player(p) {
         this.sprite.visible = false;
 
     this.stopWalkingAnimation = function () {
-        this.sprite.changeAnimation("emote");
-        this.sprite.animation.changeFrame(0);
-        this.sprite.animation.stop();
+
+        if (this.sprite.getAnimationLabel() == "walk") {
+            this.sprite.changeAnimation("emote");
+            this.sprite.animation.changeFrame(0);
+            this.sprite.animation.stop();
+        }
     }
 
     this.playWalkingAnimation = function () {
