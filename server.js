@@ -10,6 +10,14 @@ ADMINS=username1|pass1,username2|pass2
 PORT = 3000
 */
 
+var MOD = {};
+//load server side mod file
+try {
+    MOD = require('./serverMod');
+}
+catch (e) {
+}
+
 var port = process.env.PORT || 3000;
 
 //number of emits per second allowed for each player, after that ban the IP.
@@ -219,6 +227,12 @@ io.on('connection', function (socket) {
                     if (playerInfo.nickName != "")
                         visits++;
 
+                    //check if there is a custom function in the MOD to call at this point
+                    if (MOD["joinGame"] != null) {
+                        //call it!
+                        MOD["joinGame"](newPlayer, playerInfo.room);
+                    }
+
                     //send all players information about the new player
                     //upon creation destination and position are the same 
                     io.to(playerInfo.room).emit('playerJoined', newPlayer);
@@ -307,7 +321,22 @@ io.on('connection', function (socket) {
                         console.log(socket.id + " is problematic");
                     }
                     else {
-                        io.to(obj.room).emit('playerTalked', { id: socket.id, color: obj.color, message: obj.message, x: obj.x, y: obj.y });
+
+                        //check if there is a custom function in the MOD to call at this point
+                        if (MOD[obj.room + "TalkFilter"] != null) {
+
+                            //call it!
+                            obj.message = MOD[obj.room + "TalkFilter"](gameState.players[socket.id], obj.message);
+
+                            if (obj.message == null) {
+                                console.log("MOD: Warning - TalkFilter should return a message ");
+                                obj.message = "";
+                            }
+
+                        }
+
+                        if (obj.message != "")
+                            io.to(obj.room).emit('playerTalked', { id: socket.id, color: obj.color, message: obj.message, x: obj.x, y: obj.y });
                     }
                 }
 
@@ -343,9 +372,9 @@ io.on('connection', function (socket) {
             else {
                 //console.log("Player " + socket.id + " moved from " + obj.from + " to " + obj.to);
 
-
                 socket.leave(obj.from);
                 socket.join(obj.to);
+
 
                 //broadcast the change to everybody in the current room
                 //from the client perspective leaving the room is the same as disconnecting
@@ -357,6 +386,19 @@ io.on('connection', function (socket) {
                 playerObject.x = playerObject.destinationX = obj.x;
                 playerObject.y = playerObject.destinationY = obj.y;
                 playerObject.new = false;
+
+                //check if there is a custom function in the MOD to call at this point
+                if (MOD[obj.from + "Exit"] != null) {
+                    //call it!
+                    MOD[obj.from + "Exit"](playerObject, obj.from);
+                }
+
+                //check if there is a custom function in the MOD to call at this point
+                if (MOD[obj.to + "Enter"] != null) {
+                    //call it!
+                    MOD[obj.to + "Enter"](playerObject, obj.to);
+                }
+
                 io.to(obj.to).emit('playerJoined', playerObject);
             }
         } catch (e) {
@@ -667,5 +709,6 @@ let myBadWords = ['chink', 'cunt', 'cunts', "fag", "fagging", "faggitt", "faggot
 var filter = new Filter({ emptyList: true });
 filter.addWords(...myBadWords);
 
-
+//p5 style alias
+function print(s) { console.log(s); }
 

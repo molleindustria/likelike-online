@@ -136,6 +136,7 @@ var allSheets;
 //current room bg and areas
 var bg;
 var areas;
+var room; //the id
 
 //command quequed for when the destination is reached
 var nextCommand;
@@ -620,6 +621,7 @@ function newGame() {
 
                 //if it's me///////////
                 if (socket.id == p.id) {
+                    rolledSprite = null;
 
                     //the location appears in the url
                     if (ROOM_LINK && ROOMS[p.room] != null)
@@ -642,6 +644,7 @@ function newGame() {
                     me.sprite.onMousePressed = function () { socket.emit('emote', { room: me.room, em: true }); };
                     me.sprite.onMouseReleased = function () { socket.emit('emote', { room: me.room, em: false }); };
 
+                    room = p.room;
 
                     //if a page background is specified change it
                     if (ROOMS[p.room].pageBg != null)
@@ -724,8 +727,12 @@ function newGame() {
 
                         }
 
+                    //initialize the mod if any
+                    if (window.initMod != null) {
+                        window.initMod(p.id, p.room);
+                    }
 
-                }
+                }//it me
                 else {
                     //
                     players[p.id] = new Player(p);
@@ -764,6 +771,11 @@ function newGame() {
                 }
 
                 console.log("There are now " + Object.keys(players).length + " players in this room");
+
+                //calling a custom function roomnameEnter if it exists
+                if (window[p.room + "Enter"] != null) {
+                    window[p.room + "Enter"](p.id, p.room);
+                }
 
             }
             catch (e) {
@@ -814,6 +826,12 @@ function newGame() {
                 console.log("Player " + p.id + " left");
 
                 if (players[p.id] != null) {
+
+                    //calling a custom function roomnameEnter if it exists
+                    if (window[p.room + "Exit"] != null) {
+                        window[p.room + "Exit"](p.id);
+                    }
+
                     if (p.disconnect && players[p.id].nickName != "") {
                         var spark = createSprite(players[p.id].x, players[p.id].y - AVATAR_H + 1);
                         spark.addAnimation("spark", disappearEffect);
@@ -861,12 +879,18 @@ function newGame() {
                         var offY = ROOMS[me.room].bubblesY * ASSET_SCALE;
                         var newBubble = new Bubble(p.id, p.message, p.color, p.x, p.y, offY);
 
+                        //calling a custom function 
+                        if (window[me.room + "Talk"] != null) {
+                            window[me.room + "Talk"](p.id, newBubble);
+                        }
+
                         pushBubbles(newBubble);
                         bubbles.push(newBubble);
 
                         if (SOUND) {
                             blips[floor(random(0, blips.length))].play();
                         }
+
                     }
                 }
             } catch (e) {
@@ -1017,6 +1041,12 @@ function update() {
         text(errorMessage, floor(WIDTH / 8), floor(HEIGHT / 8), WIDTH - floor(WIDTH / 4), HEIGHT - floor(HEIGHT / 4) + 1);
     }
     else if (screen == "game") {
+
+        //calling a custom function
+        if (window[room + "Update"] != null) {
+            window[room + "Update"]();
+        }
+
         //draw a background
         background(UI_BG);
         imageMode(CORNER);
@@ -1501,6 +1531,7 @@ function Player(p) {
     this.sprite.id = this.id;
     this.sprite.label = p.nickName;
     this.sprite.transparent = false;
+    this.sprite.roomId = p.room; //sure anything goes
 
     //save the dominant color for bubbles and rollover label
     var c = color(AVATAR_PALETTES[p.color][2]);
@@ -1563,7 +1594,12 @@ function Player(p) {
             if (this.transparent)
                 tint(255, 100);
 
-            this.originalDraw();
+            if (window[this.roomId + "DrawSprite"] != null) {
+                window[this.roomId + "DrawSprite"](this.id, this, this.originalDraw);
+            }
+            else {
+                this.originalDraw();
+            }
 
             if (this.transparent)
                 noTint();
@@ -1671,7 +1707,12 @@ function isObstacle(x, y, room, a) {
 
     if (room != null && a != null) {
 
-        var c1 = a.get(x, y);
+        //you know, at this point I'm not sure if you are using assets scaled by 2 for the areas
+        //so I'm just gonna stretch the coordinates ok
+        var px = floor(map(x, 0, WIDTH, 0, a.width));
+        var py = floor(map(y, 0, HEIGHT, 0, a.height));
+
+        var c1 = a.get(px, py);
 
         //if not white check if color is obstacle
         if (c1[0] != 255 || c1[1] != 255 || c1[2] != 255) {
@@ -1717,7 +1758,13 @@ function mouseMoved() {
         walkIcon.visible = false;
 
     if (areas != null && me != null) {
-        var c = areas.get(mouseX, mouseY);
+
+        //you know, at this point I'm not sure if you are using assets scaled by 2 for the areas
+        //so I'm just gonna stretch the coordinates ok
+        var mx = floor(map(mouseX, 0, WIDTH, 0, areas.width));
+        var my = floor(map(mouseY, 0, HEIGHT, 0, areas.height));
+
+        var c = areas.get(mx, my);
         areaLabel = "";
 
         if (alpha(c) != 0 && me.room != null) {
@@ -1797,7 +1844,12 @@ function canvasReleased() {
             //check the area info
             else if (areas != null && me.room != null) {
 
-                var c = areas.get(mouseX, mouseY);
+                //you know, at this point I'm not sure if you are using assets scaled by 2 for the areas
+                //so I'm just gonna stretch the coordinates ok
+                var mx = floor(map(mouseX, 0, WIDTH, 0, areas.width));
+                var my = floor(map(mouseY, 0, HEIGHT, 0, areas.height));
+
+                var c = areas.get(mx, my);
 
                 //if transparent or semitransparent do nothing
                 if (alpha(c) != 255) {

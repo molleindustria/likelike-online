@@ -98,7 +98,18 @@ module.exports.ROOMS = {
             { file: "likelike-backyard-chairs.png", position: [33, 44] },
 
         ]
-
-
     },
+
+    //just an empty room for testing mods
+    experiments: {
+
+        bg: "experiments-bg.png",
+        avatarScale: 2,
+        pageBg: "#bfaeae",
+        area: "experiments-areas.png",
+        tint: "#FFFFFF",
+        bubblesY: 50,
+        spawn: [15, 77, 113, 96]
+
+    }
 };
