@@ -27,17 +27,20 @@ var SOUND = true;
 var AFK = false;
 
 //native canvas resolution
-var WIDTH = 256;
-var HEIGHT = 200;
+var NATIVE_WIDTH = 128;
+var NATIVE_HEIGHT = 100;
 
 /*
 The original resolution (pre canvas stretch) is 128x100 multiplied by 2 because
 otherwise there wouldn't be enough room for pixel text.
 Basically the backgrounds' pixels are twice the pixels of the text.
-ASSET_SCALE is a multiplier for all backgrounds, areas, sprites, and coordinates
+ASSET_SCALE is a multiplier for all backgrounds, areas, things (sprites), and coordinates
 that are natively drawn at 128x100
 */
 var ASSET_SCALE = 2;
+
+var WIDTH = NATIVE_WIDTH * ASSET_SCALE;
+var HEIGHT = NATIVE_HEIGHT * ASSET_SCALE;
 
 //dynamically adjusted based on the window
 var canvasScale;
@@ -59,6 +62,8 @@ var socket;
 //sent by the server
 var ROOMS;
 var SETTINGS;
+//preloaded sound image asset from data.js
+var IMAGES, SOUNDS;
 
 //avatar linear speed, pixels per milliseconds
 var SPEED = 50;
@@ -91,35 +96,26 @@ var PAGE_COLOR = "#000000";
 
 //sprite reference color for palette swap
 //hair, skin, shirt, pants
-var REF_COLORS = ['#413830', '#c0692a', '#ff004d', '#29adff'];
+var REF_COLORS = ["#413830", "#c0692a", "#ff004d", "#29adff"];
 //the palettes that will respectively replace the colors above
-var AVATAR_PALETTES = [
-    ['#ffa300', '#e27c32', '#a8e72e', '#00b543'],
-    ['#a8e72e', '#e27c32', '#111d35', '#8f3f17'],
-    ['#413830', '#e27c32', '#c2c3c7', '#a28879'],
-    ['#a28879', '#e27c32', '#f3ef7d', '#422136'],
-    ['#a28879', '#e27c32', '#ca466d', '#1e839d'],
-    ['#413830', '#e27c32', '#111d35', '#ca466d'],
-    ['#be1250', '#e27c32', '#ffec27', '#1e839d'],
-    ['#ffec27', '#e27c32', '#1e839d', '#422136'],
+//black and brown more common
+var HAIR_COLORS = ["#413830", "#413830", "#413830", "#742f29", "#742f29", "#742f29", "#ffa300", "#a8e72e", "#a28879", "#be1250", "#ffec27", "#00b543", "#ff6c24"];
+var SKIN_COLORS = ["#e27c32", "#8f3f17", "#ffccaa"];
+var TOP_COLORS = ["#a8e72e", "#111d35", "#c2c3c7", "#f3ef7d", "#ca466d", "#111d35", "#ffec27", "#1e839d",
+    "#ff004d", "#ff9d81", "#ff6c24", "#ffec27", "#be1250", "#b7250b"];
+var BOTTOM_COLORS = ["#00b543", "#a28879", "#422136", "#ca466d", "#ffec27", "#1e839d", "#ff6c24", "#be1250", "#413830", "#c2c3c7"];
 
-    ['#413830', '#8f3f17', '#ff004d', '#413830'],
-    ['#413830', '#8f3f17', '#ff9d81', '#413830'],
-    ['#a28879', '#8f3f17', '#ffec27', '#ff6c24'],
-    ['#413830', '#8f3f17', '#c2c3c7', '#ca466d'],
+var HAIR_COLORS_RGB = [];
+var SKIN_COLORS_RGB = [];
+var TOP_COLORS_RGB = [];
+var BOTTOM_COLORS_RGB = [];
 
-    ['#00b543', '#ffccaa', '#ff6c24', '#1e839d'],
-    ['#742f29', '#ffccaa', '#ffec27', '#ff6c24'],
-    ['#ff6c24', '#ffccaa', '#c2c3c7', '#413830'],
-    ['#413830', '#ffccaa', '#be1250', '#422136'],
-    ['#413830', '#ffccaa', '#ff6c24', '#8f3f17'],
-    ['#413830', '#ffccaa', '#ff6c24', '#8f3f17'],
-    ['#742f29', '#ffccaa', '#a8e72e', '#413830']
-
-];
 //arrays to speed up the pix by pix recoloring
 var REF_COLORS_RGB = [];
-var AVATAR_PALETTES_RGB = [];
+
+//at character selection save the generated palettes so you can go back
+var generatedPalettes = [];
+var paletteIndex = 0;
 
 //GUI
 var LABEL_NEUTRAL_COLOR = "#FFFFFF";
@@ -180,7 +176,10 @@ var nickName = "";
 
 //these are indexes of arrays not images or colors
 var currentAvatar;
-var currentColor;
+
+//these are the colors that get passed around, indexes to the respective color arrays
+//hair, skin, top, bottom
+var currentColors = [0, 0, 0, 0];
 
 //this object keeps track of all the current players in the room, coordinates, bodies and color
 var players;
@@ -205,9 +204,13 @@ var appearSound, disappearSound;
 //don't do first log kind of things
 var firstLog = true;
 
+//time since the server started
+var START_TIME = -1;
+
 //async check
 var dataLoaded = false;
 var gameStarted = false;
+
 
 
 /*
@@ -268,20 +271,46 @@ function preload() {
         REF_COLORS_RGB[i] = [r, g, b];
     }
 
-    AVATAR_PALETTES_RGB = [];
+
+
+
     //to make the palette swap faster I save colors as arrays 
-    for (var i = 0; i < AVATAR_PALETTES.length; i++) {
-
-        AVATAR_PALETTES_RGB[i] = [];
-
+    for (var i = 0; i < HAIR_COLORS.length; i++) {
+        HAIR_COLORS_RGB[i] = [];
         //each color
-        for (var j = 0; j < AVATAR_PALETTES[i].length; j++) {
+        for (var j = 0; j < HAIR_COLORS[i].length; j++) {
 
-            var rc = AVATAR_PALETTES[i][j];
-            var r = red(rc);
-            var g = green(rc);
-            var b = blue(rc);
-            AVATAR_PALETTES_RGB[i][j] = [r, g, b];
+            var rc = HAIR_COLORS[i];
+            HAIR_COLORS_RGB[i] = [red(rc), green(rc), blue(rc)];
+
+        }
+
+    }
+
+    for (var i = 0; i < SKIN_COLORS.length; i++) {
+        SKIN_COLORS_RGB[i] = [];
+        //each color
+        for (var j = 0; j < SKIN_COLORS[i].length; j++) {
+            var rc = SKIN_COLORS[i];
+            SKIN_COLORS_RGB[i] = [red(rc), green(rc), blue(rc)];
+        }
+    }
+
+    for (var i = 0; i < TOP_COLORS.length; i++) {
+        TOP_COLORS_RGB[i] = [];
+        //each color
+        for (var j = 0; j < TOP_COLORS[i].length; j++) {
+            var rc = TOP_COLORS[i];
+            TOP_COLORS_RGB[i] = [red(rc), green(rc), blue(rc)];
+        }
+    }
+
+    for (var i = 0; i < BOTTOM_COLORS.length; i++) {
+        BOTTOM_COLORS_RGB[i] = [];
+        //each color
+        for (var j = 0; j < BOTTOM_COLORS[i].length; j++) {
+            var rc = BOTTOM_COLORS[i];
+            BOTTOM_COLORS_RGB[i] = [red(rc), green(rc), blue(rc)];
         }
     }
 
@@ -309,22 +338,22 @@ function preload() {
     font = loadFont(FONT_FILE);
 
     //load sound
-    soundFormats('mp3', 'ogg');
+    soundFormats("mp3", "ogg");
 
     blips = [];
     for (var i = 0; i <= 5; i++) {
         var blip = loadSound(ASSETS_FOLDER + "blip" + i);
-        blip.playMode('sustain');
+        blip.playMode("sustain");
         blip.setVolume(0.3);
         blips.push(blip);
     }
 
     appearSound = loadSound(ASSETS_FOLDER + "appear");
-    appearSound.playMode('sustain');
+    appearSound.playMode("sustain");
     appearSound.setVolume(0.3);
 
     disappearSound = loadSound(ASSETS_FOLDER + "disappear");
-    disappearSound.playMode('sustain');
+    disappearSound.playMode("sustain");
     disappearSound.setVolume(0.3);
 
 
@@ -341,7 +370,7 @@ function setup() {
     canvas.mouseReleased(canvasReleased);
     canvas.mouseOut(outOfCanvas);
     //by default the canvas is attached to the bottom, i want it in the container
-    canvas.parent('canvas-container');
+    canvas.parent("canvas-container");
 
     //adapt it to the browser window 
     scaleCanvas();
@@ -381,15 +410,16 @@ function setup() {
     });
 
     //server sends out the response to the name submission, only if lurk mode is disabled
-    //it's in a separate function because it is shared between the first provisional connection 
+    //it"s in a separate function because it is shared between the first provisional connection 
     //and the "real" one later
-    socket.on('nameValidation', nameValidationCallBack);
+    socket.on("nameValidation", nameValidationCallBack);
 
     //first server message with version and game data
-    socket.on('serverWelcome',
-        function (serverVersion, DATA) {
+    socket.on("serverWelcome",
+        function (serverVersion, DATA, _START_TIME) {
             if (socket.id) {
-                console.log("Welcome! Server version: " + serverVersion + " - client version " + VERSION);
+                console.log("Welcome! Server version: " + serverVersion + " - client version " + VERSION + " started " + _START_TIME);
+                START_TIME = _START_TIME;
 
                 //this is before canvas so I have to html brutally
                 if (serverVersion != VERSION) {
@@ -416,14 +446,35 @@ function setup() {
                         else
                             console.log("WARNING: room " + roomId + " has no area graphics");
 
+                        if (room.music != null) {
+                            room.musicLoop = loadSound(ASSETS_FOLDER + room.music);
+                            room.musicLoop.playMode('restart');
+                        }
+
+
                         //preload sprites if any
-                        if (ROOMS[roomId].sprites != null)
-                            for (var i = 0; i < ROOMS[roomId].sprites.length; i++) {
-                                var spr = ROOMS[roomId].sprites[i];
+                        if (ROOMS[roomId].things != null)
+                            for (var id in ROOMS[roomId].things) {
+                                var spr = ROOMS[roomId].things[id];
                                 spr.spriteGraphics = loadImage(ASSETS_FOLDER + spr.file);
                             }
                     }
                 }
+
+                //load the misc images from data
+                var imageData = DATA.IMAGES;
+                IMAGES = {};
+                for (var i = 0; i < imageData.length; i++) {
+                    IMAGES[imageData[i][0]] = loadImage(ASSETS_FOLDER + imageData[i][1]);
+                }
+
+                //load the misc images from data
+                var soundData = DATA.SOUNDS;
+                SOUNDS = {};
+                for (var i = 0; i < soundData.length; i++) {
+                    SOUNDS[soundData[i][0]] = loadSound(ASSETS_FOLDER + soundData[i][1]);
+                }
+
 
                 print(">>> DATA RECEIVED " + (DATA.ROOMS != null));
             }
@@ -442,7 +493,6 @@ function draw() {
         //loaded except when it's NOT
         dataLoaded = true;
 
-        //load room assets, should be in preload but
         for (var roomId in ROOMS) {
             var room = ROOMS[roomId];
 
@@ -453,6 +503,24 @@ function draw() {
             if (room.areaGraphics != null)
                 if (room.areaGraphics.width == 1)
                     dataLoaded = false;
+
+            if (room.musicLoop != null)
+                if (!room.musicLoop.isLoaded())
+                    dataLoaded = false;
+
+        }
+
+
+        for (var imageId in IMAGES) {
+            if (IMAGES[imageId].width == 1 && IMAGES[imageId].height == 1) {
+                dataLoaded = false;
+            }
+        }
+
+        for (var soundId in SOUNDS) {
+            if (!SOUNDS[soundId].isLoaded()) {
+                dataLoaded = false;
+            }
         }
 
         if (dataLoaded)
@@ -478,7 +546,7 @@ function setupGame() {
     if (ROOM_LINK) {
         //url parameters can pass the room so a room can be linked
         const urlParams = new URLSearchParams(window.location.search);
-        const urlRoom = urlParams.get('room')
+        const urlRoom = urlParams.get("room")
 
         if (urlRoom != null) {
             if (ROOMS[urlRoom] != null)
@@ -490,7 +558,10 @@ function setupGame() {
     if (QUICK_LOGIN) {
         //assign random name and avatar and get to the game
         nickName = "user" + floor(random(0, 1000));
-        currentColor = floor(random(0, AVATAR_PALETTES.length));
+
+        currentColors = randomizeAvatarColors();
+
+
         currentAvatar = floor(random(0, walkSheets.length));
         newGame();
     }
@@ -508,11 +579,17 @@ function setupGame() {
     else {
         //nickname blank means invisible - lurk mode
         nickName = "";
-        currentColor = floor(random(0, AVATAR_PALETTES.length));
+
+        currentColors = randomizeAvatarColors();
+        generatedPalettes = [];
+        generatedPalettes.push(currentColors);
+        paletteIndex = 0;
         currentAvatar = floor(random(0, walkSheets.length));
         newGame();
     }
 }
+
+
 
 
 
@@ -564,7 +641,7 @@ function newGame() {
     //in that case the clients reconnect automatically and are assigned new ids so I have to clear
     //the previous player list to avoid ghosts
     //as long as the clients are open they should not lose their avatar and position even if the server is down
-    socket.on('connect', function () {
+    socket.on("connect", function () {
 
         try {
             players = {};
@@ -590,16 +667,18 @@ function newGame() {
                 }
                 else {
                     spawnZone = ROOMS[SETTINGS.defaultRoom].spawn;
-                    //randomize position if it's the first time
+                    //randomize position if it"s the first time
                     var sx = round(random(spawnZone[0] * ASSET_SCALE, spawnZone[2] * ASSET_SCALE));
                     var sy = round(random(spawnZone[1] * ASSET_SCALE, spawnZone[3] * ASSET_SCALE));
                 }
 
+
                 //send the server my name and avatar
-                socket.emit('join', { nickName: nickName, color: currentColor, avatar: currentAvatar, room: SETTINGS.defaultRoom, x: sx, y: sy });
+                socket.emit("join", { nickName: nickName, colors: currentColors, avatar: currentAvatar, room: SETTINGS.defaultRoom, x: sx, y: sy });
             }
             else {
-                socket.emit('join', { nickName: nickName, color: currentColor, avatar: currentAvatar, room: me.room, x: me.x, y: me.y });
+
+                socket.emit("join", { nickName: nickName, colors: currentColors, avatar: currentAvatar, room: me.room, x: me.x, y: me.y });
             }
         } catch (e) {
             console.log("Error on connect");
@@ -610,9 +689,11 @@ function newGame() {
 
 
     //when somebody joins the game create a new player
-    socket.on('playerJoined',
+    socket.on("playerJoined",
         function (p) {
             try {
+
+
                 //console.log("new player in the room " + p.room + " " + p.id + " " + p.x + " " + p.y + " color " + p.color);
 
                 //stop moving
@@ -641,8 +722,8 @@ function newGame() {
                     */
 
                     //click on me = emote
-                    me.sprite.onMousePressed = function () { socket.emit('emote', { room: me.room, em: true }); };
-                    me.sprite.onMouseReleased = function () { socket.emit('emote', { room: me.room, em: false }); };
+                    me.sprite.onMousePressed = function () { socket.emit("emote", { room: me.room, em: true }); };
+                    me.sprite.onMouseReleased = function () { socket.emit("emote", { room: me.room, em: false }); };
 
                     room = p.room;
 
@@ -663,7 +744,7 @@ function newGame() {
                         if (ROOMS[p.room].frames != null)
                             f = ROOMS[p.room].frames;
 
-                        var ss = loadSpriteSheet(bgg, WIDTH, HEIGHT, f);
+                        var ss = loadSpriteSheet(bgg, NATIVE_WIDTH, NATIVE_HEIGHT, f);
                         bg = loadAnimation(ss);
 
                         if (ROOMS[p.room].frameDelay != null) {
@@ -679,53 +760,33 @@ function newGame() {
                         print("ERROR: no area assigned to  " + p.room);
 
                     //create sprites
-                    if (ROOMS[p.room].sprites != null)
-                        for (var i = 0; i < ROOMS[p.room].sprites.length; i++) {
-                            var sprite = ROOMS[p.room].sprites[i];
+                    if (ROOMS[p.room].things != null)
+                        for (var tId in ROOMS[p.room].things) {
 
-                            var f = 1;
+                            var thing = ROOMS[p.room].things[tId];
 
-                            if (sprite.frames != null)
-                                f = sprite.frames;
+                            createThing(thing, tId);
 
-                            var sw = floor(sprite.spriteGraphics.width / f);
-                            var sh = sprite.spriteGraphics.height;
-
-                            var ss = loadSpriteSheet(sprite.spriteGraphics, sw, sh, f);
-                            var animation = loadAnimation(ss);
-
-                            if (sprite.frameDelay != null)
-                                animation.frameDelay = sprite.frameDelay;
+                        }//
 
 
-                            //the position is the bottom left
-                            var newSprite = createSprite(sprite.position[0] * ASSET_SCALE + floor(sw / 2), sprite.position[1] * ASSET_SCALE + floor(sh / 2));
-                            newSprite.addAnimation("default", animation);
+                    //start the music if any
+                    //music is synched across clients
+                    if (ROOMS[p.room].musicLoop != null && SOUND) {
+                        var vol = 1;
+                        if (ROOMS[p.room].musicVolume != null)
+                            vol = ROOMS[p.room].musicVolume;
 
-                            //if label make it rollover reactive
-                            newSprite.label = sprite.label;
-                            if (sprite.label != null) {
+                        //all music "starts" at server's last restart
+                        var now = Date.now();
+                        //time difference in seconds
+                        var timeDiff = (now - START_TIME) / 1000;
+                        //figure out at what point of the loop
+                        var l = ROOMS[p.room].musicLoop;
+                        var startTime = timeDiff % l.duration();
+                        l.loop(0, 1, vol, startTime);
+                    }
 
-                                newSprite.onMouseOver = function () {
-                                    rolledSprite = this;
-                                };
-
-                                newSprite.onMouseOut = function () {
-                                    if (rolledSprite == this)
-                                        rolledSprite = null;
-                                };
-                            }
-                            //if command, make it interactive like an area
-                            if (sprite.command != null) {
-                                newSprite.command = sprite.command;
-
-                                newSprite.onMouseReleased = function () {
-                                    if (rolledSprite == this)
-                                        moveToCommand(this.command);
-                                };
-                            }
-
-                        }
 
                     //initialize the mod if any
                     if (window.initMod != null) {
@@ -739,11 +800,12 @@ function newGame() {
 
                     //console.log("I shall introduce myself to " + p.id);
 
-                    //If I'm not the new player send an introduction to the new player
-                    socket.emit('intro', p.id, {
+                    //If I"m not the new player send an introduction to the new player
+                    socket.emit("intro", p.id, {
                         id: socket.id,
                         nickName: me.nickName,
-                        color: me.color,
+
+                        colors: me.colors,
                         avatar: me.avatar,
                         room: me.room,
                         x: me.x,
@@ -786,11 +848,18 @@ function newGame() {
     );
 
     //each existing player sends me an object with their parameters
-    socket.on('onIntro',
+    socket.on("onIntro",
         function (p) {
             try {
                 //console.log("Hello newcomer I'm " + p.nickName + " " + p.id);
+                //console.log("INTRO from " + p.room + " " + me.room);
+
                 players[p.id] = new Player(p);
+
+                if (p.room != null)
+                    if (window[p.room + "Intro"] != null) {
+                        window[p.room + "Intro"](p.id, p.room);
+                    }
                 console.log("There are now " + Object.keys(players).length + " players in this room");
             } catch (e) {
                 console.log("Error on onIntro");
@@ -801,7 +870,7 @@ function newGame() {
 
 
     //when somebody clicks to move, update the destination (not the position)
-    socket.on('playerMoved',
+    socket.on("playerMoved",
         function (p) {
             try {
                 //console.log(p.id + " moves to: " + p.destinationX + " " + p.destinationY);
@@ -820,10 +889,18 @@ function newGame() {
 
 
     //when somebody disconnects/leaves the room
-    socket.on('playerLeft',
+    socket.on("playerLeft",
         function (p) {
             try {
-                console.log("Player " + p.id + " left");
+                console.log("Player " + p.id + " left " + p.room);
+
+                if (p.id == me.id) {
+                    print("STOP MUSIC");
+                    //stop music before you leave, if any
+                    if (ROOMS[p.room].musicLoop != null) {
+                        ROOMS[p.room].musicLoop.stop();
+                    }
+                }
 
                 if (players[p.id] != null) {
 
@@ -831,6 +908,8 @@ function newGame() {
                     if (window[p.room + "Exit"] != null) {
                         window[p.room + "Exit"](p.id);
                     }
+
+
 
                     if (p.disconnect && players[p.id].nickName != "") {
                         var spark = createSprite(players[p.id].x, players[p.id].y - AVATAR_H + 1);
@@ -865,11 +944,11 @@ function newGame() {
 
 
     //when somebody talks
-    socket.on('playerTalked',
+    socket.on("playerTalked",
         function (p) {
             try {
 
-                //console.log("new message from " + p.id + ": " + p.message + " color " + p.color);
+                console.log("new message from " + p.id + ": " + p.message + " bubble color " + p.color);
 
                 //make sure the player exists in the client
                 if (players.hasOwnProperty(p.id)) {
@@ -900,11 +979,34 @@ function newGame() {
         }
     );
 
+    //when an NPC or a thing talks
+    socket.on("nonPlayerTalked",
+        function (np) {
+            try {
+
+                //minimum y of speech bubbles depends on room, typically higher half
+                var offY = ROOMS[np.room].bubblesY * ASSET_SCALE;
+                var newBubble = new Bubble(np.id, np.message, 0, np.x, np.y, offY);
+                newBubble.color = color(np.labelColor)
+
+                pushBubbles(newBubble);
+                bubbles.push(newBubble);
+
+                if (SOUND) {
+                    blips[floor(random(0, blips.length))].play();
+                }
+            } catch (e) {
+                console.log("Error on nonPlayerTalked");
+                console.error(e);
+            }
+        }
+    );
+
 
 
     //displays a message upon connection refusal (server full etc)
     //this is an end state and requires a refresh or a join
-    socket.on('errorMessage',
+    socket.on("errorMessage",
         function (msg) {
             if (socket.id) {
                 screen = "error";
@@ -920,7 +1022,7 @@ function newGame() {
 
 
     //when a server message arrives
-    socket.on('godMessage',
+    socket.on("godMessage",
         function (msg) {
             if (socket.id) {
 
@@ -933,7 +1035,7 @@ function newGame() {
     );
 
     //when a server message arrives
-    socket.on('playerEmoted',
+    socket.on("playerEmoted",
         function (id, em) {
             try {
                 if (players[id] != null) {
@@ -961,14 +1063,38 @@ function newGame() {
         });
 
 
+    socket.on("thingChanged", function (t) {
+
+        //find the data thing
+        var dataThing = ROOMS[t.room].things[t.thingId];
+
+        if (dataThing != null && t.room == me.room) {
+
+            //remove the visual representation
+            removeThing(t.thingId, t.room);
+
+            //change the value
+            dataThing[t.property] = t.value;
+
+            print("Change property " + t.property + " of " + t.thingId + " in room " + t.room + " to " + t.value);
+
+            //recreate it
+            createThing(dataThing, t.thingId);
+        }
+        else {
+            //print("Warning: I can't find " + t.thingId + " in room " + t.room);
+        }
+    });
+
+
     //server sends out the response to the name submission, only if lurk mode is enabled
-    //it's in a separate function because it is shared between the first provisional connection 
+    //it"s in a separate function because it is shared between the first provisional connection 
     //and the "real" one later
-    socket.on('nameValidation', nameValidationCallBack);
+    socket.on("nameValidation", nameValidationCallBack);
 
 
     //when a server message arrives
-    socket.on('popup',
+    socket.on("popup",
         function (msg) {
             if (socket.id) {
                 alert(msg);
@@ -977,26 +1103,26 @@ function newGame() {
     );
 
     //player in the room is AFK
-    socket.on('playerBlurred', function (id) {
+    socket.on("playerBlurred", function (id) {
 
         if (players[id] != null)
             players[id].sprite.transparent = true;
     });
 
     //player in the room is AFK
-    socket.on('playerFocused', function (id) {
+    socket.on("playerFocused", function (id) {
         if (players[id] != null)
             players[id].sprite.transparent = false;
 
     });
 
     //when the client realizes it's being disconnected
-    socket.on('disconnect', function () {
+    socket.on("disconnect", function () {
         //console.log("OH NO");
     });
 
     //server forces refresh (on disconnect or to force load a new version of the client)
-    socket.on('refresh', function () {
+    socket.on("refresh", function () {
         socket.disconnect();
         location.reload(true);
     });
@@ -1052,7 +1178,11 @@ function update() {
         imageMode(CORNER);
 
         if (bg != null) {
+            push();
+            scale(ASSET_SCALE);
+            translate(-NATIVE_WIDTH / 2, -NATIVE_HEIGHT / 2);
             animation(bg, floor(WIDTH / 2), floor(HEIGHT / 2));
+            pop();
         }
 
         textFont(font, FONT_SIZE);
@@ -1123,8 +1253,9 @@ function update() {
                             //test new position for obstacle repeat for both sides
                             var obs = isObstacle(position.x - AVATAR_W / 2, position.y, p.room, areas);
                             var obs2 = isObstacle(position.x + AVATAR_W / 2, position.y, p.room, areas);
+                            var obs3 = isObstacle(position.x, position.y, p.room, areas);
 
-                            if (!obs && !obs2) {
+                            if (!obs && !obs2 && !obs3) {
                                 p.x = position.x;
                                 p.y = position.y;
                                 p.playWalkingAnimation();
@@ -1134,9 +1265,10 @@ function update() {
 
                                 var obsX = isObstacle(position.x - AVATAR_W / 2, p.y, p.room, areas);
                                 var obsX2 = isObstacle(position.x + AVATAR_W / 2, p.y, p.room, areas);
+                                var obsX3 = isObstacle(position.x, p.y, p.room, areas);
 
                                 //if not obstacle move only horizontally at full speed
-                                if (!obsX && !obsX2 && abs(delta.x) > 0.1) {
+                                if (!obsX && !obsX2 && !obsX3 && abs(delta.x) > 0.1) {
 
                                     p.x += SPEED * deltaTime / 1000 * (p.x > position.x) ? -1 : 1;
                                     p.playWalkingAnimation();
@@ -1146,8 +1278,9 @@ function update() {
                                     //if obs on y test the y
                                     var obsY = isObstacle(p.x - AVATAR_W / 2, position.y, p.room, areas);
                                     var obsY2 = isObstacle(p.x + AVATAR_W / 2, position.y, p.room, areas);
+                                    var obsY3 = isObstacle(p.x, position.y, p.room, areas);
 
-                                    if (!obsY && !obsY2 && abs(delta.y) > 0.1) {
+                                    if (!obsY && !obsY2 && !obsY3 && abs(delta.y) > 0.1) {
 
                                         p.y += SPEED * deltaTime / 1000 * (p.y > position.y) ? -1 : 1;
                                         p.playWalkingAnimation();
@@ -1163,7 +1296,7 @@ function update() {
                                             nextCommand = null;
 
                                             //stop if moving
-                                            socket.emit('move', { x: me.x, y: me.y, room: me.room, destinationX: me.x, destinationY: me.y });
+                                            socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: me.x, destinationY: me.y });
                                         }
                                     }
 
@@ -1221,9 +1354,14 @@ function update() {
 
         //set the existing sprites' depths in relation to their position
         for (var i = 0; i < allSprites.length; i++) {
-            //sprites on the bottom will be drawn first
-            allSprites[i].depth = allSprites[i].position.y + allSprites[i].height / 2;
+            //allSprites[i].debug = true;
 
+            var dOff = 0;
+
+            if (allSprites[i].depthOffset != null)
+                dOff = allSprites[i].depthOffset;
+
+            allSprites[i].depth = allSprites[i].position.y + dOff;
         }
 
         //
@@ -1464,18 +1602,36 @@ function avatarSelection() {
     }
 
     previousColor.onMouseReleased = function () {
-        currentColor -= 1;
-        if (currentColor < 0)
-            currentColor = AVATAR_PALETTES.length - 1;
+        paletteIndex--;
+
+        if (paletteIndex >= 0)
+            currentColors = generatedPalettes[paletteIndex];
+        else {
+            currentColors = randomizeAvatarColors();
+            generatedPalettes.unshift(currentColors);
+            paletteIndex = 0;
+            //currentColors = randomizeAvatarColors();
+        }
+
 
         previewAvatar();
         this.animation.changeFrame(1);
     }
 
     nextColor.onMouseReleased = function () {
-        currentColor += 1;
-        if (currentColor >= AVATAR_PALETTES.length)
-            currentColor = 0;
+
+        paletteIndex++;
+
+        //if end of array generate and push a new one
+        if (paletteIndex > generatedPalettes.length - 1) {
+
+            currentColors = randomizeAvatarColors();
+
+            generatedPalettes.push(currentColors);
+        }
+        else {
+            currentColors = generatedPalettes[paletteIndex];
+        }
 
         previewAvatar();
         this.animation.changeFrame(1);
@@ -1492,22 +1648,25 @@ function avatarSelection() {
 function Player(p) {
     this.id = p.id;
     this.nickName = p.nickName;
-    this.color = p.color;
+
+    this.colors = p.colors;
+
     this.avatar = p.avatar;
     this.ignore = false;
 
     this.tint = color("#FFFFFF");
+
 
     if (ROOMS[p.room].tint != null) {
         this.tint = color(ROOMS[p.room].tint);
     }
 
     //tint the image
-    this.avatarGraphics = paletteSwap(walkSheets[p.avatar], AVATAR_PALETTES_RGB[p.color], this.tint);
+    this.avatarGraphics = paletteSwap(walkSheets[p.avatar], p.colors, this.tint);
     this.spriteSheet = loadSpriteSheet(this.avatarGraphics, AVATAR_W, AVATAR_H, round(walkSheets[p.avatar].width / AVATAR_W));
     this.walkAnimation = loadAnimation(this.spriteSheet);
     //emote
-    this.emoteGraphics = paletteSwap(emoteSheets[p.avatar], AVATAR_PALETTES_RGB[p.color], this.tint);
+    this.emoteGraphics = paletteSwap(emoteSheets[p.avatar], p.colors, this.tint);
     this.emoteSheet = loadSpriteSheet(this.emoteGraphics, AVATAR_W, AVATAR_H, round(emoteSheets[p.avatar].width / AVATAR_W));
     this.emoteAnimation = loadAnimation(this.emoteSheet);
     this.emoteAnimation.frameDelay = 10;
@@ -1516,8 +1675,8 @@ function Player(p) {
 
     this.sprite.scale = ROOMS[p.room].avatarScale;
 
-    this.sprite.addAnimation('walk', this.walkAnimation);
-    this.sprite.addAnimation('emote', this.emoteAnimation);
+    this.sprite.addAnimation("walk", this.walkAnimation);
+    this.sprite.addAnimation("emote", this.emoteAnimation);
 
 
     if (this.nickName == "")
@@ -1526,20 +1685,29 @@ function Player(p) {
         this.sprite.mouseActive = true;
 
     //this.sprite.debug = true;
+    this.sprite.setCollider("rectangle", 0, 0, 4, 10)
+
 
     //no parent in js? WHAAAAT?
     this.sprite.id = this.id;
     this.sprite.label = p.nickName;
     this.sprite.transparent = false;
     this.sprite.roomId = p.room; //sure anything goes
+    this.sprite.avatar = true;
+    this.sprite.depthOffset = AVATAR_H / 2;
 
     //save the dominant color for bubbles and rollover label
-    var c = color(AVATAR_PALETTES[p.color][2]);
+    var c1 = color(TOP_COLORS[p.colors[2]]);
+    var c2 = color(BOTTOM_COLORS[p.colors[3]]);
 
-    if (brightness(c) > 30)
-        this.sprite.labelColor = color(AVATAR_PALETTES[p.color][2]);
+    if (brightness(c1) > 30)
+        this.sprite.labelColor = TOP_COLORS[p.colors[2]];
+    else if (brightness(c2) > 30)
+        this.sprite.labelColor = BOTTOM_COLORS[p.colors[3]];
     else
-        this.sprite.labelColor = color(AVATAR_PALETTES[p.color][3]);
+        this.sprite.labelColor = LABEL_NEUTRAL_COLOR;
+
+    this.labelColor = this.sprite.labelColor;
 
     this.room = p.room;
     this.x = p.x;
@@ -1547,6 +1715,7 @@ function Player(p) {
     this.dir = 1;
     this.destinationX = p.destinationX;
     this.destinationY = p.destinationY;
+
 
     //lurkmode
     if (this.nickName == "")
@@ -1623,13 +1792,7 @@ function Bubble(pid, message, col, x, y, oy) {
     this.pid = pid;
     this.message = message;
 
-    //the color is the 3rd color in the palette unless too dark, in that case it's the second
-    var c = color(AVATAR_PALETTES[col][2]);
-
-    if (brightness(c) > 30)
-        this.color = color(AVATAR_PALETTES[col][2]);
-    else
-        this.color = color(AVATAR_PALETTES[col][3]);
+    this.color = color(col);
 
     this.orphan = false;
     this.counter = BUBBLE_TIME;
@@ -1707,8 +1870,8 @@ function isObstacle(x, y, room, a) {
 
     if (room != null && a != null) {
 
-        //you know, at this point I'm not sure if you are using assets scaled by 2 for the areas
-        //so I'm just gonna stretch the coordinates ok
+        //you know, at this point I"m not sure if you are using assets scaled by 2 for the areas
+        //so I"m just gonna stretch the coordinates ok
         var px = floor(map(x, 0, WIDTH, 0, a.width));
         var py = floor(map(y, 0, HEIGHT, 0, a.height));
 
@@ -1759,8 +1922,8 @@ function mouseMoved() {
 
     if (areas != null && me != null) {
 
-        //you know, at this point I'm not sure if you are using assets scaled by 2 for the areas
-        //so I'm just gonna stretch the coordinates ok
+        //you know, at this point I"m not sure if you are using assets scaled by 2 for the areas
+        //so I"m just gonna stretch the coordinates ok
         var mx = floor(map(mouseX, 0, WIDTH, 0, areas.width));
         var my = floor(map(mouseY, 0, HEIGHT, 0, areas.height));
 
@@ -1791,7 +1954,7 @@ function canvasPressed() {
     //emote only if not walking
     if (nickName != "" && screen == "game" && mouseButton == RIGHT) {
         if (me.destinationX == me.x && me.destinationY == me.y)
-            socket.emit('emote', { room: me.room, em: true });
+            socket.emit("emote", { room: me.room, em: true });
     }
 }
 
@@ -1805,14 +1968,14 @@ function canvasReleased() {
     }
     else if (nickName != "" && screen == "game" && mouseButton == RIGHT) {
         if (me.destinationX == me.x && me.destinationY == me.y)
-            socket.emit('emote', { room: me.room, em: false });
+            socket.emit("emote", { room: me.room, em: false });
     }
     else if (nickName != "" && screen == "game" && mouseButton == LEFT) {
         //exit text
         if (longText != "" && longText != SETTINGS.INTRO_TEXT) {
 
             if (longTextLink != "")
-                window.open(longTextLink, '_blank');
+                window.open(longTextLink, "_blank");
 
             longText = "";
             longTextLink = "";
@@ -1825,7 +1988,7 @@ function canvasReleased() {
             if (AFK) {
                 AFK = false;
                 if (socket != null)
-                    socket.emit('focus', { room: me.room });
+                    socket.emit("focus", { room: me.room });
             }
 
             //clicked on person
@@ -1837,7 +2000,7 @@ function canvasReleased() {
                     var t = players[rolledSprite.id];
                     if (t != null && t != me) {
                         var d = (me.x < t.x) ? -(AVATAR_W * 2) : (AVATAR_W * 2);
-                        socket.emit('move', { x: me.x, y: me.y, room: me.room, destinationX: t.x + d, destinationY: t.y });
+                        socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: t.x + d, destinationY: t.y });
                     }
                 }
             }
@@ -1857,13 +2020,13 @@ function canvasReleased() {
                     nextCommand = null;
                     //stop if moving
                     if (me.x != me.destinationX && me.y != me.destinationY)
-                        socket.emit('move', { x: me.x, y: me.y, room: me.room, destinationX: me.x, destinationY: me.y });
+                        socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: me.x, destinationY: me.y });
                 }
                 else if (c[0] == 255 && c[1] == 255 && c[2] == 255) {
                     //if white, generic walk stop command
                     nextCommand = null;
 
-                    socket.emit('move', { x: me.x, y: me.y, room: me.room, destinationX: mouseX, destinationY: mouseY });
+                    socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: mouseX, destinationY: mouseY });
                 }
                 else {
                     //if something else check the commands
@@ -1891,13 +2054,13 @@ function moveToCommand(command) {
     if (command.point != null) {
         me.destinationX = command.point[0] * ASSET_SCALE;
         me.destinationY = command.point[1] * ASSET_SCALE;
-        socket.emit('move', { x: me.x, y: me.y, room: me.room, destinationX: command.point[0] * ASSET_SCALE, destinationY: command.point[1] * ASSET_SCALE });
+        socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: command.point[0] * ASSET_SCALE, destinationY: command.point[1] * ASSET_SCALE });
     }
     else //just move where you clicked (area) 
     {
         me.destinationX = mouseX;
         me.destinationY = mouseY;
-        socket.emit('move', { x: me.x, y: me.y, room: me.room, destinationX: mouseX, destinationY: mouseY });
+        socket.emit("move", { x: me.x, y: me.y, room: me.room, destinationX: mouseX, destinationY: mouseY });
     }
 
 }
@@ -1905,7 +2068,7 @@ function moveToCommand(command) {
 function getCommand(c, roomId) {
     try {
         //turn color into string
-        var cString = color(c).toString('#rrggbb');//for com
+        var cString = color(c).toString("#rrggbb");//for com
 
         var areaColors = ROOMS[roomId].areaColors;
         var command;
@@ -1941,23 +2104,39 @@ function executeCommand(c) {
         case "enter":
             var sx, sy;
             if (ROOMS[c.room] != null) {
+
+                //stop music before you leave, if any
+                if (ROOMS[me.room].musicLoop != null) {
+                    ROOMS[me.room].musicLoop.stop();
+                }
+
                 if (c.enterPoint != null) {
                     sx = c.enterPoint[0] * ASSET_SCALE;
                     sy = c.enterPoint[1] * ASSET_SCALE;
-                    socket.emit('changeRoom', { from: me.room, to: c.room, x: sx, y: sy });
+                    socket.emit("changeRoom", { from: me.room, to: c.room, x: sx, y: sy });
                 }
                 else if (ROOMS[c.room].spawn != null) {
                     spawnZone = ROOMS[c.room].spawn;
                     sx = round(random(spawnZone[0] * ASSET_SCALE, spawnZone[2] * ASSET_SCALE));
                     sy = round(random(spawnZone[1] * ASSET_SCALE, spawnZone[3] * ASSET_SCALE));
-                    socket.emit('changeRoom', { from: me.room, to: c.room, x: sx, y: sy });
+                    socket.emit("changeRoom", { from: me.room, to: c.room, x: sx, y: sy });
                 }
                 else {
                     console.log("ERROR: No spawn point or area set for " + c.room);
                 }
+
+
+
             }
             break;
 
+        case "action":
+
+            if (c.actionId != null) {
+                socket.emit("action", c.actionId);
+            }
+
+            break;
 
         case "text":
             if (c.txt != null) {
@@ -2006,15 +2185,15 @@ function talk(msg) {
     if (AFK) {
         AFK = false;
         if (socket != null && me != null)
-            socket.emit('focus', { room: me.room });
+            socket.emit("focus", { room: me.room });
     }
 
-    if (msg.replace(/\s/g, '') != "" && nickName != "") {
+    if (msg.replace(/\s/g, "") != "" && nickName != "") {
 
         var command = commandLine(msg)
 
         if (!command)
-            socket.emit('talk', { message: msg, color: me.color, room: me.room, x: me.x, y: me.y });
+            socket.emit("talk", { message: msg, color: me.labelColor, room: me.room, x: me.x, y: me.y });
     }
 }
 
@@ -2033,7 +2212,7 @@ function commandLine(msg) {
             break;
         case "/afk":
             if (socket != null && me != null)
-                socket.emit('blur', { room: me.room });
+                socket.emit("blur", { room: me.room });
 
             AFK = true;
             found = true;
@@ -2058,6 +2237,8 @@ function getTalkInput() {
         document.getElementById("chatField").value = "";
         //save time
         lastMessage = time;
+        longText = "";
+        longTextLink = "";
     }
     //prevent page from refreshing (default form behavior)
     return false;
@@ -2072,7 +2253,7 @@ function nameOk() {
 
         //if socket !null the connection has been established ie lurk mode
         if (socket != null) {
-            socket.emit('sendName', v);
+            socket.emit("sendName", v);
         }
 
         //prevent page from refreshing on enter (default form behavior)
@@ -2109,7 +2290,6 @@ function nameValidationCallBack(code) {
 //draws a random avatar body in the center of the canvas
 //colors it a random color
 function randomAvatar() {
-    currentColor = floor(random(0, AVATAR_PALETTES.length));
     currentAvatar = floor(random(0, AVATARS));
     previewAvatar();
 }
@@ -2119,7 +2299,8 @@ function previewAvatar() {
     if (avatarPreview != null)
         removeSprite(avatarPreview);
 
-    var aGraphics = paletteSwap(emoteSheets[currentAvatar], AVATAR_PALETTES_RGB[currentColor]);
+
+    var aGraphics = paletteSwap(emoteSheets[currentAvatar], currentColors);
     var aSS = loadSpriteSheet(aGraphics, AVATAR_W, AVATAR_H, round(emoteSheets[currentAvatar].width / AVATAR_W));
     var aAnim = loadAnimation(aSS);
     avatarPreview = createSprite(width / 2, height / 2);
@@ -2131,7 +2312,16 @@ function previewAvatar() {
     menuGroup.add(avatarPreview);
 }
 
-function paletteSwap(ss, palette, t) {
+function randomizeAvatarColors() {
+    return [
+        floor(random(0, HAIR_COLORS.length)),
+        floor(random(0, SKIN_COLORS.length)),
+        floor(random(0, TOP_COLORS.length)),
+        floor(random(0, BOTTOM_COLORS.length))
+    ]
+}
+
+function paletteSwap(ss, paletteNumbers, t) {
 
     var tint = [255, 255, 255];
 
@@ -2142,6 +2332,14 @@ function paletteSwap(ss, palette, t) {
     img.copy(ss, 0, 0, ss.width, ss.height, 0, 0, ss.width, ss.height);
     img.loadPixels();
 
+    var palette = [];
+
+    palette[0] = HAIR_COLORS_RGB[paletteNumbers[0]];
+    palette[1] = SKIN_COLORS_RGB[paletteNumbers[1]];
+    palette[2] = TOP_COLORS_RGB[paletteNumbers[2]];
+    palette[3] = BOTTOM_COLORS_RGB[paletteNumbers[3]];
+
+
     for (var i = 0; i < img.pixels.length; i += 4) {
 
         if (img.pixels[i + 3] == 255) {
@@ -2149,6 +2347,7 @@ function paletteSwap(ss, palette, t) {
 
             //non transparent pix replace with palette
             for (var j = 0; j < REF_COLORS_RGB.length && !found; j++) {
+                //print("Ref color " + j + " " + palette[j]);
 
                 if (img.pixels[i] == REF_COLORS_RGB[j][0] && img.pixels[i + 1] == REF_COLORS_RGB[j][1] && img.pixels[i + 2] == REF_COLORS_RGB[j][2]) {
                     found = true;
@@ -2179,6 +2378,82 @@ function tintGraphics(img, colorString) {
     return img;
 }
 
+//create a sprite from a "thing" object found in data
+function createThing(thing, id) {
+
+    var f = 1;
+
+    if (thing.frames != null)
+        f = thing.frames;
+
+    var sw = floor(thing.spriteGraphics.width / f);
+    var sh = thing.spriteGraphics.height;
+
+    var ss = loadSpriteSheet(thing.spriteGraphics, sw, sh, f);
+    var animation = loadAnimation(ss);
+
+    if (thing.frameDelay != null)
+        animation.frameDelay = thing.frameDelay;
+
+
+    //the "real" position is the bottom left
+    var ox = sw % 2;
+    var oy = sh % 2;
+
+    var newSprite = createSprite(floor(thing.position[0] + sw / 2) * ASSET_SCALE + ox, floor(thing.position[1] + sh / 2) * ASSET_SCALE + oy);
+    newSprite.addAnimation("default", animation);
+
+    newSprite.depthOffset = floor(sh / 2) - 4; //4 magic fucking number due to rounding
+
+    newSprite.id = id;
+
+    newSprite.scale = ASSET_SCALE;
+
+    if (thing.visible != null) {
+        newSprite.visible = thing.visible;
+    }
+
+    //if label make it rollover reactive
+    newSprite.label = thing.label;
+    if (thing.label != null) {
+
+        newSprite.onMouseOver = function () {
+            rolledSprite = this;
+        };
+
+        newSprite.onMouseOut = function () {
+            if (rolledSprite == this)
+                rolledSprite = null;
+        };
+    }
+    //if command, make it interactive like an area
+    if (thing.command != null) {
+        newSprite.command = thing.command;
+
+        newSprite.onMouseReleased = function () {
+            if (rolledSprite == this)
+                moveToCommand(this.command);
+        };
+    }
+
+    return newSprite;
+}
+
+
+//removes it only from the client sprite list, not from the data
+function removeThing(thingId, thingRoom) {
+    if (me.room == thingRoom) {
+
+        //getSprites is a p5 play function, returns an array
+        var roomSprites = getSprites();
+        //look for the sprite with that id and remove it
+        for (var i = 0; i < roomSprites.length; i++) {
+            if (roomSprites[i].id == thingId) {
+                roomSprites[i].remove();
+            }
+        }
+    }
+}
 
 //join from lurk mode
 function joinGame() {
@@ -2189,7 +2464,6 @@ function joinGame() {
     if (QUICK_LOGIN) {
         //assign random name and avatar and get to the game
         nickName = "user" + floor(random(0, 1000));
-        currentColor = floor(random(0, AVATAR_PALETTES.length));
         currentAvatar = floor(random(0, emoteSheets.length));
         newGame();
     }
@@ -2294,14 +2568,14 @@ function preventBehavior(e) {
 document.addEventListener("touchmove", preventBehavior, { passive: false });
 
 // Active
-window.addEventListener('focus', function () {
+window.addEventListener("focus", function () {
     if (socket != null && me != null)
-        socket.emit('focus', { room: me.room });
+        socket.emit("focus", { room: me.room });
 });
 
 // Inactive
-window.addEventListener('blur', function () {
+window.addEventListener("blur", function () {
     if (socket != null && me != null)
-        socket.emit('blur', { room: me.room });
+        socket.emit("blur", { room: me.room });
 });
 
