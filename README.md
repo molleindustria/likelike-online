@@ -1,53 +1,21 @@
-# LIKELIKE Online
+# CCI-Diploma-Show
 
-The tiniest MMORPG. Choose an avatar and hang out with your friends in a virtual version of [LIKELIKE](http://likelike.org/shows) a videogame gallery in Pittsburgh, PA.
+The tiniest MMORPG. Choose an avatar and hang out with your friends while attending the end of year (2020) show for the [UAL Creative Computing Institute](https://www.arts.ac.uk/creative-computing-institute)'s [Diploma in Creative Computing](https://www.arts.ac.uk/subjects/creative-computing/undergraduate/ual-creative-computing-institute-diploma).
 
-<a href="https://likelike.glitch.me/" target="_blank">>>>Try it here<<<</a>
+<a href="https://cci.arts.ac.uk" target="_blank">>>>Try it here<<<</a>
 
-This project was created during the COVID-19 quarantine and was meant to evoke the social aspect of LIKELIKE's exhibitions.  
+The project was based on an earlier project - [LIKELIKE Online](https://github.com/molleindustria/likelike-online) by [Molleindustria](http://molleindustria.org/).
+
 You can mod it to create your own virtual exhibitions, multi-user environments or games.  
-It's designed to be extensible by just editing the data.js file and a few settings at the beginning of server.js and client.js.  
+It's designed to be extensible by just editing the data.js file and a few settings at the beginning of server.js and client.js.
 
-The code is extensively commented but it was put together very quickly (about a 10 days) so it's not meant to be a robust, beginner-friendly tool. You'll need some node.js and javascript knowledge to adapt it to your needs. Use at your own risk.
-
-LIKELIKE Online is built with node.js, socket.io, [p5.js](https://p5js.org/), and the add-on [p5.play](https://molleindustria.github.io/p5.play/), it's hosted on [glitch.com](https://glitch.com/).  
-
-LIKELIKE Online is a project by [Molleindustria](http://molleindustria.org/).  
+CCI-Diploma-Show was built with [node.js](https://nodejs.org/), [socket.io](https://socket.io/), [p5.js](https://p5js.org/), and the p5.js add-on [p5.play](https://molleindustria.github.io/p5.play/).
 
 Licensed under a GNU Lesser General Public License v2.1.
 
-![](promo.gif)
+# Team
 
-## Publishing on Glitch
-
-**Glitch** is a community and a suite of online tools to develop web applications.
-Glitch provides free hosting for node.js projects. Most web hosts don't give you that degree of access. Another popular platform is heroku.
-Glitch offers a code editor, file storage, and an intergrated terminal. You can create node applications from scratch via browser.
-Glitch allows you to browse and remix other people projects.
-
-LIKELIKE Online is already structured for glitch deployment with a server.js and a package.json on the root, and a "public" folder.
-You can deploy this app to Glitch via github or [other git repositories](https://medium.com/glitch/import-code-from-anywhere-83fb60ea4875)
-
-You can clone LIKELIKE online by creating a Glitch account and remixing it from the web interface <a href="https://glitch.com/edit/#!/likelike" target="_blank">>>> here <<<</a>
-
-Alternatively you can follow this process to deploy it starting from a zip of the project folder:
-
-* Create a ZIP file of the project.
-* Upload it to the assets folder in your project, click it and click **Copy Url**
-* Starting from an empty or existing glitch project, navigate to **Settings > Advance Options > Open Console**
-* In the console, pull the zip file from the url (keep file.zip name, it's just a temporary file)  
-`wget -O file.zip https:///url-to-your-zip`  
-
-* Extract it to the root folder
-`unzip file.zip -d .`  
-
-* Remove the zip file
-`rm file.zip`  
-
-* Refresh our app so the new files are shown in the editor and published
-`refresh`  
-
-**Warning** A free Glitch account has a limit of 4000 requests per hour, this projects loads a lot of individual image assets so you can go over the limit pretty easily. Consider purchasing a paid account for a public-facing project.
+CCI-Diploma-Show was created by students from the Diploma: [Bea](https://github.com/bats1996), [Zhiqin](https://github.com/bettyluzhiqin), [Eunah](https://github.com/eunah-lee), [Jessie](https://github.com/jessieziyun) and [Max](https://github.com/MaximilianUAL2020).
 
 ## The .env file
 
@@ -56,8 +24,8 @@ Alternatively you can follow this process to deploy it starting from a zip of th
 An example of .env file for LIKELIKE online is:
 
 ```javascript
-ADMINS=adminname1|pass1,adminname2|pass2  
-PORT = 3000
+(ADMINS = adminname1 | pass1), adminname2 | pass2;
+PORT = 3000;
 ```
 
 The admin names are reserved. Logging in as "adminname|pass" (nickname and password separated by a "|") will grant the user admin priviledges such as banning IP or sending special messages.
