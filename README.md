@@ -61,3 +61,23 @@ PORT = 3000
 ```
 
 The admin names are reserved. Logging in as "adminname|pass" (nickname and password separated by a "|") will grant the user admin priviledges such as banning IP or sending special messages.
+
+## Editing
+
+### Running CCI Diploma Show locally
+
+* Make sure you have [Node.js](https://nodejs.org/en/) installed
+* Fork this repository then click on the **Clone or download** button to get its url
+* Clone using `git clone "url"`on your command line
+* Navigate to the repository on your command line then type in `node server.js` to run.
+* Navigate to **localhost:3000** to view
+
+### Save your changes
+
+* Make sure you have [git](https://git-scm.com/) installed
+* Save your changes and commit:  
+`git add .` (adds all your updated files to the staging area)  
+`git commit -m "Your message here"` (commits your changes with a message)  
+* Push your local commits to GitHub  
+`git push`
+* Make a pull request on GitHub
