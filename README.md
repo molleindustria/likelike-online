@@ -67,8 +67,9 @@ The admin names are reserved. Logging in as "adminname|pass" (nickname and passw
 ### Running CCI Diploma Show locally
 
 * Make sure you have [Node.js](https://nodejs.org/en/) installed
-* Fork this repository then clone or download and navigate to it using your command line tool
-* Type in `node server.js` and run.
+* Fork this repository then click on the **Clone or download** button to get its url
+* Clone using `git clone "url"`on your command line
+* Navigate to the repository on your command line then type in `node server.js` to run.
 * Navigate to **localhost:3000** to view
 
 ### Save your changes
