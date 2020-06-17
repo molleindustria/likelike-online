@@ -20,7 +20,7 @@ PROJECTS.md is a file containing the list of students that the CCI-Diploma-Show 
 1. Mia Stoces-Brown: [From A to B], NO PUBLIC URL SUBMITTED
 1. Morgan Williams: [Views from a Room](https://views-from-a-room.glitch.me/)
 1. Nihal Chadha: NO PROJECT NAME, NO PUBLIC URL SUBMITTED
-1. Riya Cyril Anandam: NO PROJECT NAME, NO PUBLIC URL SUBMITTED
+1. Riya Cyril Anandam: [all seeing eyes](https://glitch.com/~allseeing--eyes)
 1. Rukiah Zakaria: [Breakdown the Mimi Mix](https://breakdown-the-mimi-mix.glitch.me/)
 1. Sandro Valente: [Starseeds](https://starseeds-.glitch.me/)
 1. Stacy Griffiths: [Boggle](https://dog-game-website-.glitch.me/)
