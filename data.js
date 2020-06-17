@@ -94,8 +94,7 @@ module.exports.ROOMS = {
             cabinet: { file: "top-cabinet-pico.png", frames: 1, frameDelay: 1, position: [24, 89], label: "A huggy game", command: { cmd: "text", txt: "EMBRACE\nby Remy Devaux, 2018\nClick to play.\nControls: Arrow keys.", align: "left", lines: 4, url: "https://trasevol-dog.itch.io/embrace", label: "A huggy game", point: [33, 92] } }
         }
     },
-
-
+ 
     likelikeBitsy: {
         //the background graphics, it can be a spreadsheet
         bg: "likelike-bg.png",
@@ -202,6 +201,7 @@ module.exports.ROOMS = {
 
     },
 
+    //security
     firstFloor: {
         bg: "firstFloor.png",
         avatarScale: 2,
