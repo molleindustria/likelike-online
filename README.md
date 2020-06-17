@@ -60,11 +60,11 @@ For more detail visit the [official git documentation](https://git-scm.com/book/
 * Make sure your local repository is up to date
     * Navigate back to the master branch (or whichever branch you want to merge with)  
     `git checkout master/other`  
-    * Update your local master branch by pulling any updates that may have been made to the remote repository to your local one  
+    * Update your local master\[/other\] branch by pulling any updates that may have been made to the remote repository to your local one  
     `git pull`  
     * Navigate back to your working branch  
     `git checkout branchName`  
-* Merge the master branch into your branch (note: there may be merge conflicts if different people have worked on the same lines of code, so keep communicating!)  
+* Merge the master\[/other\] branch into your branch (note: there may be merge conflicts if different people have worked on the same lines of code, so keep communicating!)  
 `git merge master/other`  
 * If you have made any changes since your last commit, commit them with a message  
 `git commit -m "your message"`  
