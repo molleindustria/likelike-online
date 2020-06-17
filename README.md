@@ -57,21 +57,21 @@ For more detail visit the [official git documentation](https://git-scm.com/book/
 
 ## Updating the remote repository on GitHub and making pull requests to merge
 
-* Make sure your local master branch is up to date
+* Make sure your local repository is up to date
     * Navigate back to the master branch (or whichever branch you want to merge with)  
-    `git checkout master`  
+    `git checkout master/other`  
     * Update your local master branch by pulling any updates that may have been made to the remote repository to your local one  
     `git pull`  
     * Navigate back to your working branch  
     `git checkout branchName`  
 * Merge the master branch into your branch (note: there may be merge conflicts if different people have worked on the same lines of code, so keep communicating!)  
-`git merge master`  
+`git merge master/other`  
 * If you have made any changes since your last commit, commit them with a message  
 `git commit -m "your message"`  
 * Push your changes to GitHub. Your latest changes to your branch can now be viewed by other team members.  
 `git push`  
-* When your code is ready, it's time to make a **pull request** on GitHub. Got to your branch on GitHub and click on **New pull request**. Select the **base repository** (JGL/cci-diploma-show) with **base: master**. Add a short comment to describe the changes you've made and then click **Create pull request**
-* The project manager will review your changes and decide whether to commit them. If further changes need to be made, you can add commits to your pull request after you have made them. If you want to address a specific team member, use their @ (like in any other social media site). Other team members can add comments to the code in your pull request if they have any, either directly to the line(s) in question, or as a general comment.
+* When your code is ready, it's time to make a **pull request** on GitHub. Got to your branch on GitHub and click on **New pull request**. Select the **base repository** (JGL/cci-diploma-show) with **base: master/other**. Add a short comment to describe the changes you've made and then click **Create pull request**
+* The project manager or team member overseeing that branch will review your changes and decide whether to commit them. If further changes need to be made, you can add commits to your pull request after you have made them. If you want to address a specific team member, use their @ (like in any other social media site). Other team members can add comments to the code in your pull request if they have any, either directly to the line(s) in question, or as a general comment.
 * If your pull request is accepted, the team member who has accepted it should delete the branch.
 * To delete your branch locally, use `git branch -d branchName`
 
