@@ -45,7 +45,7 @@ First make sure you sure you have [git](https://git-scm.com/) installed
 ## Branching: work on code without affecting the master branch
 
 * To make a new **branch** and switch to it at the same time, run `git checkout -b branchName`
-    * This is shorthand for:
+    * This is shorthand for:  
     `git branch branchName`  
     `git checkout branchName`
     * You can edit code and make changes here without affecting the master branch
