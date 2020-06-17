@@ -4,7 +4,7 @@ PROJECTS.md is a file containing the list of students that the CCI-Diploma-Show 
 1. Beatrice Taylor-Searle: [Holding Hands](https://holding-hands2.glitch.me/)
 1. Catherine Rose Lavender: NO PROJECT NAME, NO PUBLIC URL SUBMITTED
 1. Choy Yun Jann: [When we touch, a tree grows](https://when-our-hands-touch.glitch.me/)
-1. Dejana Dragnic: "Shake it out" but NO PUBLIC URL SUBMITTED
+1. Dejana Dragnic: [Shake it out](https://shake-it-out-.glitch.me/)
 1. Edward Martin: [Regard](https://2020-06-06-regard-socket-app.glitch.me/)
 1. Ella Fitzgerald: "Quarantine Kiss" but NO PUBLIC URL SUBMITTED
 1. Eunah Lee: [Haru's Adventure!](https://eunah-lee-storybook5-6.glitch.me/)
