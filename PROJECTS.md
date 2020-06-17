@@ -14,7 +14,7 @@ PROJECTS.md is a file containing the list of students that the CCI-Diploma-Show 
 1. Kirsty Proud: [Acid](https://acid-with-highscore.glitch.me)
 1. Laiqa Mohid: [Eye Orchestra](https://eye-orchestra-final.glitch.me/)
 1. Lexy Garces Beavis: [Quaroutine](https://quaroutine-the-game1.glitch.me/)
-1. Llorenc Garcia Bas: "Theremax" but NO PUBLIC URL SUBMITTED
+1. Llorenc Garcia Bas: [Theremax](https://inky-simple-dryosaurus.glitch.me/)
 1. Martin Del Busto: [Pixelated](https://pixelated.glitch.me/)
 1. Maximilian Zimmerer: [Common Denominator](https://common-denominator.glitch.me/)
 1. Mia Stoces-Brown: [From A to B], NO PUBLIC URL SUBMITTED
