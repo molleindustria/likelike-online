@@ -65,7 +65,7 @@ For more detail visit the [official git documentation](https://git-scm.com/book/
 `git checkout branchName`  
 * Merge the master branch into your branch (note: there may be merge conflicts if different people have worked on the same lines of code, so keep communicating!)  
 `git merge master`  
-* Commit your changes with a message  
+* If you have made any changes since your last commit, commit them with a message  
 `git commit -m "your message"`  
 * Push your changes to GitHub. Your latest changes to your branch can now be viewed by other team members.  
 `git push`  
