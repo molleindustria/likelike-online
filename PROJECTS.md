@@ -27,4 +27,4 @@ PROJECTS.md is a file containing the list of students that the CCI-Diploma-Show 
 1. Thomas Bugg: [Manipulated Living](https://manipulated-living.glitch.me/)
 1. Valeria Toro: [Ghost Tales](https://ghost-tales.glitch.me/)
 1. Vince Ibay: [Together](https://rainbowcanvas-4.glitch.me/)
-1. Zhiqin Lu: "Observe" but NO PUBLIC URL SUBMITTED
+1. Zhiqin Lu: [Observe]( https://observe-.glitch.me/)
