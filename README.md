@@ -30,58 +30,47 @@ PORT = 3000;
 
 The admin names are reserved. Logging in as "adminname|pass" (nickname and password separated by a "|") will grant the user admin priviledges such as banning IP or sending special messages.
 
-## Editing locally
+# Editing locally: guide for dev team
 
 First make sure you sure you have [git](https://git-scm.com/) installed
 
-### Running CCI Diploma Show locally
+## Downloading and running
 
 * Make sure you have [Node.js](https://nodejs.org/en/) installed
-* Fork this repository then click on the **Clone or download** button to get its url
+* Click on the **Clone or download** button in this repo to get its url
 * Clone using `git clone "url"`on your command line
 * Navigate to the repository on your command line then type in `node server.js` to run.
-* Navigate to **localhost:3000** to view
+* Go to **localhost:3000** to view
 
-### Making sure your local repository is up to date
+## Branching: work on code without affecting the master branch
 
-In your local clone of your forked repository, you can add the original GitHub repository as a "remote".  ("Remotes" are like nicknames for the URLs of repositories - `origin` is one, for example.)  Then you can fetch all the branches from that upstream repository, and rebase your work to continue working on the upstream version.  In terms of commands that might look like:
-
-    # Add the remote, call it "upstream":
-    
-    git remote add upstream https://github.com/whoever/whatever.git
-    
-    # Fetch all the branches of that remote into remote-tracking branches,
-    # such as upstream/master:
-    
-    git fetch upstream
-
-    # Make sure that you're on your master branch:
-    
-    git checkout master
-    
-    # Rewrite your master branch so that any commits of yours that
-    # aren't already in upstream/master are replayed on top of that
-    # other branch:
-    
-    git rebase upstream/master
-
-If you don't want to rewrite the history of your master branch, (for example because other people may have cloned it) then you should replace the last command with `git merge upstream/master`.  However, for making further pull requests that are as clean as possible, it's probably better to rebase.
-
-----
-
-If you've rebased your branch onto `upstream/master` you may need to force the push in order to push it to your own forked repository on GitHub.  You'd do that with:
-
-    git push -f origin master
-
-You only need to use the `-f` the first time after you've rebased.
-
-(Pasted from [StackOverflow](https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository))
-
-### Update CCI Diploma Show with your changes
-
-* Save your changes and commit:  
+* To make a new **branch** and switch to it at the same time, run `git checkout -b branchName`
+    * This is shorthand for:
+    `git branch branchName`  
+    `git checkout branchName`
+    * You can edit code and make changes here without affecting the master branch
+* Save your changes and commit to this branch:  
 `git add .` (adds all your updated files to the staging area)  
 `git commit -m "Your message here"` (commits your changes with a message)  
-* Push your local commits to GitHub  
-`git push`
-* Make a pull request on GitHub
+
+For more detail visit the [official git documentation](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+
+## Updating the remote repository on GitHub and making pull requests to merge
+
+* Navigate back to the master branch (or whichever branch you want to merge with)  
+`git checkout master`  
+* Update your local master branch by pulling any updates that may have been made to the remote repository to your local one  
+`git pull`  
+* Navigate back to your working branch  
+`git checkout branchName`  
+* Merge the master branch into your branch (note: there may be merge conflicts if different people have worked on the same lines of code, so keep communicating!)  
+`git merge master`  
+* Commit your changes with a message  
+`git commit -m "your message"`  
+* Push your changes to GitHub. Your latest changes to your branch can now be viewed by other team members.  
+`git push`  
+* When your code is ready, it's time to make a **pull request** on GitHub  
+* The project manager will review your changes and decide whether to commit them. If further changes need to be made, you can add commits to your pull request after you have made them. If you want to address a specific team member, use their @ (like in any other social media site). Other team members can add comments to the code in your pull request if they have any, either directly to the line(s) in question, or as a general comment.
+* If your pull request is accepted, the team member who has accepted it should delete the branch.
+
+For more detail check out this [video](https://www.youtube.com/watch?v=oFYyTZwMyAg)
