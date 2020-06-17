@@ -73,5 +73,6 @@ For more detail visit the [official git documentation](https://git-scm.com/book/
 * When your code is ready, it's time to make a **pull request** on GitHub. Got to your branch on GitHub and click on **New pull request**. Select the **base repository** (JGL/cci-diploma-show) with **base: master**. Add a short comment to describe the changes you've made and then click **Create pull request**
 * The project manager will review your changes and decide whether to commit them. If further changes need to be made, you can add commits to your pull request after you have made them. If you want to address a specific team member, use their @ (like in any other social media site). Other team members can add comments to the code in your pull request if they have any, either directly to the line(s) in question, or as a general comment.
 * If your pull request is accepted, the team member who has accepted it should delete the branch.
+* To delete your branch locally, use `git branch -d branchName`
 
 For more detail check out this [video](https://www.youtube.com/watch?v=oFYyTZwMyAg)
