@@ -48,7 +48,7 @@ First make sure you sure you have [git](https://git-scm.com/) installed
     * This is shorthand for:  
     `git branch branchName`  
     `git checkout branchName`
-    * You can edit code and make changes here without affecting the master branch
+    * You can edit code and make changes here without affecting the master branch (tip: name the branch based on what you're editing to make it easy to understand, e.g. "server" or "galleries" or "backgrounds")
 * Save your changes and commit to this branch:  
 `git add .` (adds all your updated files to the staging area)  
 `git commit -m "Your message here"` (commits your changes with a message)  
