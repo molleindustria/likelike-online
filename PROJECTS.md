@@ -17,7 +17,7 @@ PROJECTS.md is a file containing the list of students that the CCI-Diploma-Show 
 1. Llorenc Garcia Bas: "Theremax" but NO PUBLIC URL SUBMITTED
 1. Martin Del Busto: [Pixelated](https://pixelated.glitch.me/)
 1. Maximilian Zimmerer: [Common Denominator](https://common-denominator.glitch.me/)
-1. Mia Stoces-Brown: NO PROJECT NAME, NO PUBLIC URL SUBMITTED
+1. Mia Stoces-Brown: [From A to B], NO PUBLIC URL SUBMITTED
 1. Morgan Williams: [Views from a Room](https://views-from-a-room.glitch.me/)
 1. Nihal Chadha: NO PROJECT NAME, NO PUBLIC URL SUBMITTED
 1. Riya Cyril Anandam: NO PROJECT NAME, NO PUBLIC URL SUBMITTED
