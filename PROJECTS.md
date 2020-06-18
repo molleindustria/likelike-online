@@ -6,7 +6,7 @@ PROJECTS.md is a file containing the list of students that the CCI-Diploma-Show 
 1. Choy Yun Jann: [When we touch, a tree grows](https://when-our-hands-touch.glitch.me/)
 1. Dejana Dragnic: [Shake it out](https://shake-it-out-.glitch.me/)
 1. Edward Martin: [Regard](https://2020-06-06-regard-socket-app.glitch.me/)
-1. Ella Fitzgerald: "Quarantine Kiss" but NO PUBLIC URL SUBMITTED
+1. Ella Fitzgerald: [Quarantine Kiss](https://webcam-socket-io.glitch.me)
 1. Eunah Lee: [Haru's Adventure!](https://eunah-lee-storybook5-6.glitch.me/)
 1. Jessie Zhang: [Speech Bubbles](https://speech-bubbles.glitch.me/)
 1. Kamil Sznajder: [Time to Eat a Bug!](https://time-to-eat.glitch.me/)
