@@ -93,41 +93,41 @@ module.exports.initMod = function (io, gameState, DATA) {
 
     //Example of NPC creation and behavior
 
-    var npc = new NPC(
-        {
-            id: "paranoid",
-            nickName: "Anonymous",
-            room: "secondFloor",
-            x: 23,
-            y: 78,
-            avatar: 1,
-            colors: [2, 2, 1, 5],
-            labelColor: "#1e839d"
-        });
+    // var npc = new NPC(
+    //     {
+    //         id: "paranoid",
+    //         nickName: "Anonymous",
+    //         room: "secondFloor",
+    //         x: 23,
+    //         y: 78,
+    //         avatar: 1,
+    //         colors: [2, 2, 1, 5],
+    //         labelColor: "#1e839d"
+    //     });
 
-    npc.behavior = setTimeout(function ramble() {
-        var dice = random(0, 100);
+    // npc.behavior = setTimeout(function ramble() {
+    //     var dice = random(0, 100);
 
-        if (dice < 40) {
-            npc.talk(global.paranoidTalk[Math.floor(random(0, global.paranoidTalk.length - 1))]);
+    //     if (dice < 40) {
+    //         npc.talk(global.paranoidTalk[Math.floor(random(0, global.paranoidTalk.length - 1))]);
 
-            npc.behavior = setTimeout(ramble, random(7000, 9000));
-        }
-        else if (dice < 60) {
-            npc.move(random(17, 113) * 2, random(76, 98) * 2);
-            npc.behavior = setTimeout(ramble, random(4000, 8000));
-        }
-        else {
-            //just wait
-            npc.behavior = setTimeout(ramble, random(1000, 3000));
+    //         npc.behavior = setTimeout(ramble, random(7000, 9000));
+    //     }
+    //     else if (dice < 60) {
+    //         npc.move(random(17, 113) * 2, random(76, 98) * 2);
+    //         npc.behavior = setTimeout(ramble, random(4000, 8000));
+    //     }
+    //     else {
+    //         //just wait
+    //         npc.behavior = setTimeout(ramble, random(1000, 3000));
 
-            //to kill the bot
-            //clearTimeout(npc.behavior);
-            //npc.delete();
-        }
+    //         //to kill the bot
+    //         //clearTimeout(npc.behavior);
+    //         //npc.delete();
+    //     }
 
 
-    }, random(1000, 2000));
+    // }, random(1000, 2000));
 
 
     global.VIPList = [];
