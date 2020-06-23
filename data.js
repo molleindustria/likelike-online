@@ -9,32 +9,6 @@ module.exports.SETTINGS = {
     INTRO_TEXT: "Click/tap to move"
 };
 
-/*
-
-//miscellaneous assets to preload
-module.exports.IMAGES = [
-    ["sheepIdle", "characters/sheep-idle.png"],
-    ["wifeWalk", "characters/wife.png"],
-    ["wifeEmote", "characters/wife-emote.png"],
-    ["husbandWalk", "characters/husband.png"],
-    ["husbandEmote", "characters/husband-emote.png"],
-    ["child1Walk", "characters/child1.png"],
-    ["child1Emote", "characters/child1-emote.png"],
-    ["child2Walk", "characters/child2.png"],
-    ["child2Emote", "characters/child2-emote.png"],
-    ["child3Walk", "characters/child3.png"],
-    ["child3Emote", "characters/child3-emote.png"],
-    ["uncleWalk", "characters/uncle.png"],
-    ["uncleEmote", "characters/uncle-emote.png"],
-    ["milkmanWalk", "characters/milkman.png"],
-    ["milkmanEmote", "characters/milkman-emote.png"],
-    ["boyfriendWalk", "characters/child-boyfriend.png"],
-    ["boyfriendEmote", "characters/child-boyfriend-emote.png"],
-    ["flyWalk", "characters/fly.png"],
-    ["flyEmote", "characters/fly-emote.png"]
-];
-*/
-
 const pinkBG = "#e1cdcd";
 const greenBG = "#72bf71";
 
