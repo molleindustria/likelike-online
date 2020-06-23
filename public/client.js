@@ -51,7 +51,7 @@ var AVATAR_H = 18;
 //number of avatars in the sheets
 var AVATARS = 37;
 //the big file if used
-var ALL_AVATARS_SHEET = "allAvatars.png";
+var ALL_AVATARS_SHEET = "characters/allAvatars.png";
 //the number of frames for walk cycle and emote animation
 //the first frame of emote is also the idle frame
 var WALK_F = 4;
@@ -321,16 +321,16 @@ function preload() {
     logo = loadAnimation(logoSheet);
     logo.frameDelay = 10;
 
-    var walkIconSheet = loadSpriteSheet(ASSETS_FOLDER + "walkIcon.png", 6, 8, 4);
+    var walkIconSheet = loadSpriteSheet(ASSETS_FOLDER + "characters/walkIcon.png", 6, 8, 4);
     walkIcon = loadAnimation(walkIconSheet);
     walkIcon.frameDelay = 8;
 
-    var appearEffectSheet = loadSpriteSheet(ASSETS_FOLDER + "appearEffect.png", 10, 18, 10);
+    var appearEffectSheet = loadSpriteSheet(ASSETS_FOLDER + "characters/appearEffect.png", 10, 18, 10);
     appearEffect = loadAnimation(appearEffectSheet);
     appearEffect.frameDelay = 4;
     appearEffect.looping = false;
 
-    var disappearEffectSheet = loadSpriteSheet(ASSETS_FOLDER + "disappearEffect.png", 10, 18, 10);
+    var disappearEffectSheet = loadSpriteSheet(ASSETS_FOLDER + "characters/disappearEffect.png", 10, 18, 10);
     disappearEffect = loadAnimation(disappearEffectSheet);
     //disappearEffect.frameDelay = 4;
     disappearEffect.looping = false;
@@ -342,17 +342,17 @@ function preload() {
 
     blips = [];
     for (var i = 0; i <= 5; i++) {
-        var blip = loadSound(ASSETS_FOLDER + "blip" + i);
+        var blip = loadSound(ASSETS_FOLDER + "sounds/blip" + i);
         blip.playMode("sustain");
         blip.setVolume(0.3);
         blips.push(blip);
     }
 
-    appearSound = loadSound(ASSETS_FOLDER + "appear");
+    appearSound = loadSound(ASSETS_FOLDER + "sounds/appear");
     appearSound.playMode("sustain");
     appearSound.setVolume(0.3);
 
-    disappearSound = loadSound(ASSETS_FOLDER + "disappear");
+    disappearSound = loadSound(ASSETS_FOLDER + "sounds/disappear");
     disappearSound.playMode("sustain");
     disappearSound.setVolume(0.3);
 
