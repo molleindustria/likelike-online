@@ -2,7 +2,7 @@
 //they are either related to the rooms or shared with the server 
 module.exports.SETTINGS = {
     //if not specified by the url where is the starting point
-    defaultRoom: "likelikeOutside",
+    defaultRoom: "cciOutside",
     //minimum time between talk messages enforced by both client and server
     ANTI_SPAM: 1000,
     //shows up at first non lurking login
@@ -43,397 +43,266 @@ module.exports.SOUNDS = [
 
 module.exports.ROOMS = {
 
-    likelike: {
-        //the background graphics, it can be a spreadsheet
-        bg: "likelike-bg-pico.png",
-        //if spreadsheet frames
-        frames: 2,
-        //if animated, animation speed in refreshes (frame dependent)
-        frameDelay: 30,
-        //normally 2, avatars can be scaled to simulate camera distance
-        avatarScale: 2,
-        //a shade to tint the avatars to simulate light color, #FFFFFF normal
-        tint: "#ffbbb8",
-        //the html body color can be changed
-        pageBg: "#ab5236",
-        //minimum height for the speech bubbles
-        bubblesY: 50,
-        //if spawning directly in this room, top left and bottom right point defining the rectangular spawn area (random within it)
-        spawn: [84, 92, 121, 99],
-        //graphics with active areas Sierra Online adventures style
-        //color coded as below, #FFFFFF is walkable, transparent is obstacle
-        area: "likelike-areas-pico.png",
-        //each color can trigger a command, the destination needs to be reached first
-        //the "h" is replaced by # to identify color
-        areaColors: {
-            //enter command changes room
-            //room: id of the room to enter
-            //label: what to display on rollover
-            //point: where to walk after click
-            //enterPoint: where to spawn in the next room
-            //obstacle: is the area walkable
-            hffec27: { cmd: "enter", room: "likelikeBackyard", label: "Backyard", point: [6, 88], enterPoint: [116, 69], obstacle: false },
-            h00e436: { cmd: "enter", room: "likelikeOutside", label: "Street", point: [102, 98], enterPoint: [103, 84], obstacle: false },
-            hab5236: { cmd: "enter", room: "firstFloor", label: "oMoMA", point: [116, 85], enterPoint: [63, 98], obstacle: false },
-
-            //text displays a text only on the client
-            //txt: the text
-            //align: center or left
-            //lines: manual number of lines, p5 doesn't understand line breaks
-            //url: uptionally open a page on click
-            hff004d: { cmd: "text", txt: "ENNUIGI\nby Josh Millard, 2015\nClick to play.\nControls: Arrow keys.", align: "left", lines: 4, url: "https://www.lexaloffle.com/bbs/?tid=2232", label: "An existential game", point: [34, 78], obstacle: true },
-            hff77a8: { cmd: "text", txt: "STRUNG OUT IN HEAVEN'S HIGH\nby Sean S. LeBlanc\nand Ian Martin, 2016\nClick to play.\nControls: Arrow keys + Z.", align: "left", lines: 5, url: "https://www.lexaloffle.com/bbs/?tid=3941", label: "A trippy game", point: [64, 78], obstacle: true },
-            hffccaa: { cmd: "text", txt: "GET COMFORTABLE\nby mcccclean, 2018\nClick to play.\nControls: Arrow keys.", align: "left", lines: 4, url: "https://mcccclean.itch.io/get-comfortable", label: "A snuggly game", point: [92, 78], obstacle: true },
-            h83769c: { cmd: "text", txt: "HYBRIS\nby Benjamin Soule', 2015\nClick to play.\nControls: Arrow keys + Z.", align: "left", lines: 4, url: "https://www.lexaloffle.com/bbs/?tid=2897", label: "A viral game", point: [16, 82], obstacle: true },
-        },
-        //list of sprites to create in the room
-        //sprites are rendered according to depth sort so they can appear above the avatars unlike the background
-        //they can be animated, mouse reactive and trigger commands like the areas above
-        things: {
-            //sprite spreadsheets only 1 row ok?
-            cabinet: { file: "top-cabinet-pico.png", frames: 1, frameDelay: 1, position: [24, 89], label: "A huggy game", command: { cmd: "text", txt: "EMBRACE\nby Remy Devaux, 2018\nClick to play.\nControls: Arrow keys.", align: "left", lines: 4, url: "https://trasevol-dog.itch.io/embrace", label: "A huggy game", point: [33, 92] } }
-        }
-    },
-
-
-    likelikeBitsy: {
-        //the background graphics, it can be a spreadsheet
-        bg: "likelike-bg.png",
-        //if spreadsheet frames
-        frames: 2,
-        //if animated, animation speed in refreshes (frame dependent)
-        frameDelay: 30,
-        //normally 2, avatars can be scaled to simulate camera distance
-        avatarScale: 2,
-        //a shade to tint the avatars to simulate light color, #FFFFFF normal
-        tint: "#fa84af",
-        //the html body color can be changed
-        pageBg: "#6a2545",
-        //minimum height for the speech bubbles
-        bubblesY: 50,
-        //if spawning directly in this room, top left and bottom right point defining the rectangular spawn area (random within it)
-        spawn: [84, 92, 121, 99],
-        //graphics with active areas Sierra Online adventures style
-        //color coded as below, #FFFFFF is walkable, transparent is obstacle
-        area: "likelike-areas.png",
-        //each color can trigger a command, the destination needs to be reached first
-        //the "h" is replaced by # to identify color
-        areaColors: {
-            //enter command changes room
-            //room: id of the room to enter
-            //label: what to display on rollover
-            //point: where to walk after click
-            //enterPoint: where to spawn in the next room
-            //obstacle: is the area walkable
-            hffec27: { cmd: "enter", room: "likelikeBackyard", label: "Backyard", point: [6, 88], enterPoint: [116, 69], obstacle: false },
-            h00e436: { cmd: "enter", room: "likelikeOutside", label: "Street", point: [102, 98], enterPoint: [103, 84], obstacle: false },
-            //text displays a text only on the client
-            //txt: the text
-            //align: center or left
-            //lines: manual number of lines, p5 doesn't understand line breaks
-            //url: uptionally open a page on click
-            hff004d: { cmd: "text", txt: "OUR DAMNED MACHINE\nby Sophie Houlden, 2018\nClick on the frame to start.\nWASD or Arrow keys to move.", align: "left", lines: 4, url: "https://sophieh.itch.io/our-damned-machine", label: "A dystopian game", point: [34, 78], obstacle: true },
-            hff77a8: { cmd: "text", txt: "CONTINENTAL DRIFT\nby Cecile Richard, 2019\nWASD or Arrow keys to move.\nClick to play.", align: "left", lines: 4, url: "https://haraiva.itch.io/continental-drift", label: "An intimate game", point: [64, 78], obstacle: true },
-            hffccaa: { cmd: "text", txt: "SPIRAL HOUSE\nby Withering Systems (Everest Pipkin and Loren Schmidt), 2018\nWASD or Arrow keys to move.\nClick to play.", align: "left", lines: 5, url: "https://withering-systems.itch.io/spiral-house", label: "An abstract game", point: [92, 78], obstacle: true },
-            hab5236: { cmd: "text", txt: "ALMANAC OF GIRLSWAMPWAR TERRITORY\nby porpentine charity heartscape, 2018\nWASD or Arrow keys to move.\nClick to play.", align: "left", lines: 5, url: "https://porpentine.itch.io/almanac", label: "A mutant game", point: [110, 82], obstacle: true },
-            h83769c: { cmd: "text", txt: "MOSS AS TEXTURE AS SPACE\nFOLDING ONTO ITSELF\nby Pol Clarissou, 2019\nWASD or Arrow keys to move.\nClick to play.", align: "left", lines: 5, url: "https://polclarissou.itch.io/moss-as-texture-as-space-folding-onto-itself", label: "A mossy game", point: [16, 82], obstacle: true },
-            hffa300: { cmd: "text", txt: "LIKELIKE\npresents:\nAn Itsy Bitsy Crisis\nCatastrophes and Rebirths in Bitsy", align: "center", lines: 4, label: "Wall text", point: [119, 95], obstacle: false }
-        },
-        //list of sprites to create in the room
-        //sprites are rendered according to depth sort so they can appear above the avatars unlike the background
-        //they can be animated, mouse reactive and trigger commands like the areas above
-        things: {
-            //sprite spreadsheets only 1 row ok?
-            cabinet: { file: "top-cabinet.png", frames: 1, frameDelay: 1, position: [24, 89], label: "A time traveling game", command: { cmd: "text", txt: "THE LAST HUMAN TOUCH\nby Cephalopodunk, 2018\nWASD or Arrow keys to move.\nClick to play.", align: "left", lines: 4, url: "https://cephalopodunk.itch.io/the-last-human-touch", label: "A time traveling game", point: [33, 92] } }
-        }
-    },
-
-    likelikeOutside: {
-        bg: "likelike-outside-omoma.png",
+   
+    cciOutside: {
+        bg: "cciOutside-bg.png",
         frames: 2,
         frameDelay: 30,
         avatarScale: 2,
         pageBg: "#ab5236",
-        area: "likelikeOutside-areas.png",
+        area: "cciOutside-areas.png",
         tint: "#fdeac8",
         bubblesY: 44,
         spawn: [14, 84, 119, 92],
         areaColors: {
             //h will be replaced by #
-            hff77a8: { cmd: "enter", room: "likelike", label: "Enter LIKELIKE", point: [100, 84], enterPoint: [104, 98], obstacle: false },
+            hff77a8: { cmd: "enter", room: "securityRoom", label: "Security", point: [64, 87], enterPoint: [64, 90], obstacle: false  },
         }
     },
 
-    likelikeBackyard: {
-        bg: "likelike-backyard.png",
-        frames: 2,
-        frameDelay: 30,
+    animalRoom: {
+        bg: "animalRoom-areas.png",
         avatarScale: 2,
-        area: "likelike-backyard-areas.png",
-        tint: "#fdbe4e",
-        pageBg: "#413830",
-        bubblesY: 20,
-        spawn: [38, 63, 108, 83],
-        areaColors: {
-            //h will be replaced by #
-            hff77a8: { cmd: "enter", room: "likelike", label: "Enter LIKELIKE", point: [119, 69], enterPoint: [5, 88], obstacle: false },
-        },
-        things: {
-            //spreadsheets only 1 row ok?
-            harvey: { file: "harvey.png", frames: 2, frameDelay: 10, position: [102, 77], label: "Harvey", command: { cmd: "text", txt: "*You pet the dog*", align: "center", lines: 1, point: [101, 84] } },
-            chairs: { file: "likelike-backyard-chairs.png", position: [33, 44] },
-            cabinet: {
-                file: "pico-cabinet.png", frames: 2, frameDelay: 10, position: [92, 26], label: "Looping animations?",
-                command: { cmd: "text", txt: "TWEETCARTS\nby Varius Creators\nThe code of each of these PICO-8 generated animations fits into a single tweet (280 chars).", align: "left", lines: 5, url: "https://twitter.com/molleindustria/timelines/1254605222455934978", label: "Short animations?", point: [96, 46] }
-            }
-        }
-    },
-
-    //just an empty room for testing mods
-    experiments: {
-
-        bg: "experiments-bg.png",
-        avatarScale: 2,
-        pageBg: "#bfaeae",
-        area: "experiments-areas.png",
+        pageBg: "#e1cdcd",
+        area: "animalRoom-areas.png",
         tint: "#FFFFFF",
+        bubblesY: 46,
+        spawn: [15, 77, 113, 96],
+        areaColors: {
+            //left
+            hffec27: { cmd: "enter", room: "viewRoom", label: "View Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
+            //right
+            h00e436: { cmd: "enter", room: "drawRoom", label: "Draw Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
+            //down
+            h29adff: { cmd: "enter", room: "careRoom", label: "Care Room", point: [99, 73], enterPoint: [30, 73], obstacle: false },
+            //artwork
+            ha8e72e: { cmd: "text", txt: "Eunah", align: "left", lines: 4, url: "https://eunah-lee-storybook5-6.glitch.me/", label: "Haru's Adventure", point: [34, 73], obstacle: false },
+            hff0000: { cmd: "text", txt: "Stacy", align: "left", lines: 4, url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false },
+            //TV icons
+            hf39200: { cmd: "text", txt: "Eunah", align: "left", lines: 4, url: "https://eunah-lee-storybook5-6.glitch.me/", label: "Haru's Adventure", point: [34, 73], obstacle: false},
+            he6007e: { cmd: "text", txt: "Stacy", align: "left", lines: 4, url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
+        },
+    },
+
+    careRoom: {
+        bg: "careRoom-areas.png",
+        avatarScale: 2,
+        pageBg: "#e1cdcd",
+        area: "careRoom-areas.png",
+        tint: "#FFFFFF",
+        bubblesY: 46,
+        spawn: [15, 77, 113, 96],
+        areaColors: {
+            //left
+            hffec27: { cmd: "enter", room: "discoRoom", label: "Disco Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
+            //right
+            h00e436: { cmd: "enter", room: "socialRoom", label: "Social Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
+            //down
+            hff77a8: { cmd: "enter", room: "securityRoom", label: "Security", point: [99, 73], enterPoint: [99, 73], obstacle: false },
+            //up
+            h29adff: { cmd: "enter", room: "animalRoom", label: "Animal Room", point: [30, 73], enterPoint: [99, 73], obstacle: false },
+            //projects
+            hff0000: {cmd: "text", txt: "Mia", align: "left", lines: 4, url: "https://eunah-lee-storybook5-6.glitch.me/", label: "From A to B", point: [34, 73], obstacle: false},
+            h0000ff: {cmd: "text", txt: "Bea", align: "left", lines: 4, url: "http://holding-hands2.glitch.me/", label: "Holding Hands", point: [64, 73], obstacle: false},
+            hf39200: {cmd: "text", txt: "Jann", align: "left", lines: 4, url: "https://when-our-hands-touch.glitch.me/", label: "When we touch, a tree grows", point: [94, 73], obstacle: false},
+            //TV icons
+            hff00ff: {cmd: "text", txt: "Mia", align: "left", lines: 4, url: "https://eunah-lee-storybook5-6.glitch.me/", label: "Presentation: From A to B", point: [34, 73], obstacle: false},
+            h312783: {cmd: "text", txt: "Bea", align: "left", lines: 4, url: "http://holding-hands2.glitch.me/", label: "Presentation: Holding Hands", point: [64, 73], obstacle: false},
+            h006b2d: {cmd: "text", txt: "Jann", align: "left", lines: 4, url: "https://when-our-hands-touch.glitch.me/", label: "Presentation: When we touch, a tree grows", point: [94, 73], obstacle: false}
+
+        },
+    },
+
+    socialRoom: {
+        bg: "socialRoom-areas.png",
+        avatarScale: 2,
+        tint: "#ffbbb8",
+        pageBg: "#ab5236",
         bubblesY: 50,
-        spawn: [15, 77, 113, 96]
-
-    },
-
-    firstFloor: {
-        bg: "firstFloor.png",
-        avatarScale: 2,
-        pageBg: "#e1cdcd",
-        area: "firstFloor-areas.png",
-        tint: "#FFFFFF",
-        bubblesY: 46,
-        spawn: [15, 77, 113, 96],
+        spawn: [84, 92, 121, 99],
+        area: "socialRoom-areas.png",
         areaColors: {
             //left
-            hffec27: { cmd: "enter", room: "cnsnntrm", label: "cnsnnt rm", point: [10, 86], enterPoint: [114, 86], obstacle: false },
-            //right
-            h00e436: { cmd: "enter", room: "mirrorRoom", label: "Mirror Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
-            //up
-            h29adff: { cmd: "enter", room: "secondFloor", label: "2nd Floor", point: [30, 73], enterPoint: [99, 73], obstacle: false },
-            //wall text
-            ha8e72e: { cmd: "text", txt: "ONLINE MUSEUM OF MULTIPLAYER ART\nA survey of contemporary playful art. You have to talk and interact with other visitors to get the art.", align: "left", lines: 5, label: "Wall text", point: [50, 73], obstacle: false },
-            hb7250b: { cmd: "text", txt: "Anomaly\nMixed media, subjectively perceived.", align: "left", lines: 3, label: "Installation?", point: [75, 77], obstacle: false },
-            hbe1250: { cmd: "enter", room: "likelike", label: "LIKELIKE Arcade", point: [63, 98], enterPoint: [116, 85], obstacle: false },
-
-        },
-        things: {
-            //sprite spreadsheets only 1 row ok?
-            sculpture1: { file: "sculpture1.png", position: [70, 22], visible: false },
-            sculpture2: { file: "sculpture2.png", position: [70, 22], visible: false },
-            sculpture3: { file: "sculpture3.png", position: [70, 22], visible: false },
-            sculpture4: { file: "sculpture4.png", position: [70, 22], frames: 4, frameDelay: 10, visible: false },
+            hffec27: { cmd: "enter", room: "careRoom", label: "Care Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
+            //projects
+            h00ff00: { cmd: "text", txt: "Edd", align: "left", lines: 4, url: "https://2020-06-06-regard-socket-app.glitch.me/", label: "Regard", point: [34, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "Zhiqin", align: "left", lines: 5, url: "https://observe-.glitch.me/", label: "Observe", point: [64, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Max", align: "left", lines: 4, url: "https://common-denominator.glitch.me/", label: "Common Denominator", point: [92, 78], obstacle: true },
+            hff00ff: { cmd: "text", txt: "Tom", align: "left", lines: 4, url: "https://manipulated-living.glitch.me/", label: "Manipulated Living", point: [100, 88], obstacle: true },
+            //TV icons
+            hf39200: { cmd: "text", txt: "Edd", align: "left", lines: 4, url: "https://2020-06-06-regard-socket-app.glitch.me/", label: "Regard", point: [34, 78], obstacle: true },
+            h00b9ee: { cmd: "text", txt: "Zhiqin", align: "left", lines: 5, url: "https://observe-.glitch.me/", label: "Observe", point: [64, 78], obstacle: true },
+            h312783: { cmd: "text", txt: "Max", align: "left", lines: 4, url: "https://common-denominator.glitch.me/", label: "Common Denominator", point: [92, 78], obstacle: true },
+            he6007e: { cmd: "text", txt: "Tom", align: "left", lines: 4, url: "https://manipulated-living.glitch.me/", label: "Manipulated Living", point: [100, 88], obstacle: true }
         }
     },
 
-    secondFloor: {
-
-        bg: "secondFloor.png",
-        avatarScale: 2,
-        pageBg: "#e1cdcd",
-        area: "secondFloor-areas.png",
-        tint: "#FFFFFF",
-        bubblesY: 46,
-        spawn: [15, 77, 113, 96],
-        areaColors: {
-            //left
-            hffec27: { cmd: "enter", room: "censorshipRoom", label: "Censorship Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
-            //right
-            h00e436: { cmd: "enter", room: "rhymeRoom", label: "Rhyme Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
-            //down
-            hff77a8: { cmd: "enter", room: "firstFloor", label: "1st Floor", point: [99, 73], enterPoint: [30, 73], obstacle: false },
-            //up
-            h29adff: { cmd: "enter", room: "thirdFloor", label: "3rd Floor", point: [30, 73], enterPoint: [99, 73], obstacle: false },
-
-        },
-    },
-
-    thirdFloor: {
-
-        bg: "thirdFloor.png",
-        avatarScale: 2,
-        pageBg: "#e1cdcd",
-        area: "secondFloor-areas.png",
-        tint: "#FFFFFF",
-        bubblesY: 46,
-        spawn: [15, 77, 113, 96],
-        areaColors: {
-
-            //left
-            hffec27: { cmd: "enter", room: "darkRoom", label: "Dark Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
-
-            //right
-            h00e436: { cmd: "enter", room: "familyRoom", label: "Family Room", point: [117, 86], enterPoint: [10, 77], obstacle: false },
-
-            //VIP
-            h29adff: { cmd: "enter", room: "VIPRoom", label: "VIP Room", point: [30, 73], enterPoint: [64, 79], obstacle: false },
-
-            //down
-            hff77a8: { cmd: "enter", room: "secondFloor", label: "2nd Floor", point: [99, 73], enterPoint: [30, 73], obstacle: false },
-        },
-
-    },
-
-    cnsnntrm: {
-        bg: "leftRoom.png",
-        avatarScale: 2,
-        pageBg: "#e1cdcd",
-        area: "leftRoom-areas.png",
-        tint: "#FFFFFF",
-        bubblesY: 46,
-        spawn: [15, 77, 113, 96],
-        areaColors: {
-            //right
-            h00e436: { cmd: "enter", room: "firstFloor", label: "Hall", point: [117, 86], enterPoint: [12, 86], obstacle: false },
-        },
-        things: {
-            //sprite spreadsheets only 1 row ok?
-            guard: { file: "museumGuard.png", frames: 1, frameDelay: 30, position: [13, 56], label: "Museum guard" }
-        }
-
-    },
-
-
-    mirrorRoom: {
-        bg: "rightRoom.png",
-        avatarScale: 2,
-        pageBg: "#e1cdcd",
-        area: "rightRoom-areas.png",
-        tint: "#FFFFFF",
-        bubblesY: 46,
-        spawn: [15, 77, 113, 96],
-        areaColors: {
-            //left
-            hffec27: { cmd: "enter", room: "firstFloor", label: "Hall", point: [10, 86], enterPoint: [114, 86], obstacle: false },
-        }
-
-    },
-
-    censorshipRoom: {
-        bg: "leftRoom.png",
-        avatarScale: 2,
-        pageBg: "#e1cdcd",
-        area: "censorshipRoom-areas.png",
-        tint: "#FFFFFF",
-        bubblesY: 46,
-        spawn: [15, 77, 113, 96],
-        areaColors: {
-            //right
-            h00e436: { cmd: "enter", room: "secondFloor", label: "Hall", point: [117, 86], enterPoint: [12, 86], obstacle: false },
-
-        },
-        things: {
-            //sprite spreadsheets only 1 row ok?
-            elephant: { file: "elephant-no-outline.png", frames: 4, frameDelay: 30, position: [42, 51] }
-        }
-    },
-
-    rhymeRoom: {
-        bg: "speaker-room.png",
+    discoRoom: {
+        bg: "discoRoom-bg.png",
         avatarScale: 2,
         frames: 3,
         frameDelay: 10,
         pageBg: "#e1cdcd",
-        area: "rightRoom-areas.png",
+        area: "gameRoom-areas.png",
+        tint: "#FFFFFF",
+        bubblesY: 46,
+        spawn: [15, 77, 113, 96],
+        areaColors: {
+            //right
+            h00e436: { cmd: "enter", room: "careRoom", label: "Care Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
+            //projects
+            hff0000: { cmd: "text", txt: "Llorenc", align: "left", lines: 4, url: "https://inky-simple-dryosaurus.glitch.me/", label: "Theremax", point: [34, 78], obstacle: true },
+            hffff00: { cmd: "text", txt: "Laiqa", align: "left", lines: 5, url: "https://eye-orchestra-final.glitch.me/", label: "Eye Orchestra", point: [64, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Kirsty", align: "left", lines: 4, url: "https://acid-with-highscore.glitch.me/", label: "Acid", point: [92, 78], obstacle: true },
+            hff00ff: { cmd: "text", txt: "Project by Rukiah Zakaria\nA body instrument, music video making place in space!", align: "left", lines: 4, url: "https://breakdown-the-mimi-mix.glitch.me/", label: "Breakdown the Mimi Mix", point: [10, 86], obstacle: true },
+            //TV icons
+            h312783: { cmd: "text", txt: "Llorenc", align: "left", lines: 4, url: "https://inky-simple-dryosaurus.glitch.me/", label: "Theremax", point: [34, 78], obstacle: true },
+            h00ffff: { cmd: "text", txt: "Laiqa", align: "left", lines: 5, url: "https://eye-orchestra-final.glitch.me/", label: "Eye Orchestra", point: [64, 78], obstacle: true },
+            he6007e: { cmd: "text", txt: "Kirsty", align: "left", lines: 4, url: "https://acid-with-highscore.glitch.me/", label: "Acid", point: [92, 78], obstacle: true },
+            hf39200: { cmd: "text", txt: "Project by Rukiah Zakaria\nA body instrument, music video making place in space!", align: "left", lines: 4, url: "https://breakdown-the-mimi-mix.glitch.me/", label: "Breakdown the Mimi Mix", point: [10, 86], obstacle: true }
+        }
+    },
+
+    securityRoom: {
+
+        bg: "securityRoom-bg.png",
+        avatarScale: 2,
+        pageBg: "#e1cdcd",
+        area: "securityRoom-areas.png",
         tint: "#FFFFFF",
         bubblesY: 46,
         spawn: [15, 77, 113, 96],
         areaColors: {
             //left
-            hffec27: { cmd: "enter", room: "secondFloor", label: "Hall", point: [10, 86], enterPoint: [114, 86], obstacle: false },
-
+            hffec27: { cmd: "enter", room: "gameRoom", label: "Game Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
+            //right
+            h00e436: { cmd: "enter", room: "gallery", label: "Gallery", point: [117, 86], enterPoint: [16, 85], obstacle: false },
+            //door in back
+            h29adff: { cmd: "enter", room: "foodRoom", label: "Food Room", point: [30, 73], enterPoint: [30, 89], obstacle: false },
+            //up
+            hff77a8: { cmd: "enter", room: "careRoom", label: "Care Room", point: [99, 73], enterPoint: [99, 73], obstacle: false },
+            //back outside
+            hbe1250: { cmd: "enter", room: "cciOutside", label: "Enterance", point: [63, 98], enterPoint: [64, 8], obstacle: false },
+            
+        },
+        things: {
+            guard: { file: "museumGuard.png", frames: 1, frameDelay: 30, position: [13, 56], label: "Security" }
         }
 
     },
 
-    darkRoom: {
-        bg: "darkRoom.png",
+    gallery: {
+        bg: "galleryRoom-areas.png",
+        avatarScale: 2,
+        tint: "#ffbbb8",
+        pageBg: "#ab5236",
+        bubblesY: 50,
+        spawn: [84, 92, 121, 99],
+        area: "galleryRoom-areas.png",
+        areaColors: {
+            //left
+            hffec27: { cmd: "enter", room: "securityRoom", label: "Security", point: [10, 86], enterPoint: [114, 86], obstacle: false },
+            //Projects by: Jessie, Val, Riya
+            h00ff00: { cmd: "text", txt: "Jessie", align: "left", lines: 4, url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "Val", align: "left", lines: 5, url: "https://ghost-tales.glitch.me/", label: "Ghost Tales", point: [64, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Riya", align: "left", lines: 4, url: "https://allseeing--eyes.glitch.me/", label: "all seeing eyes", point: [92, 78], obstacle: true },
+            //TV icons
+            he6007e: { cmd: "text", txt: "Jessie", align: "left", lines: 4, url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
+            h312783: { cmd: "text", txt: "Val", align: "left", lines: 5, url: "https://ghost-tales.glitch.me/", label: "Ghost Tales", point: [64, 78], obstacle: true },
+            hf39200: { cmd: "text", txt: "Riya", align: "left", lines: 4, url: "https://allseeing--eyes.glitch.me/", label: "all seeing eyes", point: [92, 78], obstacle: true }          
+        }
+    },
+
+    foodRoom: {
+        bg: "foodRoom-areas.png",
+        avatarScale: 2,
+        tint: "#ffbbb8",
+        pageBg: "#ab5236",
+        bubblesY: 50,
+        spawn: [84, 92, 121, 99],
+        area: "foodRoom-areas.png",
+        areaColors: {
+            //left
+            hbe1250: { cmd: "enter", room: "securityRoom", label: "Security", point: [30, 90], enterPoint: [30, 72], obstacle: false },
+            //projects
+            hffff00: { cmd: "text", txt: "Project by Khalisha Tambunan\nIt's raining cats and dogs... and everything in between.", align: "left", lines: 4, url: "https://testkitsc.glitch.me/", label: "Kitschen Dreams", point: [34, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "Kamil", align: "left", lines: 5, url: "https://time-to-eat.glitch.me/", label: "Time to eat Bug!", point: [94, 78], obstacle: true },
+            //TV icons
+            hf39200: { cmd: "text", txt: "Project by Khalisha Tambunan\nIt's raining cats and dogs... and everything in between.", align: "left", lines: 4, url: "https://testkitsc.glitch.me/", label: "Kitschen Dreams", point: [34, 78], obstacle: true },
+            h006b2d: { cmd: "text", txt: "Kamil", align: "left", lines: 5, url: "https://time-to-eat.glitch.me/", label: "Time to eat Bug!", point: [94, 78], obstacle: true }           
+        }
+    },
+  
+
+    gameRoom: {
+        bg: "gameRoom-bg.png",
         avatarScale: 2,
         frames: 3,
         frameDelay: 10,
-        pageBg: "#221c17",
-        area: "leftRoom-areas.png",
-        tint: "#342c24",
+        pageBg: "#e1cdcd",
+        area: "gameRoom-areas.png",
+        tint: "#FFFFFF",
         bubblesY: 46,
         spawn: [15, 77, 113, 96],
         areaColors: {
             //right
-            h00e436: { cmd: "enter", room: "thirdFloor", label: "Hall", point: [117, 86], enterPoint: [12, 86], obstacle: false },
-
+            h00e436: { cmd: "enter", room: "securityRoom", label: "Security", point: [117, 86], enterPoint: [12, 86], obstacle: false },
+            //projects
+            hff0000: { cmd: "text", txt: "Sandro", align: "left", lines: 4, url: "https://starseeds-.glitch.me/", label: "Starseeds", point: [34, 78], obstacle: true },
+            hffff00: { cmd: "text", txt: "Lexy", align: "left", lines: 5, url: "https://quaroutine-the-game1.glitch.me/", label: "Quaroutine", point: [64, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Dejana", align: "left", lines: 4, url: "https://shake-it-out-.glitch.me/", label: "Shake it Out!", point: [92, 78], obstacle: true },
+            hff00ff: { cmd: "text", txt: "Martin", align: "left", lines: 4, url: "https://pixelated.glitch.me/", label: "Pixelated", point: [10, 86], obstacle: true },
+            //TV icon
+            h312783: { cmd: "text", txt: "Sandro", align: "left", lines: 4, url: "https://inky-simple-dryosaurus.glitch.me/", label: "Starseeds", point: [34, 78], obstacle: true },
+            h00ffff: { cmd: "text", txt: "Lexy", align: "left", lines: 5, url: "https://eye-orchestra-final.glitch.me/", label: "Quaroutine", point: [64, 78], obstacle: true },
+            he6007e: { cmd: "text", txt: "Dejana", align: "left", lines: 4, url: "https://acid-with-highscore.glitch.me/", label: "Shake it Out!", point: [92, 78], obstacle: true },
+            hf39200: { cmd: "text", txt: "Martin", align: "left", lines: 4, url: "https://breakdown-the-mimi-mix.glitch.me/", label: "Pixelated", point: [10, 86], obstacle: true },
         }
 
     },
 
-    familyRoom: {
-        bg: "familyRoom-bg.png",
+    drawRoom: {
+        bg: "drawRoom-areas.png",
         avatarScale: 2,
-        pageBg: "#6a2545",
-        area: "familyRoom-areas.png",
-        tint: "#f7e9e9",
-        bubblesY: 40,
-        secret: false,
-        spawn: [12, 70, 16, 90],
+        tint: "#ffbbb8",
+        pageBg: "#ab5236",
+        bubblesY: 50,
+        spawn: [84, 92, 121, 99],
+        area: "drawRoom-areas.png",
         areaColors: {
-            //left door
-            hffec27: { cmd: "enter", room: "thirdFloor", label: "Hall", point: [10, 77], enterPoint: [114, 86], obstacle: false },
-            hffccaa: { cmd: "text", label: "Book", txt: "Fifty Shades of Grey", align: "center", lines: 1, point: [16, 61] },
-            hff77a8: { cmd: "text", label: "Book", txt: "Fifty Shades Darker", align: "center", lines: 1, point: [16, 61] },
-            hff9d81: { cmd: "text", label: "Book", txt: "Fifty Shades Freed", align: "center", lines: 1, point: [16, 61] },
-            //action requires a custom listener in the serverMod listening to actionId
-            hff6c24: { cmd: "action", actionId: "TVInteract", label: "TV", point: [39, 69], obstacle: false },
-            h008751: { cmd: "text", label: "Picture", txt: "Family at Disneyworld", align: "center", lines: 1, point: [52, 61] },
-            ha8e72e: { cmd: "text", label: "Picture", txt: "Wedding picture", align: "center", lines: 1, point: [57, 61] },
-            h00e436: { cmd: "text", label: "?", txt: "A short red hair", align: "center", lines: 1, point: [8, 90], obstacle: false },
-            h29adff: { cmd: "text", label: "?", txt: "Female underwear", align: "center", lines: 1, point: [113, 62] },
-            hff004d: { cmd: "text", label: "Plant", txt: "It's in bad shape", align: "center", lines: 1, point: [26, 61] },
-        },
-        things: {
-            //sprite spreadsheets only 1 row ok?
-            couch2: { file: "familyRoom-couch2.png", position: [53, 54] },
-            couch1: { file: "familyRoom-couch1.png", position: [26, 63] },
-            table: { file: "familyRoom-table.png", position: [81, 74] },
-            TV: { file: "tv.png", id: "TV", position: [33, 45], frames: 13, frameDelay: 60, visible: false },
+            //left
+            hffec27: { cmd: "enter", room: "animalRoom", label: "Animal Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
+            //projects by Alex and Vince
+            h00ff00: { cmd: "text", txt: "Project by Alex Greer\nA simple teamwork game, with the aim of creating a masterpiece together using only shapes and the colours in your environment.", align: "left", lines: 4, url: "https://draw-together-again.glitch.me/", label: "Draw Together Again", point: [34, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Vince", align: "left", lines: 4, url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true },
+            //TV icons
+            hff0000: { cmd: "text", txt: "Project by Alex Greer\nA simple teamwork game, with the aim of creating a masterpiece together using only shapes and the colours in your environment.", align: "left", lines: 4, url: "https://draw-together-again.glitch.me/", label: "Draw Together Again", point: [34, 78], obstacle: true },
+            hf39200:{ cmd: "text", txt: "Vince", align: "left", lines: 4, url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true }
         }
-
     },
 
-    VIPRoom: {
-        bg: "VIPRoom-bg.png",
+    viewRoom: {
+        bg: "viewRoom-areas.png",
         avatarScale: 2,
-        pageBg: "#742f29",
-        area: "VIPRoom-areas.png",
-        tint: "#f7cdba",
-        bubblesY: 40,
-        secret: true,
-        spawn: [56, 76, 69, 80],
-        //music: "smoothCrap.ogg",
-        musicVolume: 0.5,
+        frames: 3,
+        frameDelay: 10,
+        pageBg: "#e1cdcd",
+        area: "viewRoom-areas.png",
+        tint: "#FFFFFF",
+        bubblesY: 46,
+        spawn: [15, 77, 113, 96],
         areaColors: {
             //right
-            hff004d: { cmd: "text", label: "Painting", txt: "An original Rothko?", align: "center", lines: 1, point: [27, 65], obstacle: false },
-            h00e436: { cmd: "text", label: "Window", txt: "Can you see the incline from here?", align: "center", lines: 1, point: [33, 59], obstacle: false },
-            hffec27: { cmd: "text", label: "Window", txt: "The Paris of Appalachia", align: "center", lines: 1, point: [53, 59], obstacle: false },
-            h29adff: { cmd: "text", label: "Window", txt: "Ah... the city of bridges!", align: "center", lines: 1, point: [73, 59], obstacle: false },
-            hff6c24: { cmd: "text", label: "Window", txt: "Gentrification is beautiful", align: "center", lines: 1, point: [83, 59], obstacle: false },
-            hffccaa: { cmd: "text", label: "Cocktail", txt: "*You drink an Old fashioned*", align: "center", lines: 1, point: [45, 76], obstacle: false },
-            hff77a8: { cmd: "text", label: "Champagne", txt: "It's a magnum bottle", align: "center", lines: 1, point: [38, 76], obstacle: false },
-            hb7250b: { cmd: "text", label: "Caviar tartines", txt: "*You eat a tartine*", align: "center", lines: 1, point: [31, 76], obstacle: false },
-            hab5236: { cmd: "text", label: "Chocolate fountain", txt: "A little bit tacky", align: "center", lines: 1, point: [24, 76], obstacle: false },
-            h065ab5: { cmd: "enter", room: "thirdFloor", label: "Hall", point: [64, 79], enterPoint: [30, 73], obstacle: false }
-        },
-        things: {
-            //sprite spreadsheets only 1 row ok?
-            VIPSeats: { file: "VIP-seats.png", position: [43, 56] },
-            VIPTable: { file: "VIP-table.png", position: [20, 65] },
-            VIPCouch: { file: "VIP-couch.png", position: [87, 68] },
+            h00e436: { cmd: "enter", room: "animalRoom", label: "Animal Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
+            //projects
+            ha8e72e: { cmd: "text", txt: "Morgan", align: "left", lines: 4, url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
+            hffff00: { cmd: "text", txt: "Ella", align: "left", lines: 5, url: "https://webcam-socket-io.glitch.me/", label: "Quarantine Kiss", point: [64, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Cat", align: "left", lines: 4, url: "https://shake-it-out-.glitch.me/", label: "TBC", point: [92, 78], obstacle: true },
+            //TV icons
+            hf39200: { cmd: "text", txt: "Morgan", align: "left", lines: 4, url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
+            hff00ff: { cmd: "text", txt: "Ella", align: "left", lines: 5, url: "https://webcam-socket-io.glitch.me/", label: "Quarantine Kiss", point: [64, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "Cat", align: "left", lines: 4, url: "https://shake-it-out-.glitch.me/", label: "TBC", point: [92, 78], obstacle: true }
         }
-
     },
 
 };
