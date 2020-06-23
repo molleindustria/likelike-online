@@ -185,7 +185,7 @@ module.exports.ROOMS = {
             //up
             hff77a8: { cmd: "enter", room: "careRoom", label: "Care Room", point: [99, 73], enterPoint: [99, 73], obstacle: false },
             //back outside
-            hbe1250: { cmd: "enter", room: "cciOutside", label: "Enterance", point: [63, 98], enterPoint: [64, 8], obstacle: false },
+            hbe1250: { cmd: "enter", room: "cciOutside", label: "Enterance", point: [63, 98], enterPoint: [74, 98], obstacle: false },
             
         },
         things: {
@@ -207,7 +207,7 @@ module.exports.ROOMS = {
             hffec27: { cmd: "enter", room: "securityRoom", label: "Security", point: [10, 86], enterPoint: [114, 86], obstacle: false },
             //Projects by: Jessie, Val and Riya
             h00ff00: { cmd: "text", txt: "Project by Jessie Zhang\nBlow digital bubbles with sound!", align: "left", lines: 4, url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
-            hff0000: { cmd: "text", txt: "Project by Val Toro", align: "left", lines: 5, url: "https://ghost-tales.glitch.me/", label: "Ghost Tales", point: [64, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "Project by Val Toro\nWatch the tale of a lonely ghost before joining them in the next realm.", align: "left", lines: 5, url: "https://ghost-tales.glitch.me/", label: "Ghost Tales", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Riya Maria", align: "left", lines: 4, url: "https://allseeing--eyes.glitch.me/", label: "all seeing eyes", point: [92, 78], obstacle: true },
             //TV icons
             he6007e: { cmd: "text", txt: "click for presentation", url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
@@ -251,8 +251,8 @@ module.exports.ROOMS = {
             //right
             h00e436: { cmd: "enter", room: "securityRoom", label: "Security", point: [117, 86], enterPoint: [12, 86], obstacle: false },
             //projects
-            hff0000: { cmd: "text", txt: "Project by Sandro Valente\nThe Head controlled space exploration game that is about spreading goodwill to close enough planets. Who will be the best Starseed? Will any ever reach 200 max score? Upload your high score #starseeds to enter the prize draw! Live Long & Prosper!", align: "left", lines: 4, url: "https://starseeds-.glitch.me/", label: "Starseeds", point: [34, 78], obstacle: true },
-            hffff00: { cmd: "text", txt: "Project by Alexandra Paris Garces Beavis", align: "left", lines: 5, url: "https://quaroutine-the-game1.glitch.me/", label: "Quaroutine", point: [64, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "Project by Sandro Valente\nThe Head controlled space exploration game that is about spreading goodwill to close enough planets. Who will be the best Starseed? Will any ever reach 200 max score? Upload your high score #starseeds to enter the prize draw! Live Long & Prosper!", align: "left", lines: 9, url: "https://starseeds-.glitch.me/", label: "Starseeds", point: [34, 78], obstacle: true },
+            hffff00: { cmd: "text", txt: "Project by Lexy Garces Beavis\nA game inspired by the 1975 Arcade Game: Whac-A-Mole. Use your wrists to move around the rainbows to hit the sun. Encouraging movement as a form of self care.", align: "left", lines: 7, url: "https://quaroutine-the-game1.glitch.me/", label: "Quaroutine", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Dejana Draganić", align: "left", lines: 4, url: "https://shake-it-out-.glitch.me/", label: "Shake it Out!", point: [92, 78], obstacle: true },
             hff00ff: { cmd: "text", txt: "Project by Martin Del Busto", align: "left", lines: 4, url: "https://pixelated.glitch.me/", label: "Pixelated", point: [10, 86], obstacle: true },
             //TV icon
