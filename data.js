@@ -9,28 +9,31 @@ module.exports.SETTINGS = {
     INTRO_TEXT: "Click/tap to move"
 };
 
+/*
+
 //miscellaneous assets to preload
 module.exports.IMAGES = [
-    ["sheepIdle", "sheep-idle.png"],
-    ["wifeWalk", "wife.png"],
-    ["wifeEmote", "wife-emote.png"],
-    ["husbandWalk", "husband.png"],
-    ["husbandEmote", "husband-emote.png"],
-    ["child1Walk", "child1.png"],
-    ["child1Emote", "child1-emote.png"],
-    ["child2Walk", "child2.png"],
-    ["child2Emote", "child2-emote.png"],
-    ["child3Walk", "child3.png"],
-    ["child3Emote", "child3-emote.png"],
-    ["uncleWalk", "uncle.png"],
-    ["uncleEmote", "uncle-emote.png"],
-    ["milkmanWalk", "milkman.png"],
-    ["milkmanEmote", "milkman-emote.png"],
-    ["boyfriendWalk", "child-boyfriend.png"],
-    ["boyfriendEmote", "child-boyfriend-emote.png"],
-    ["flyWalk", "fly.png"],
-    ["flyEmote", "fly-emote.png"]
+    ["sheepIdle", "characters/sheep-idle.png"],
+    ["wifeWalk", "characters/wife.png"],
+    ["wifeEmote", "characters/wife-emote.png"],
+    ["husbandWalk", "characters/husband.png"],
+    ["husbandEmote", "characters/husband-emote.png"],
+    ["child1Walk", "characters/child1.png"],
+    ["child1Emote", "characters/child1-emote.png"],
+    ["child2Walk", "characters/child2.png"],
+    ["child2Emote", "characters/child2-emote.png"],
+    ["child3Walk", "characters/child3.png"],
+    ["child3Emote", "characters/child3-emote.png"],
+    ["uncleWalk", "characters/uncle.png"],
+    ["uncleEmote", "characters/uncle-emote.png"],
+    ["milkmanWalk", "characters/milkman.png"],
+    ["milkmanEmote", "characters/milkman-emote.png"],
+    ["boyfriendWalk", "characters/child-boyfriend.png"],
+    ["boyfriendEmote", "characters/child-boyfriend-emote.png"],
+    ["flyWalk", "characters/fly.png"],
+    ["flyEmote", "characters/fly-emote.png"]
 ];
+*/
 
 //miscellaneous sounds to preload
 module.exports.SOUNDS = [
@@ -82,7 +85,7 @@ module.exports.ROOMS = {
             he6007e: { cmd: "text", txt: "Stacy", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
         },
         things: {
-            sheep: { file: "sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" }
+            sheep: { file: "characters/sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" }
         }
     },
 
@@ -184,11 +187,11 @@ module.exports.ROOMS = {
             //up
             hff77a8: { cmd: "enter", room: "careRoom", label: "Care Room", point: [99, 73], enterPoint: [99, 73], obstacle: false },
             //back outside
-            hbe1250: { cmd: "enter", room: "cciOutside", label: "Enterance", point: [63, 98], enterPoint: [64, 8], obstacle: false },
+            hbe1250: { cmd: "enter", room: "cciOutside", label: "Entrance", point: [63, 98], enterPoint: [64, 8], obstacle: false },
             
         },
         things: {
-            guard: { file: "museumGuard.png", frames: 1, frameDelay: 30, position: [13, 56], label: "Security" }
+            guard: { file: "characters/museumGuard.png", frames: 1, frameDelay: 30, position: [13, 56], label: "Security" }
         }
 
     },

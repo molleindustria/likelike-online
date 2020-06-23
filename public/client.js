@@ -51,7 +51,7 @@ var AVATAR_H = 18;
 //number of avatars in the sheets
 var AVATARS = 37;
 //the big file if used
-var ALL_AVATARS_SHEET = "characters/allAvatars.png";
+var ALL_AVATARS_SHEET = "allAvatars.png";
 //the number of frames for walk cycle and emote animation
 //the first frame of emote is also the idle frame
 var WALK_F = 4;
@@ -69,6 +69,10 @@ var IMAGES, SOUNDS;
 var SPEED = 50;
 
 var ASSETS_FOLDER = "assets/";
+var AREAS = "areas/";
+var BACKGROUNDS = "backgrounds/";
+var CHARACTERS = "characters/";
+var AUDIOFILES = "sounds/";
 
 //text vars
 //MONOSPACED FONT
@@ -259,7 +263,7 @@ function preload() {
     //layout horizontal, 0 padding (double check that)
 
 
-    allSheets = loadImage(ASSETS_FOLDER + ALL_AVATARS_SHEET);
+    allSheets = loadImage(ASSETS_FOLDER + CHARACTERS + ALL_AVATARS_SHEET);
 
     REF_COLORS_RGB = [];
     //to make the palette swap faster I save colors as arrays 
@@ -321,16 +325,16 @@ function preload() {
     logo = loadAnimation(logoSheet);
     logo.frameDelay = 10;
 
-    var walkIconSheet = loadSpriteSheet(ASSETS_FOLDER + "characters/walkIcon.png", 6, 8, 4);
+    var walkIconSheet = loadSpriteSheet(ASSETS_FOLDER + CHARACTERS + "walkIcon.png", 6, 8, 4);
     walkIcon = loadAnimation(walkIconSheet);
     walkIcon.frameDelay = 8;
 
-    var appearEffectSheet = loadSpriteSheet(ASSETS_FOLDER + "characters/appearEffect.png", 10, 18, 10);
+    var appearEffectSheet = loadSpriteSheet(ASSETS_FOLDER + CHARACTERS + "appearEffect.png", 10, 18, 10);
     appearEffect = loadAnimation(appearEffectSheet);
     appearEffect.frameDelay = 4;
     appearEffect.looping = false;
 
-    var disappearEffectSheet = loadSpriteSheet(ASSETS_FOLDER + "characters/disappearEffect.png", 10, 18, 10);
+    var disappearEffectSheet = loadSpriteSheet(ASSETS_FOLDER + CHARACTERS + "disappearEffect.png", 10, 18, 10);
     disappearEffect = loadAnimation(disappearEffectSheet);
     //disappearEffect.frameDelay = 4;
     disappearEffect.looping = false;
@@ -342,17 +346,17 @@ function preload() {
 
     blips = [];
     for (var i = 0; i <= 5; i++) {
-        var blip = loadSound(ASSETS_FOLDER + "sounds/blip" + i);
+        var blip = loadSound(ASSETS_FOLDER + AUDIOFILES + "blip" + i);
         blip.playMode("sustain");
         blip.setVolume(0.3);
         blips.push(blip);
     }
 
-    appearSound = loadSound(ASSETS_FOLDER + "sounds/appear");
+    appearSound = loadSound(ASSETS_FOLDER + AUDIOFILES + "appear");
     appearSound.playMode("sustain");
     appearSound.setVolume(0.3);
 
-    disappearSound = loadSound(ASSETS_FOLDER + "sounds/disappear");
+    disappearSound = loadSound(ASSETS_FOLDER + AUDIOFILES + "disappear");
     disappearSound.playMode("sustain");
     disappearSound.setVolume(0.3);
 
@@ -437,17 +441,17 @@ function setup() {
                         var room = ROOMS[roomId];
 
                         if (room.bg != null)
-                            room.bgGraphics = loadImage(ASSETS_FOLDER + room.bg);
+                            room.bgGraphics = loadImage(ASSETS_FOLDER + BACKGROUNDS + room.bg);
                         else
                             console.log("WARNING: room " + roomId + " has no background graphics");
 
                         if (room.area != null)
-                            room.areaGraphics = loadImage(ASSETS_FOLDER + room.area);
+                            room.areaGraphics = loadImage(ASSETS_FOLDER + AREAS + room.area);
                         else
                             console.log("WARNING: room " + roomId + " has no area graphics");
 
                         if (room.music != null) {
-                            room.musicLoop = loadSound(ASSETS_FOLDER + room.music);
+                            room.musicLoop = loadSound(ASSETS_FOLDER + AUDIOFILES + room.music);
                             room.musicLoop.playMode('restart');
                         }
 
@@ -461,18 +465,20 @@ function setup() {
                     }
                 }
 
+                /*
                 //load the misc images from data
                 var imageData = DATA.IMAGES;
                 IMAGES = {};
                 for (var i = 0; i < imageData.length; i++) {
                     IMAGES[imageData[i][0]] = loadImage(ASSETS_FOLDER + imageData[i][1]);
                 }
-
+                */
+               
                 //load the misc images from data
                 var soundData = DATA.SOUNDS;
                 SOUNDS = {};
                 for (var i = 0; i < soundData.length; i++) {
-                    SOUNDS[soundData[i][0]] = loadSound(ASSETS_FOLDER + soundData[i][1]);
+                    SOUNDS[soundData[i][0]] = loadSound(ASSETS_FOLDER + AUDIOFILES + soundData[i][1]);
                 }
 
 
