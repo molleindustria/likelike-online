@@ -61,10 +61,6 @@ module.exports.ROOMS = {
             hf39200: { cmd: "text", txt: "Eunah", url: "https://eunah-lee-storybook5-6.glitch.me/", label: "Haru's Adventure", point: [34, 73], obstacle: false},
             he6007e: { cmd: "text", txt: "Stacy", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
         },
-        things: {
-            sheep: { file: "sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
-            dog: {file: "harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
-        }
     },
 
     careRoom: {
