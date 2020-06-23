@@ -82,7 +82,8 @@ module.exports.ROOMS = {
             he6007e: { cmd: "text", txt: "Stacy", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
         },
         things: {
-            sheep: { file: "sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" }
+            sheep: { file: "sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
+            dog: {file: "harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
         }
     },
 
@@ -204,8 +205,8 @@ module.exports.ROOMS = {
         areaColors: {
             //left
             hffec27: { cmd: "enter", room: "securityRoom", label: "Security", point: [10, 86], enterPoint: [114, 86], obstacle: false },
-            //Projects by: Jessie, Val, Riya
-            h00ff00: { cmd: "text", txt: "Project by Jessie Zhang", align: "left", lines: 4, url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
+            //Projects by: Jessie, Val and Riya
+            h00ff00: { cmd: "text", txt: "Project by Jessie Zhang\nBlow digital bubbles with sound!", align: "left", lines: 4, url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
             hff0000: { cmd: "text", txt: "Project by Val Toro", align: "left", lines: 5, url: "https://ghost-tales.glitch.me/", label: "Ghost Tales", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Riya Maria", align: "left", lines: 4, url: "https://allseeing--eyes.glitch.me/", label: "all seeing eyes", point: [92, 78], obstacle: true },
             //TV icons
