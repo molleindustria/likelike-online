@@ -2,7 +2,10 @@
 //they are either related to the rooms or shared with the server 
 module.exports.SETTINGS = {
     //if not specified by the url where is the starting point
+
+
     defaultRoom: "cciOutside",
+
     //minimum time between talk messages enforced by both client and server
     ANTI_SPAM: 1000,
     //shows up at first non lurking login
@@ -22,7 +25,7 @@ module.exports.SOUNDS = [
 
 module.exports.ROOMS = {
 
-   
+
     cciOutside: {
         bg: "cciOutside-bg.png",
         frames: 2,
@@ -292,7 +295,7 @@ module.exports.ROOMS = {
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
             hff00ff: { cmd: "text", txt: "click for presentation", url: "https://webcam-socket-io.glitch.me/", label: "Quarantine Kiss", point: [64, 78], obstacle: true },
-            hff0000: { cmd: "text", txt: "click for presentation", url: "https://root-dandy-position.glitch.me/", label: "TBC", point: [92, 78], obstacle: true }            
+            hff0000: { cmd: "text", txt: "click for presentation", url: "https://root-dandy-position.glitch.me/", label: "be still, be calm", point: [92, 78], obstacle: true }            
         }
     },
 
