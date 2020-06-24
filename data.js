@@ -58,9 +58,13 @@ module.exports.ROOMS = {
             ha8e72e: { cmd: "text", txt: "Project by Eunah Lee\nHelp Haru find its way back home!\nAn interactive storybook for kids", align: "left", lines: 3, url: "https://eunah-lee-storybook5-6.glitch.me/", label: "Haru's Adventure", point: [34, 73], obstacle: false },
             hff0000: { cmd: "text", txt: "Project by Stacy\nBoggle is: A website for dog lovers,\nA place to loose yourself in a variety of doggy experiences:\nWear a dog crown\nDraw psychedelic dogs with your nose\nOr play a game of eat the treats using your dog head hoop to catch the dog biscuits", align: "left", lines: 11, url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false },
             //TV icons
-            hf39200: { cmd: "text", txt: "Eunah", url: "https://eunah-lee-storybook5-6.glitch.me/", label: "Haru's Adventure", point: [34, 73], obstacle: false},
-            he6007e: { cmd: "text", txt: "Stacy", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
+            hf39200: { cmd: "text", txt: "click for presentation", url: "https://eunah-lee-storybook5-6.glitch.me/", label: "Haru's Adventure", point: [34, 73], obstacle: false},
+            he6007e: { cmd: "text", txt: "click for presentation", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
         },
+        things: {
+            sheep: { file: "objects/sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
+            dog: {file: "objects/harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
+        }
     },
 
     careRoom: {
@@ -119,7 +123,7 @@ module.exports.ROOMS = {
     discoRoom: {
         bg: "discoRoom-bg.png",
         avatarScale: 2,
-        frames: 3,
+        frames: 2,
         frameDelay: 10,
         pageBg: pinkBG,
         area: "gameRoom-areas.png",
@@ -183,7 +187,7 @@ module.exports.ROOMS = {
             //left
             hffec27: { cmd: "enter", room: "securityRoom", label: "Security", point: [10, 86], enterPoint: [114, 86], obstacle: false },
             //Projects by: Jessie, Val and Riya
-            h00ff00: { cmd: "text", txt: "Project by Jessie Zhang\nBlow digital bubbles with sound!", align: "left", lines: 4, url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
+            h00ff00: { cmd: "text", txt: "Project by Jessie Zhang\nBlow digital bubbles with sound!", align: "left", lines: 2, url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
             hff0000: { cmd: "text", txt: "Project by Val Toro\nWatch the tale of a lonely ghost before joining them in the next realm.", align: "left", lines: 5, url: "https://ghost-tales.glitch.me/", label: "Ghost Tales", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Riya Maria", align: "left", lines: 4, url: "https://allseeing--eyes.glitch.me/", label: "all seeing eyes", point: [92, 78], obstacle: true },
             //TV icons
@@ -210,6 +214,10 @@ module.exports.ROOMS = {
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://testkitsc.glitch.me/", label: "info", point: [34, 78], obstacle: true },
             h006b2d: { cmd: "text", txt: "click for presentation", url: "https://time-to-eat.glitch.me/", label: "info", point: [94, 78], obstacle: true }           
+        },
+        things: {
+            table: { file: "objects/table.png", frames: 1, frameDelay: 30, position: [64, 60], label: "Sheep" },
+            
         }
     },
   
@@ -256,8 +264,8 @@ module.exports.ROOMS = {
             h00ff00: { cmd: "text", txt: "Project by Alex Greer\nA simple teamwork game, with the aim of creating a masterpiece together using only shapes and the colours in your environment.", align: "left", lines: 5, url: "https://draw-together-again.glitch.me/", label: "Draw Together Again", point: [34, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Vince Ibay", align: "left", lines: 4, url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true },
             //TV icons
-            hf39200: { cmd: "text", txt: "click for presentation", url: "https://draw-together-again.glitch.me/", label: "info", point: [34, 78], obstacle: true },
-            hff0000: { cmd: "text", txt: "click for presentation", url: "https://better-together.glitch.me/", label: "info", point: [92, 78], obstacle: true }
+            hf39200: { cmd: "text", txt: "click for presentation", url: "https://draw-together-again.glitch.me/", label: "Draw Together Again", point: [34, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "click for presentation", url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true }
         }
     },
 
