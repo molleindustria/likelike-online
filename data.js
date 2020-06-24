@@ -9,12 +9,8 @@ module.exports.SETTINGS = {
     INTRO_TEXT: "Click/tap to move"
 };
 
-<<<<<<< HEAD
-
-=======
 const pinkBG = "#e1cdcd";
 const greenBG = "#72bf71";
->>>>>>> 4b825fa66430dca3a0175b3af76c5fae52ab068e
 
 //miscellaneous sounds to preload
 module.exports.SOUNDS = [
@@ -279,7 +275,7 @@ module.exports.ROOMS = {
             //right
             h00e436: { cmd: "enter", room: "animalRoom", label: "Animal Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
             //projects
-            ha8e72e: { cmd: "text", txt: "Project by Morgan Williams", align: "left", lines: 4, url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
+            ha8e72e: { cmd: "text", txt: "Project by Morgan Williams\nAn interactive randomised location of a view of a city, ever time you reload the page. Try moving one hand then the other up and down to see what happens.", align: "left", lines: 6, url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
             hffff00: { cmd: "text", txt: "Project by Ella Jonquil Fitzgerald", align: "left", lines: 5, url: "https://webcam-socket-io.glitch.me/", label: "Quarantine Kiss", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Catherine Rose Lavender ", align: "left", lines: 4, url: "https://root-dandy-position.glitch.me/", label: "be still, be calm", point: [92, 78], obstacle: true },
             //TV icons
