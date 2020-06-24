@@ -2,10 +2,7 @@
 //they are either related to the rooms or shared with the server 
 module.exports.SETTINGS = {
     //if not specified by the url where is the starting point
-
-
     defaultRoom: "cciOutside",
-
     //minimum time between talk messages enforced by both client and server
     ANTI_SPAM: 1000,
     //shows up at first non lurking login
@@ -65,8 +62,11 @@ module.exports.ROOMS = {
             he6007e: { cmd: "text", txt: "click for presentation", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
         },
         things: {
-            sheep: { file: "objects/sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
-            dog: {file: "objects/harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
+            sheep: { file: "objects/sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 59], label: "Sheep" },
+            sheep2: { file: "objects/sheep-walk.png", frames: 3, frameDelay: 30, position: [14, 80], label: "Sheep" },
+            sheep3: { file: "objects/sheep-idle.png", frames: 2, frameDelay: 30, position: [100, 78], label: "Sheep" },
+            sheep4: { file: "objects/sheep-idle.png", frames: 2, frameDelay: 30, position: [12, 63], label: "Sheep" },
+            dog: {file: "objects/harvey.png", frames: 2, frameDelay: 30, position: [54, 80], label: "Harvey"}
         }
     },
 
@@ -98,8 +98,8 @@ module.exports.ROOMS = {
 
         },
         things: {
-            pinkCushion: { file: "objects/pinkCushion.png", frames: 1, frameDelay: 30, position: [56, 56], label: "Pink Cushion" },
-            yellowCushion: { file: "objects/yellowCushion.png", frames: 1, frameDelay: 30, position: [67, 56], label: "Yellow Cushion" }
+            pinkCushion: { file: "objects/pinkCushion.png", frames: 1, frameDelay: 30, position: [40, 58], label: "Pink Cushion" },
+            yellowCushion: { file: "objects/yellowCushion.png", frames: 1, frameDelay: 30, position: [63, 63], label: "Yellow Cushion" }
         }
     },
 
@@ -214,7 +214,7 @@ module.exports.ROOMS = {
         area: "foodRoom-areas.png",
         areaColors: {
             //left
-            hbe1250: { cmd: "enter", room: "securityRoom", label: "Security", point: [30, 90], enterPoint: [30, 72], obstacle: false },
+            hbe1250: { cmd: "enter", room: "securityRoom", label: "Security", point: [34, 94], enterPoint: [34, 74], obstacle: false },
             //projects
             hffff00: { cmd: "text", txt: "Project by Khalisha Tambunan\nIt's raining cats and dogs... and everything in between.", align: "left", lines: 4, url: "https://testkitsc.glitch.me/", label: "Kitschen Dreams", point: [34, 78], obstacle: true },
             hff0000: { cmd: "text", txt: "Project by Kamil Sznajder", align: "left", lines: 5, url: "https://time-to-eat.glitch.me/", label: "Time to eat Bug!", point: [94, 78], obstacle: true },
@@ -223,12 +223,8 @@ module.exports.ROOMS = {
             h006b2d: { cmd: "text", txt: "click for presentation", url: "https://time-to-eat.glitch.me/", label: "info", point: [94, 78], obstacle: true }           
         },
         things: {
-<<<<<<< HEAD
-            table: { file: "objects/table.png", frames: 1, frameDelay: 30, position: [64, 60], label: "Sheep" },
-            
-=======
-            table: { file: "objects/table.png", frames: 1, frameDelay: 30, position: [84, 80], label: "Food!" }
->>>>>>> 17cb963dd05ecf00a1aec26a6d8f1f0a339174c6
+            table: { file: "objects/table.png", frames: 1, frameDelay: 30, position: [65, 80], label: "Food!" },
+            pizza: {file: "objects/pizza.png", frames: 2, frameDelay: 30, position: [104, 65], label: "Giant pizza!"}
         }
     },
   
@@ -256,6 +252,9 @@ module.exports.ROOMS = {
             h00ffff: { cmd: "text", txt: "click for presentation", url: "https://eye-orchestra-final.glitch.me/", label: "Quaroutine", point: [64, 78], obstacle: true },
             he6007e: { cmd: "text", txt: "click for presentation", url: "https://acid-with-highscore.glitch.me/", label: "Shake it Out!", point: [92, 78], obstacle: true },
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://breakdown-the-mimi-mix.glitch.me/", label: "Pixelated", point: [10, 86], obstacle: true },
+        },
+        things:{
+            console: {file: "objects/console.png", frames: 2, frameDelay: 30, position: [17, 85], label: "Let's play!"}
         }
 
     },
@@ -273,7 +272,7 @@ module.exports.ROOMS = {
             hffec27: { cmd: "enter", room: "animalRoom", label: "Animal Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
             //projects by Alex and Vince
             h00ff00: { cmd: "text", txt: "Project by Alex Greer\nA simple teamwork game, with the aim of creating a masterpiece together using only shapes and the colours in your environment.", align: "left", lines: 5, url: "https://draw-together-again.glitch.me/", label: "Draw Together Again", point: [34, 78], obstacle: true },
-            h0000ff: { cmd: "text", txt: "Project by Vince Ibay", align: "left", lines: 4, url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Project by Vince Ibay\nTogether is a family friendly multiplayer digital canvas, where kids can create, play and socialise.", align: "left", lines: 4, url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true },
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://draw-together-again.glitch.me/", label: "Draw Together Again", point: [34, 78], obstacle: true },
             hff0000: { cmd: "text", txt: "click for presentation", url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true }
@@ -283,7 +282,7 @@ module.exports.ROOMS = {
     viewRoom: {
         bg: "viewRoom-bg.png",
         avatarScale: 2,
-        frames: 3,
+        frames: 4,
         frameDelay: 10,
         pageBg: pinkBG,
         area: "viewRoom-areas.png",
