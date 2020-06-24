@@ -259,7 +259,7 @@ canvas {
 
 /* Style the button that is used to open and close the collapsible content */
 
-.map-container {
+#map-container {
 	display: none;
 	position: relative;
 	z-index: 0;
@@ -268,27 +268,36 @@ canvas {
 }
 
 .map-button {
-	background-image: url("assets/map/map_icon.png");
+	z-index:1;
 	position: absolute;
-	width: 30px;
-	height: 30px;
-	z-index: 1;
-	cursor: pointer;
-	outline: none;
+	font-family: monogram;
+	font-size: 32px;
+	line-height: 1em;
+	margin: 0px;
+	display: inline-block;
 	border: none;
+	text-align: center;
+	color: white;
+	background: #ff004d;
+	outline: none;
 	border-bottom: 4px solid#424242;
-	left: -40px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 2px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	cursor: pointer;
+	left: -60px;
 	bottom: 0;
 }
-
-.active {
+.map-button:active {
 	border-bottom: none;
 	margin-top: 4px;
 }
 
 .map-button:hover {
-	box-shadow: 0 30px rgba(255, 255, 255, 0.2) inset;
-
+	background: #ff77a8;
 }
 
 #map {
