@@ -9,28 +9,8 @@ module.exports.SETTINGS = {
     INTRO_TEXT: "Click/tap to move"
 };
 
-//miscellaneous assets to preload
-module.exports.IMAGES = [
-    ["sheepIdle", "sheep-idle.png"],
-    ["wifeWalk", "wife.png"],
-    ["wifeEmote", "wife-emote.png"],
-    ["husbandWalk", "husband.png"],
-    ["husbandEmote", "husband-emote.png"],
-    ["child1Walk", "child1.png"],
-    ["child1Emote", "child1-emote.png"],
-    ["child2Walk", "child2.png"],
-    ["child2Emote", "child2-emote.png"],
-    ["child3Walk", "child3.png"],
-    ["child3Emote", "child3-emote.png"],
-    ["uncleWalk", "uncle.png"],
-    ["uncleEmote", "uncle-emote.png"],
-    ["milkmanWalk", "milkman.png"],
-    ["milkmanEmote", "milkman-emote.png"],
-    ["boyfriendWalk", "child-boyfriend.png"],
-    ["boyfriendEmote", "child-boyfriend-emote.png"],
-    ["flyWalk", "fly.png"],
-    ["flyEmote", "fly-emote.png"]
-];
+const pinkBG = "#e1cdcd";
+const greenBG = "#72bf71";
 
 //miscellaneous sounds to preload
 module.exports.SOUNDS = [
@@ -48,7 +28,7 @@ module.exports.ROOMS = {
         frames: 2,
         frameDelay: 30,
         avatarScale: 2,
-        pageBg: "#ab5236",
+        pageBg: greenBG,
         area: "cciOutside-areas.png",
         tint: "#fdeac8",
         bubblesY: 44,
@@ -62,7 +42,7 @@ module.exports.ROOMS = {
     animalRoom: {
         bg: "animalRoom-bg.png",
         avatarScale: 2,
-        pageBg: "#e1cdcd",
+        pageBg: pinkBG,
         area: "animalRoom-areas.png",
         tint: "#FFFFFF",
         bubblesY: 46,
@@ -81,16 +61,12 @@ module.exports.ROOMS = {
             hf39200: { cmd: "text", txt: "Eunah", url: "https://eunah-lee-storybook5-6.glitch.me/", label: "Haru's Adventure", point: [34, 73], obstacle: false},
             he6007e: { cmd: "text", txt: "Stacy", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
         },
-        things: {
-            sheep: { file: "sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
-            dog: {file: "harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
-        }
     },
 
     careRoom: {
         bg: "careRoom-bg.png",
         avatarScale: 2,
-        pageBg: "#e1cdcd",
+        pageBg: pinkBG,
         area: "careRoom-areas.png",
         tint: "#FFFFFF",
         bubblesY: 46,
@@ -120,7 +96,7 @@ module.exports.ROOMS = {
         bg: "socialRoom-bg.png",
         avatarScale: 2,
         tint: "#ffbbb8",
-        pageBg: "#ab5236",
+        pageBg: pinkBG,
         bubblesY: 50,
         spawn: [84, 92, 121, 99],
         area: "socialRoom-areas.png",
@@ -145,7 +121,7 @@ module.exports.ROOMS = {
         avatarScale: 2,
         frames: 3,
         frameDelay: 10,
-        pageBg: "#e1cdcd",
+        pageBg: pinkBG,
         area: "gameRoom-areas.png",
         tint: "#FFFFFF",
         bubblesY: 46,
@@ -170,7 +146,7 @@ module.exports.ROOMS = {
 
         bg: "securityRoom-bg.png",
         avatarScale: 2,
-        pageBg: "#e1cdcd",
+        pageBg: pinkBG,
         area: "securityRoom-areas.png",
         tint: "#FFFFFF",
         bubblesY: 46,
@@ -185,11 +161,11 @@ module.exports.ROOMS = {
             //up
             hff77a8: { cmd: "enter", room: "careRoom", label: "Care Room", point: [99, 73], enterPoint: [99, 73], obstacle: false },
             //back outside
-            hbe1250: { cmd: "enter", room: "cciOutside", label: "Enterance", point: [63, 98], enterPoint: [64, 8], obstacle: false },
+            hbe1250: { cmd: "enter", room: "cciOutside", label: "Entrance", point: [63, 98], enterPoint: [64, 8], obstacle: false },
             
         },
         things: {
-            guard: { file: "museumGuard.png", frames: 1, frameDelay: 30, position: [13, 56], label: "Security" }
+            guard: { file: "characters/museumGuard.png", frames: 1, frameDelay: 30, position: [13, 56], label: "Security" }
         }
 
     },
@@ -198,7 +174,7 @@ module.exports.ROOMS = {
         bg: "galleryRoom-bg.png",
         avatarScale: 2,
         tint: "#ffbbb8",
-        pageBg: "#ab5236",
+        pageBg: pinkBG,
         bubblesY: 50,
         spawn: [84, 92, 121, 99],
         area: "galleryRoom-areas.png",
@@ -220,7 +196,7 @@ module.exports.ROOMS = {
         bg: "foodRoom-bg.png",
         avatarScale: 2,
         tint: "#ffbbb8",
-        pageBg: "#ab5236",
+        pageBg: pinkBG,
         bubblesY: 50,
         spawn: [84, 92, 121, 99],
         area: "foodRoom-areas.png",
@@ -242,7 +218,7 @@ module.exports.ROOMS = {
         avatarScale: 2,
         frames: 3,
         frameDelay: 10,
-        pageBg: "#e1cdcd",
+        pageBg: pinkBG,
         area: "gameRoom-areas.png",
         tint: "#FFFFFF",
         bubblesY: 46,
@@ -268,7 +244,7 @@ module.exports.ROOMS = {
         bg: "drawRoom-bg.png",
         avatarScale: 2,
         tint: "#ffbbb8",
-        pageBg: "#ab5236",
+        pageBg: pinkBG,
         bubblesY: 50,
         spawn: [84, 92, 121, 99],
         area: "drawRoom-areas.png",
@@ -289,7 +265,7 @@ module.exports.ROOMS = {
         avatarScale: 2,
         frames: 3,
         frameDelay: 10,
-        pageBg: "#e1cdcd",
+        pageBg: pinkBG,
         area: "viewRoom-areas.png",
         tint: "#FFFFFF",
         bubblesY: 46,
