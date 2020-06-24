@@ -134,7 +134,7 @@ module.exports.ROOMS = {
         frameDelay: 10,
         pageBg: pinkBG,
         area: "gameRoom-areas.png",
-        tint: "#342c24",
+        tint: "#75787f",
         bubblesY: 46,
         spawn: [15, 77, 113, 96],
         areaColors: {
