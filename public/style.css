@@ -18,6 +18,8 @@ body {
 	font-smooth: never;
 	-webkit-font-smoothing: none;
 	color: white;
+	/*hides scroll bars*/
+	overflow: hidden;
 }
 
 #canvas-container {
