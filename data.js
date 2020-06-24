@@ -256,8 +256,8 @@ module.exports.ROOMS = {
             h00ff00: { cmd: "text", txt: "Project by Alex Greer\nA simple teamwork game, with the aim of creating a masterpiece together using only shapes and the colours in your environment.", align: "left", lines: 5, url: "https://draw-together-again.glitch.me/", label: "Draw Together Again", point: [34, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Vince Ibay", align: "left", lines: 4, url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true },
             //TV icons
-            hf39200: { cmd: "text", txt: "click for presentation", url: "https://draw-together-again.glitch.me/", label: "Draw Together Again", point: [34, 78], obstacle: true },
-            hff0000: { cmd: "text", txt: "click for presentation", url: "https://better-together.glitch.me/", label: "Together", point: [92, 78], obstacle: true }
+            hf39200: { cmd: "text", txt: "click for presentation", url: "https://draw-together-again.glitch.me/", label: "info", point: [34, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "click for presentation", url: "https://better-together.glitch.me/", label: "info", point: [92, 78], obstacle: true }
         }
     },
 
