@@ -62,8 +62,8 @@ module.exports.ROOMS = {
             he6007e: { cmd: "text", txt: "click for presentation", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
         },
         things: {
-            sheep: { file: "things/sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
-            dog: {file: "things/harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
+            sheep: { file: "objects/sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
+            dog: {file: "objects/harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
         }
     },
 
@@ -94,6 +94,10 @@ module.exports.ROOMS = {
             h056c38: {cmd: "text", txt: "click for presentation", url: "https://when-our-hands-touch.glitch.me/", label: "Presentation: When we touch, a tree grows", point: [100, 80], obstacle: false}
 
         },
+        things: {
+            pinkCushion: { file: "objects/pinkCushion.png", frames: 1, frameDelay: 30, position: [56, 56], label: "Pink Cushion" },
+            yellowCushion: { file: "objects/yellowCushion.png", frames: 1, frameDelay: 30, position: [67, 56], label: "Yellow Cushion" }
+        }
     },
 
     socialRoom: {
@@ -214,6 +218,9 @@ module.exports.ROOMS = {
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://testkitsc.glitch.me/", label: "info", point: [34, 78], obstacle: true },
             h006b2d: { cmd: "text", txt: "click for presentation", url: "https://time-to-eat.glitch.me/", label: "info", point: [94, 78], obstacle: true }           
+        },
+        things: {
+            table: { file: "objects/table.png", frames: 1, frameDelay: 30, position: [84, 80], label: "Food!" }
         }
     },
   
