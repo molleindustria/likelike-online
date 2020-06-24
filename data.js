@@ -130,7 +130,7 @@ module.exports.ROOMS = {
             //projects
             h00ff00: { cmd: "text", txt: "Project by Edward Martin\nA prototype for a social networking app that uses your daily emotions to communicate with your friends and family.", align: "left", lines: 4, url: "https://2020-06-06-regard-socket-app.glitch.me/", label: "Regard.", point: [34, 78], obstacle: true },
             hff0000: { cmd: "text", txt: "Project by Zhiqin Lu", align: "left", lines: 5, url: "https://observe-.glitch.me/", label: "Observe", point: [64, 78], obstacle: true },
-            h0000ff: { cmd: "text", txt: "Project by Maximilian Zimmerer", align: "left", lines: 4, url: "https://common-denominator.glitch.me/", label: "Common Denominator", point: [92, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Project by Maximilian Zimmerer\nCommon Denominator is a web-based interaction that uses computer vision and socket connections to merge people's faces in real-time. The motivation behind this project was to create moments of joy between a pair of users and offer a digital sense of togetherness.", align: "left", lines: 9, url: "https://common-denominator.glitch.me/", label: "Common Denominator", point: [92, 78], obstacle: true },
             hff00ff: { cmd: "text", txt: "Project by Thomas Bugg", align: "left", lines: 4, url: "https://manipulated-living.glitch.me/", label: "Manipulated Living", point: [100, 88], obstacle: true },
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://2020-06-06-regard-socket-app.glitch.me/", label: "Regard", point: [34, 78], obstacle: true },
@@ -147,7 +147,7 @@ module.exports.ROOMS = {
         frameDelay: 10,
         pageBg: "#e1cdcd",
         area: "gameRoom-areas.png",
-        tint: "#FFFFFF",
+        tint: "#342c24",
         bubblesY: 46,
         spawn: [15, 77, 113, 96],
         areaColors: {
