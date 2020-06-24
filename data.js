@@ -62,8 +62,8 @@ module.exports.ROOMS = {
             he6007e: { cmd: "text", txt: "click for presentation", url: "https://dog-game-website-.glitch.me/", label: "Boggle", point: [74, 73], obstacle: false }
         },
         things: {
-            sheep: { file: "sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
-            dog: {file: "harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
+            sheep: { file: "things/sheep-walk.png", frames: 3, frameDelay: 30, position: [64, 60], label: "Sheep" },
+            dog: {file: "things/harvey.png", frames: 2, frameDelay: 30, position: [84, 80], label: "Harvey"}
         }
     },
 
@@ -123,7 +123,7 @@ module.exports.ROOMS = {
     discoRoom: {
         bg: "discoRoom-bg.png",
         avatarScale: 2,
-        frames: 3,
+        frames: 2,
         frameDelay: 10,
         pageBg: pinkBG,
         area: "gameRoom-areas.png",
