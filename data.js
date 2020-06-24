@@ -212,8 +212,8 @@ module.exports.ROOMS = {
             hffff00: { cmd: "text", txt: "Project by Khalisha Tambunan\nIt's raining cats and dogs... and everything in between.", align: "left", lines: 4, url: "https://testkitsc.glitch.me/", label: "Kitschen Dreams", point: [34, 78], obstacle: true },
             hff0000: { cmd: "text", txt: "Project by Kamil Sznajder", align: "left", lines: 5, url: "https://time-to-eat.glitch.me/", label: "Time to eat Bug!", point: [94, 78], obstacle: true },
             //TV icons
-            hf39200: { cmd: "text", txt: "click for presentation", url: "https://testkitsc.glitch.me/", label: "Kitschen Dreams", point: [34, 78], obstacle: true },
-            h006b2d: { cmd: "text", txt: "click for presentation", url: "https://time-to-eat.glitch.me/", label: "Time to eat Bug!", point: [94, 78], obstacle: true }           
+            hf39200: { cmd: "text", txt: "click for presentation", url: "https://testkitsc.glitch.me/", label: "info", point: [34, 78], obstacle: true },
+            h006b2d: { cmd: "text", txt: "click for presentation", url: "https://time-to-eat.glitch.me/", label: "info", point: [94, 78], obstacle: true }           
         }
     },
   
@@ -279,7 +279,7 @@ module.exports.ROOMS = {
             //right
             h00e436: { cmd: "enter", room: "animalRoom", label: "Animal Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
             //projects
-            ha8e72e: { cmd: "text", txt: "Project by Morgan Williams", align: "left", lines: 4, url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
+            ha8e72e: { cmd: "text", txt: "Project by Morgan Williams\nAn interactive randomised location of a view of a city, ever time you reload the page. Try moving one hand then the other up and down to see what happens.", align: "left", lines: 6, url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
             hffff00: { cmd: "text", txt: "Project by Ella Jonquil Fitzgerald", align: "left", lines: 5, url: "https://webcam-socket-io.glitch.me/", label: "Quarantine Kiss", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Catherine Rose Lavender ", align: "left", lines: 4, url: "https://root-dandy-position.glitch.me/", label: "be still, be calm", point: [92, 78], obstacle: true },
             //TV icons
