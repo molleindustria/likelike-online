@@ -9,28 +9,7 @@ module.exports.SETTINGS = {
     INTRO_TEXT: "Click/tap to move"
 };
 
-//miscellaneous assets to preload
-module.exports.IMAGES = [
-    ["sheepIdle", "sheep-idle.png"],
-    ["wifeWalk", "wife.png"],
-    ["wifeEmote", "wife-emote.png"],
-    ["husbandWalk", "husband.png"],
-    ["husbandEmote", "husband-emote.png"],
-    ["child1Walk", "child1.png"],
-    ["child1Emote", "child1-emote.png"],
-    ["child2Walk", "child2.png"],
-    ["child2Emote", "child2-emote.png"],
-    ["child3Walk", "child3.png"],
-    ["child3Emote", "child3-emote.png"],
-    ["uncleWalk", "uncle.png"],
-    ["uncleEmote", "uncle-emote.png"],
-    ["milkmanWalk", "milkman.png"],
-    ["milkmanEmote", "milkman-emote.png"],
-    ["boyfriendWalk", "child-boyfriend.png"],
-    ["boyfriendEmote", "child-boyfriend-emote.png"],
-    ["flyWalk", "fly.png"],
-    ["flyEmote", "fly-emote.png"]
-];
+
 
 //miscellaneous sounds to preload
 module.exports.SOUNDS = [
