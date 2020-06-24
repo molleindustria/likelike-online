@@ -89,6 +89,29 @@
     </div>
     <div id="info" class="info"><a href="https://linktr.ee/ual_cci" target="_blank">>UAL:CCI</a></div>
 
+    <!--map-->
+    <button class="collapsible"></button>
+       <div class="content">
+         <img src="assets/map/ccishow_floorplan.png" width="280px" height="350px">
+       </div>
+
+       <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+        </script>
+
 </body>
 
 </html>

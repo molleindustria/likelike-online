@@ -9,6 +9,7 @@ html {
 }
 
 body {
+	overflow: hidden;
 	font-family: monogram;
 	font-size: 32px;
 	margin: 0px;
@@ -245,7 +246,38 @@ canvas {
 	text-align: center;
 }
 
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+	background-image: url("assets/map/map_icon.png");
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	border-bottom: 4px solid#424242;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-1500%, 667%);
+  }
+  
+  .active {
+	border-bottom: none;
+    margin-top: 4px;
+  }
+  
+  .collapsible:hover {
+	box-shadow: 0 30px rgba(255,255, 255, 0.2) inset;
 
+  }
+  
+  .content {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-250%, -45%);
+  }
 
 
 

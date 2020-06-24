@@ -2,7 +2,10 @@
 //they are either related to the rooms or shared with the server 
 module.exports.SETTINGS = {
     //if not specified by the url where is the starting point
+
+
     defaultRoom: "cciOutside",
+
     //minimum time between talk messages enforced by both client and server
     ANTI_SPAM: 1000,
     //shows up at first non lurking login
@@ -22,7 +25,7 @@ module.exports.SOUNDS = [
 
 module.exports.ROOMS = {
 
-   
+
     cciOutside: {
         bg: "cciOutside-bg.png",
         frames: 2,
@@ -94,6 +97,10 @@ module.exports.ROOMS = {
             h056c38: {cmd: "text", txt: "click for presentation", url: "https://when-our-hands-touch.glitch.me/", label: "Presentation: When we touch, a tree grows", point: [100, 80], obstacle: false}
 
         },
+        things: {
+            pinkCushion: { file: "objects/pinkCushion.png", frames: 1, frameDelay: 30, position: [56, 56], label: "Pink Cushion" },
+            yellowCushion: { file: "objects/yellowCushion.png", frames: 1, frameDelay: 30, position: [67, 56], label: "Yellow Cushion" }
+        }
     },
 
     socialRoom: {
@@ -216,8 +223,12 @@ module.exports.ROOMS = {
             h006b2d: { cmd: "text", txt: "click for presentation", url: "https://time-to-eat.glitch.me/", label: "info", point: [94, 78], obstacle: true }           
         },
         things: {
+<<<<<<< HEAD
             table: { file: "objects/table.png", frames: 1, frameDelay: 30, position: [64, 60], label: "Sheep" },
             
+=======
+            table: { file: "objects/table.png", frames: 1, frameDelay: 30, position: [84, 80], label: "Food!" }
+>>>>>>> 17cb963dd05ecf00a1aec26a6d8f1f0a339174c6
         }
     },
   
@@ -289,7 +300,7 @@ module.exports.ROOMS = {
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
             hff00ff: { cmd: "text", txt: "click for presentation", url: "https://webcam-socket-io.glitch.me/", label: "Quarantine Kiss", point: [64, 78], obstacle: true },
-            hff0000: { cmd: "text", txt: "click for presentation", url: "https://root-dandy-position.glitch.me/", label: "TBC", point: [92, 78], obstacle: true }            
+            hff0000: { cmd: "text", txt: "click for presentation", url: "https://root-dandy-position.glitch.me/", label: "be still, be calm", point: [92, 78], obstacle: true }            
         }
     },
 
