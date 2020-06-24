@@ -197,7 +197,7 @@ module.exports.ROOMS = {
             //TV icons
             he6007e: { cmd: "text", txt: "click for presentation", url: "https://speech-bubbles.glitch.me/", label: "Speech Bubbles", point: [34, 78], obstacle: true },
             h312783: { cmd: "text", txt: "click for presentation", url: "https://ghost-tales.glitch.me/", label: "Ghost Tales", point: [64, 78], obstacle: true },
-            hf39200: { cmd: "text", txt: "click for presentation", url: "https://allseeing--eyes.glitch.me/", label: "all seeing eyes", point: [92, 78], obstacle: true }          
+            hf39200: { cmd: "text", txt: "click for presentation", url: "https://allseeing--eyes.glitch.me/", label: "all seeing eyes", point: [92, 78], obstacle: true }         
         }
     },
 
