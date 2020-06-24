@@ -2,7 +2,7 @@ PROJECTS.md is a file containing the list of students that the CCI-Diploma-Show 
 
 1. Alex Greer: [Draw Together Again](https://draw-together-again.glitch.me/)
 1. Beatrice Taylor-Searle: [Holding Hands](https://holding-hands2.glitch.me/)
-1. Catherine Rose Lavender: NO PROJECT NAME, NO PUBLIC URL SUBMITTED
+1. Catherine Rose Lavender: [Be Still, Be Calm](https://root-dandy-position.glitch.me/)
 1. Choy Yun Jann: [When we touch, a tree grows](https://when-our-hands-touch.glitch.me/)
 1. Dejana Dragnic: [Shake it out](https://shake-it-out-.glitch.me/)
 1. Edward Martin: [Regard](https://2020-06-06-regard-socket-app.glitch.me/)
