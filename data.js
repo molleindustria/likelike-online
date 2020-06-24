@@ -10,7 +10,7 @@ module.exports.SETTINGS = {
 };
 
 const pinkBG = "#e1cdcd";
-const greenBG = "#72bf71";
+const greenBG = "#d0e1cd";
 
 //miscellaneous sounds to preload
 module.exports.SOUNDS = [
