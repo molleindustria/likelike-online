@@ -72,8 +72,6 @@ canvas {
 }
 
 
-
-
 /*TEXT FIELDS*/
 .talk-field,
 .lobby-field {
@@ -264,7 +262,7 @@ canvas {
 .map-container {
 	display: none;
 	position: relative;
-	z-index: 3;
+	z-index: 0;
 	height: 100%;
 	width: 100%;
 }
@@ -274,7 +272,7 @@ canvas {
 	position: absolute;
 	width: 30px;
 	height: 30px;
-	z-index: 4;
+	z-index: 1;
 	cursor: pointer;
 	outline: none;
 	border: none;
