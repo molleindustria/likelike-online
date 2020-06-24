@@ -15,7 +15,7 @@ Licensed under a GNU Lesser General Public License v2.1.
 
 # Team
 
-CCI-Diploma-Show was created by students from the Diploma: [Bea](https://github.com/bats1996), [Zhiqin](https://github.com/bettyluzhiqin), [Eunah](https://github.com/eunah-lee), [Jessie](https://github.com/jessieziyun) and [Max](https://github.com/MaximilianUAL2020).
+CCI-Diploma-Show was created by students from the Diploma: [Bea](https://github.com/bats1996), [Eunah](https://github.com/eunah-lee), [Jessie](https://github.com/jessieziyun) and [Max](https://github.com/MaximilianUAL2020).
 
 ## The .env file
 
