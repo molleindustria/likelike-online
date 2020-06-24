@@ -19,14 +19,12 @@
 
     <meta property="og:image" content="https://avatars3.githubusercontent.com/u/52937267?s=200&v=4" />
     <meta property="og:title" content="CCI Diploma Show" />
-    <meta property="og:description"
-        content="Online show for the CCI Diploma 2020 graduating year." />
+    <meta property="og:description" content="Online show for the CCI Diploma 2020 graduating year." />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@ual_cci" />
     <meta name="twitter:title" content="CCI Diploma Show" />
-    <meta name="twitter:description"
-        content="Online show for the CCI Diploma 2020 graduating year." />
+    <meta name="twitter:description" content="Online show for the CCI Diploma 2020 graduating year." />
     <meta name="twitter:image" content="https://avatars3.githubusercontent.com/u/52937267?s=200&v=4" />
 
     <!-- This is a standard p5.js index, NOTE the p5.dom.min.js -->
@@ -58,9 +56,15 @@
             </div>
         </div>
 
-
+        <div class="map-button"></div>
+        <div class="map-container">
+            <div id="map-png">
+                <img src="assets/map/ccishow_floorplan_transparent.png">
+            </div>
+        </div>
 
     </div>
+
     <div id="interface">
         <!-- talk form is below canvas getTalkInput is what happens when return is pressed-->
         <form id="join-form" action="" onsubmit="return joinGame()" style="display: none;">
@@ -85,38 +89,25 @@
         </form>
     </div>
 
-    <div id="info" class="info"><a href="https://linktr.ee/ual_cci" target="_blank">>UAL CCI</a></div>
-
-    <!--adding map button-->
-    <button type="button" class="collapsible"></button>
-    <div class="content">
-     <img src="assets/ccishow_floorplan.png" width="270" height="350">
-    </div>
     <div id="info" class="info"><a href="https://linktr.ee/ual_cci" target="_blank">>UAL:CCI</a></div>
 
-    <!--map-->
-    <button class="collapsible"></button>
-       <div class="content">
-         <img src="assets/map/ccishow_floorplan.png" width="280px" height="350px">
-       </div>
-
-       <script>
-        var coll = document.getElementsByClassName("collapsible");
+    <script>
+        var coll = document.getElementsByClassName("map-button");
         var i;
-        
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-              content.style.display = "none";
-            } else {
-              content.style.display = "block";
-            }
-          });
-        }
-        </script>
 
-    </body>
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
 
 </html>
