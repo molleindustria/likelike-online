@@ -288,12 +288,12 @@ canvas {
 	margin-top: 4px;
 }
 
-.collapsible:hover {
+.map-button:hover {
 	box-shadow: 0 30px rgba(255, 255, 255, 0.2) inset;
 
 }
 
-#map-png {
+#map {
 	position: absolute;
 	width: 47%;
 	left: -47%;
