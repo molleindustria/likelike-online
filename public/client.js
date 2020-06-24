@@ -80,7 +80,7 @@ var AUDIOFILES = "sounds/";
 var FONT_FILE = "assets/monogram_extended.ttf";
 var FONT_SIZE = 16; //to avoid blur
 var font;
-var TEXT_H = 8;
+var TEXT_H = 10;
 var TEXT_PADDING = 3;
 var TEXT_LEADING = TEXT_H + 4;
 
@@ -2164,9 +2164,21 @@ function executeCommand(c) {
                     longTextLink = c.url;
 
             }
+        
             else
                 print("Warning for text: make sure to specify arg as text")
             break;
+            
+        case "video":
+                if (c.txt != null){
+                if (c.url == null)
+                    longTextLink = "";
+                else
+                    longTextLink = c.url;                
+                }
+                else 
+                print("Missing URL")
+                break;
 
 
     }
