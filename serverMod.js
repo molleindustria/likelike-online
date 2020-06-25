@@ -16,17 +16,7 @@ module.exports.initMod = function (io, gameState, DATA) {
     global.io = io;
     global.DATA = DATA;
 
-    //family room roles
-    global.familyRoles = {
-        wife: "",
-        husband: "", //id of player
-        child1: "",
-        child2: "",
-        child3: "",
-        uncle: "",
-        milkman: "",
-        boyfriend: ""
-    };
+    
 
     global.lastRhymes = [];
     global.rhymingPlayers = {};
@@ -34,28 +24,27 @@ module.exports.initMod = function (io, gameState, DATA) {
 
 
     global.paranoidTalk = [
-        "Hey you",
-        "There are bots in here",
-        "Are you a bot?",
-        "Russia is controlling the bots",
-        "Are you real?",
+        "Good evening",
+        "What is art?",
+        "These are fantastic aesthetics",
+        "I adore digital art",
+        "What do you think of the tone?",
         "Yes",
-        "I don't trust you",
-        "This is weird",
-        "Prove you are human",
+        "There is a je ne sais quoi",
+        "Something about the human condition",
+        "The curation is impeccable",
         "No",
         "Have you seen that?",
-        "That person is a bot",
-        "Listen",
-        "Bots everywhere",
-        "Hello",
-        "Another bot"
+        "What wonderful warm colours",
+        "Watch carefully",
+        "I feel enlightened",
+        "Hello"
+        
     ];
 
     //load extended dictionary, this is 3Mb but only sits on the server and it's used by only one room
     const fs = require('fs');
-    global.dictionary = fs.readFileSync('dictionary.json');
-
+    
     //cycle through contraints in the consonant room
     global.consonant = 0;
     setInterval(function () {
@@ -67,28 +56,66 @@ module.exports.initMod = function (io, gameState, DATA) {
         var msg = "";
 
         if (global.consonant == 0) //a
-            msg = "All art appalls a fan";
+            msg = "Thank you for coming to the show";
         if (global.consonant == 1) //e
-            msg = "Greet her when she enters";
+            msg = "Welcome to CCI diploma show";
         if (global.consonant == 2) //i
-            msg = "I sit ildly till twilight";
+            msg = "Enjoy the show";
         if (global.consonant == 3) //o
-            msg = "No stools, no books: work protocol";
+            msg = "Click on the different projects";
         if (global.consonant == 4) //u
-            msg = "But truth: dull suburbs turn fun";
+            msg = "Play different presentations";
         if (global.consonant == 5) //none
-            msg = "Tsk, tsk... try my rhythms";
+            msg = "Have fun!";
 
 
         //sends a message to the room
-        io.to("cnsnntrm").emit('nonPlayerTalked', { id: "", labelColor: "#3e7eb0", room: "cnsnntrm", message: msg, x: 36, y: 56 });
+        io.to("securityRoom").emit('nonPlayerTalked', { id: "", labelColor: "#3e7eb0", room: "securityRoom", message: msg, x: 36, y: 56 });
 
-    }, 60 * 1000); //every minute changes
+    }, 5 * 1000); //every ten seconds changes
 
     //global function ffs
     global.random = function (min, max) {
         return Math.random() * (max - min) + min;
     }
+
+      //Example of NPC creation and behavior
+
+      var npc = new NPC(
+        {
+            id: "artCritic",
+            nickName: "Art Critic",
+            room: "gallery",
+            x: 23,
+            y: 78,
+            avatar: 1,
+            colors: [2, 2, 1, 5],
+            labelColor: "#1e839d"
+        });
+
+    npc.behavior = setTimeout(function ramble() {
+        var dice = random(0, 100);
+
+        if (dice < 40) {
+            npc.talk(global.paranoidTalk[Math.floor(random(0, global.paranoidTalk.length - 1))]);
+
+            npc.behavior = setTimeout(ramble, random(7000, 9000));
+        }
+        else if (dice < 60) {
+            npc.move(random(17, 113) * 2, random(76, 98) * 2);
+            npc.behavior = setTimeout(ramble, random(4000, 8000));
+        }
+        else {
+            //just wait
+            npc.behavior = setTimeout(ramble, random(1000, 3000));
+
+            //to kill the bot
+            //clearTimeout(npc.behavior);
+            //npc.delete();
+        }
+
+
+    }, random(1000, 2000));
 
     global.VIPList = [];
 
@@ -213,108 +240,7 @@ module.exports.censorshipRoomTalkFilter = function (player, message) {
 }
 
 
-module.exports.rhymeRoomTalkFilter = function (player, message) {
-    //
-    if (global.beat == null)
-        global.beat = 1;
 
-    var arr = message.split(" ");
-    var lastWord = "";
-
-    if (arr.length > 0)
-        lastWord = arr[arr.length - 1].toLowerCase();
-
-    //extended dictionary
-    var exists = global.dictionary.indexOf(lastWord) != -1;
-
-    var first = false;
-    var lastRhyme = "";
-    var used = false;
-
-
-    if (global.lastRhymes.length == 0)
-        first = true;
-    else {
-        used = global.lastRhymes.indexOf(lastWord) != -1;
-
-        lastRhyme = global.lastRhymes[global.lastRhymes.length - 1].toLowerCase();
-
-    }
-
-    if (exists && !used) {
-
-        var rhymes = false;
-
-        //not first check the rhym
-        if (!first)
-            rhymes = global.rita.isRhyme(lastWord, lastRhyme);
-
-        //start the battle
-        if (first || rhymes) {
-
-            if (global.beatPlaying == false) {
-
-                io.to("rhymeRoom").emit('musicOn', global.beat);
-                global.beatPlaying = true;
-            }
-
-            global.lastRhymes.push(lastWord);
-
-            //create the rhyming player score
-            if (global.rhymingPlayers[player.nickName] == null)
-                global.rhymingPlayers[player.nickName] = 0;
-
-            //calculate the score by counting the real words
-            //skip the first
-            if (global.lastRhymes.length > 1) {
-                for (var i = 0; i < arr.length; i++) {
-                    if (global.rita.containsWord(arr[i]))
-                        global.rhymingPlayers[player.nickName]++;
-                }
-            }
-
-            //console.log("YEAH " + player.nickName + " " + lastWord + "! Words uttered " + global.rhymingPlayers[player.nickName]);
-
-            clearTimeout(global.rhymeTime);
-
-            global.rhymeTime = setTimeout(function () {
-                //console.log("Rhyme timeout");
-
-                //send to everybody in the room
-                io.to("rhymeRoom").emit('musicOff');
-                global.beatPlaying = false;
-                //change record
-                global.beat++;
-                if (global.beat > 3)
-                    global.beat = 1;
-
-                var highscore = 0;
-                var winner = "";
-                //find high score
-                for (var nn in global.rhymingPlayers) {
-                    if (global.rhymingPlayers[nn] >= 4 && global.rhymingPlayers[nn] > highscore) {
-                        winner = nn;
-                        highscore = global.rhymingPlayers[nn];
-                    }
-                }
-                global.lastRhymes = [];
-                global.rhymingPlayers = {};
-                if (winner != "") {
-                    io.to("rhymeRoom").emit('godMessage', winner + " wins!" + highscore + " words uttered");
-
-                }
-            }, 8000);
-
-            return message;
-        }//doesn't ryme
-        else {
-            return "...";
-        }
-    }//doesn't exist
-    else {
-        return "...";
-    }
-}
 
 //if enters when music is playing sent 
 module.exports.rhymeRoomJoin = function (playerObject, roomId) {
