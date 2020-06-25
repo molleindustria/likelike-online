@@ -283,7 +283,7 @@ module.exports.ROOMS = {
         bg: "viewRoom-bg.png",
         avatarScale: 2,
         frames: 4,
-        frameDelay: 10,
+        frameDelay: 50,
         pageBg: pinkBG,
         area: "viewRoom-areas.png",
         tint: "#FFFFFF",
