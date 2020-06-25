@@ -142,7 +142,7 @@ module.exports.ROOMS = {
             h00e436: { cmd: "enter", room: "careRoom", label: "Care Room", point: [117, 86], enterPoint: [12, 86], obstacle: false },
             //projects
             hff0000: { cmd: "text", txt: "Project by Llorenc Garcia Bas\nA web based instrumental music app inspired by the Theremin that uses real-time body movements to manipulate sounds.", align: "left", lines: 5, url: "https://inky-simple-dryosaurus.glitch.me/", label: "Theremax", point: [34, 78], obstacle: true },
-            hffff00: { cmd: "text", txt: "Project by Laiqa Mohid", align: "left", lines: 5, url: "https://eye-orchestra-final.glitch.me/", label: "Eye Orchestra", point: [64, 78], obstacle: true },
+            hffff00: { cmd: "text", txt: "Project by Laiqa Mohid\nA musical collaboration built through eye contact", align: "left", lines: 5, url: "https://eye-orchestra-final.glitch.me/", label: "Eye Orchestra", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Kirsty Proud", align: "left", lines: 4, url: "https://acid-with-highscore.glitch.me/", label: "Acid", point: [92, 78], obstacle: true },
             hff00ff: { cmd: "text", txt: "Project by Rukiah Zakaria\nA body instrument, music video making place in space!", align: "left", lines: 3, url: "https://breakdown-the-mimi-mix.glitch.me/", label: "Breakdown the Mimi Mix", point: [10, 86], obstacle: true },
             //TV icons
