@@ -34,6 +34,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
     <script src="p5.play.js"></script>
     <script defer src="client.js"></script>
+    <script defer src="map.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
@@ -54,13 +55,7 @@
             </div>
         </div>
 
-        <!-- <div class="map-button"></div> -->
-        <button class="map-button" type="button" onclick="mapButton()">MAP</button>
-        <div id="map-container">
-            <div id="map">
-                <img src="assets/map/ccishow_floorplan_transparent.png">
-            </div>
-        </div>
+        <input id="map-button" type="button" value="SHOW MAP">SHOW MAP</input>
 
     </div>
 
@@ -88,18 +83,11 @@
         </form>
     </div>
 
-    <div id="info" class="info"><a href="https://linktr.ee/ual_cci" target="_blank">>UAL:CCI</a></div>
+    <div id="map">
+        <img id="map-img" src="assets/map/ccishow_floorplan.png">
+    </div>
 
-    <script>
-        function mapButton() {
-            var map = document.getElementById("map-container");
-            if (map.style.display === "block") {
-                map.style.display = "none";
-            } else {
-                map.style.display = "block";
-            }
-        }
-    </script>
+    <div id="info" class="info"><a href="https://linktr.ee/ual_cci" target="_blank">>UAL:CCI</a></div>
 
 </body>
 

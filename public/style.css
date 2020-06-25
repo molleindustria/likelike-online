@@ -71,7 +71,6 @@ canvas {
 
 }
 
-
 /*TEXT FIELDS*/
 .talk-field,
 .lobby-field {
@@ -93,9 +92,7 @@ canvas {
 	margin-top: 4px;
 }
 
-
 /*USERNAME*/
-
 .lobby-message {
 	font-size: 64px;
 	margin-bottom: 32px;
@@ -117,6 +114,7 @@ canvas {
 .join-button,
 .user-button,
 .avatar-button {
+	z-index:1000;
 	font-family: monogram;
 	font-size: 64px;
 	margin: 0px;
@@ -178,7 +176,6 @@ canvas {
 	;
 }
 
-
 /* On small screen stack the talk button */
 @media screen and (max-height: 450px) {
 	.talk-button {
@@ -238,13 +235,11 @@ canvas {
 	animation: glowing 1300ms infinite;
 }
 
-
 /*LOBBY OVERLAYS*/
 #lobby-container {
 	display: block;
 	height: 100%;
 }
-
 
 /* center on container */
 .content-center {
@@ -257,17 +252,8 @@ canvas {
 	text-align: center;
 }
 
-/* Style the button that is used to open and close the collapsible content */
-
-#map-container {
-	display: none;
-	position: relative;
-	z-index: 0;
-	height: 100%;
-	width: 100%;
-}
-
-.map-button {
+/* map */
+#map-button {
 	z-index:1;
 	position: absolute;
 	font-family: monogram;
@@ -288,8 +274,6 @@ canvas {
 	padding-left: 8px;
 	padding-right: 8px;
 	cursor: pointer;
-	left: -60px;
-	bottom: 0;
 }
 .map-button:active {
 	border-bottom: none;
@@ -302,12 +286,11 @@ canvas {
 
 #map {
 	position: absolute;
-	width: 47%;
-	left: -47%;
-	bottom: 0;
+	display: none;
+	z-index: 0;
 }
 
-img {
+#map-img {
 	max-width: 100%;
 	max-height: 100%;
 	object-fit: contain;
