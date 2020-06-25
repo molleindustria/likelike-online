@@ -67,21 +67,21 @@ module.exports.initMod = function (io, gameState, DATA) {
         var msg = "";
 
         if (global.consonant == 0) //a
-            msg = "All art appalls a fan";
+            msg = "What is art?";
         if (global.consonant == 1) //e
-            msg = "Greet her when she enters";
+            msg = "Welcome to CCI diploma show";
         if (global.consonant == 2) //i
-            msg = "I sit ildly till twilight";
+            msg = "Enjoy the show";
         if (global.consonant == 3) //o
-            msg = "No stools, no books: work protocol";
+            msg = "Click on the different projects, to find out the info";
         if (global.consonant == 4) //u
-            msg = "But truth: dull suburbs turn fun";
+            msg = "The play button will take you to the video presentations";
         if (global.consonant == 5) //none
-            msg = "Tsk, tsk... try my rhythms";
+            msg = "Have fun!";
 
 
         //sends a message to the room
-        io.to("cnsnntrm").emit('nonPlayerTalked', { id: "", labelColor: "#3e7eb0", room: "cnsnntrm", message: msg, x: 36, y: 56 });
+        io.to("securityRoom").emit('nonPlayerTalked', { id: "", labelColor: "#3e7eb0", room: "securityRoom", message: msg, x: 36, y: 56 });
 
     }, 60 * 1000); //every minute changes
 
