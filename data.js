@@ -244,7 +244,7 @@ module.exports.ROOMS = {
             h00e436: { cmd: "enter", room: "securityRoom", label: "Security", point: [117, 86], enterPoint: [12, 86], obstacle: false },
             //projects
             hff0000: { cmd: "text", txt: "Project by Sandro Valente\nThe Head controlled space exploration game that is about spreading goodwill to close enough planets. Who will be the best Starseed? Will any ever reach 200 max score? Upload your high score #starseeds to enter the prize draw! Live Long & Prosper!", align: "left", lines: 9, url: "https://starseeds-.glitch.me/", label: "Starseeds", point: [34, 78], obstacle: true },
-            hffff00: { cmd: "text", txt: "Project by Lexy Garces Beavis\nA game inspired by the 1975 Arcade Game: Whac-A-Mole. Use your wrists to move around the rainbows to hit the sun. Encouraging movement as a form of self care.", align: "left", lines: 7, url: "https://quaroutine-the-game1.glitch.me/", label: "Quaroutine", point: [64, 78], obstacle: true },
+            hffff00: { cmd: "text", txt: "Project by Lexy Garces Beavis\nA game inspired by the 1975 Arcade Game: Whac-A-Mole. Use your wrists to move around the rainbows to hit the sun. Encouraging movement as a form of self-care.", align: "left", lines: 7, url: "https://quaroutine-the-game1.glitch.me/", label: "Quaroutine", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Dejana Draganić", align: "left", lines: 4, url: "https://shake-it-out-.glitch.me/", label: "Shake it Out!", point: [92, 78], obstacle: true },
             hff00ff: { cmd: "text", txt: "Project by Martin Del Busto", align: "left", lines: 4, url: "https://pixelated.glitch.me/", label: "Pixelated", point: [10, 86], obstacle: true },
             //TV icon
@@ -295,7 +295,7 @@ module.exports.ROOMS = {
             //projects
             ha8e72e: { cmd: "text", txt: "Project by Morgan Williams\nAn interactive randomised location of a view of a city, ever time you reload the page. Try moving one hand then the other up and down to see what happens.", align: "left", lines: 6, url: "https://views-from-a-room.glitch.me/", label: "Views from a Room", point: [34, 78], obstacle: true },
             hffff00: { cmd: "text", txt: "Project by Ella Jonquil Fitzgerald", align: "left", lines: 5, url: "https://webcam-socket-io.glitch.me/", label: "Quarantine Kiss", point: [64, 78], obstacle: true },
-            h0000ff: { cmd: "text", txt: "Project by Catherine Rose Lavender ", align: "left", lines: 4, url: "https://root-dandy-position.glitch.me/", label: "be still, be calm", point: [92, 78], obstacle: true },
+            h0000ff: { cmd: "text", txt: "Project by Catherine Rose Lavender", align: "left", lines: 4, url: "https://root-dandy-position.glitch.me/", label: "be still, be calm", point: [92, 78], obstacle: true },
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://views-from-a-room.glitch.me/", label: "info", point: [34, 78], obstacle: true },
             hff00ff: { cmd: "text", txt: "click for presentation", url: "https://webcam-socket-io.glitch.me/", label: "info", point: [64, 78], obstacle: true },
