@@ -72,7 +72,7 @@ module.exports.initMod = function (io, gameState, DATA) {
         //sends a message to the room
         io.to("securityRoom").emit('nonPlayerTalked', { id: "", labelColor: "#3e7eb0", room: "securityRoom", message: msg, x: 36, y: 56 });
 
-    }, 5 * 1000); //every ten seconds changes
+    }, 2.5 * 1000); //every 2.5 seconds changes
 
     //global function ffs
     global.random = function (min, max) {
