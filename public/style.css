@@ -275,12 +275,12 @@ canvas {
 	padding-right: 8px;
 	cursor: pointer;
 }
-.map-button:active {
+#map-button:active {
 	border-bottom: none;
 	margin-top: 4px;
 }
 
-.map-button:hover {
+#map-button:hover {
 	background: #ff77a8;
 }
 
