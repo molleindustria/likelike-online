@@ -4,7 +4,7 @@
 }
 
 html {
-    margin: 0px;
+	margin: 0px;
 	padding: 0px;
 }
 
@@ -25,8 +25,9 @@ body {
 #canvas-container {
 	width: 800px;
 	height: 600px;
+	position: relative;
 	margin: auto;
-	color:#000;
+	color: #000;
 }
 
 canvas {
@@ -43,16 +44,16 @@ canvas {
 	image-rendering: -moz-crisp-edges;
 	image-rendering: -webkit-crisp-edges;
 	image-rendering: pixelated;
-    image-rendering: crisp-edges;
-    touch-action: manipulation;
+	image-rendering: crisp-edges;
+	touch-action: manipulation;
 }
 
 #interface {
-    display: block;
-    margin: auto;
-    text-align: center;
+	display: block;
+	margin: auto;
+	text-align: center;
 	margin-top: 8px;
-	
+
 }
 
 #talk-form {
@@ -67,11 +68,8 @@ canvas {
 	width: 100%;
 	margin: auto;
 	text-align: center;
-	
+
 }
-
-
-
 
 /*TEXT FIELDS*/
 .talk-field,
@@ -82,24 +80,22 @@ canvas {
 	padding-bottom: 10px;
 	padding-left: 4px;
 	outline: none;
-    font-size: 64px;
-    background-color: white;
+	font-size: 64px;
+	background-color: white;
 }
 
 .talk-field {
 	display: inline-block;
 	width: 70%;
 	float: left;
-    /*margin-right:4px;*/
-    margin-top:4px;
+	/*margin-right:4px;*/
+	margin-top: 4px;
 }
 
-
 /*USERNAME*/
-
 .lobby-message {
-    font-size: 64px;
-    margin-bottom: 32px;
+	font-size: 64px;
+	margin-bottom: 32px;
 }
 
 .lobby-error-message {
@@ -118,6 +114,7 @@ canvas {
 .join-button,
 .user-button,
 .avatar-button {
+	z-index:1000;
 	font-family: monogram;
 	font-size: 64px;
 	margin: 0px;
@@ -125,16 +122,16 @@ canvas {
 	border: none;
 	text-align: center;
 	color: white;
-    background: #ff004d;
-    outline: none;
-    border-bottom: 4px solid#424242;
-    margin-left: auto;
-    margin-right:auto;
-    padding-top: 4px;
+	background: #ff004d;
+	outline: none;
+	border-bottom: 4px solid#424242;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 4px;
 	padding-bottom: 10px;
-    padding-left: 16px;
+	padding-left: 16px;
 	padding-right: 16px;
-    cursor: pointer;
+	cursor: pointer;
 }
 
 /*USERNAME CONTINUE*/
@@ -144,12 +141,12 @@ canvas {
 }
 
 .talk-button {
-    /*float: right;*/
-  display:inline-block;
-  float: left;
-  min-width: 120px;
-  width:28%;
-  
+	/*float: right;*/
+	display: inline-block;
+	float: left;
+	min-width: 120px;
+	width: 28%;
+
 }
 
 #info {
@@ -158,7 +155,7 @@ canvas {
 
 /*bottom link*/
 .info {
-	
+
 	position: absolute;
 	right: 0px;
 	bottom: 0px;
@@ -175,15 +172,16 @@ canvas {
 
 .info a:hover {
 	text-decoration: none;
-	color:#ff77a8;;
+	color: #ff77a8;
+	;
 }
-
 
 /* On small screen stack the talk button */
 @media screen and (max-height: 450px) {
-  .talk-button {
-	  float: none;
-  }
+	.talk-button {
+		float: none;
+	}
+
 	.talk-field {
 		float: none;
 		width: 98%;
@@ -205,10 +203,10 @@ canvas {
 .user-button:active,
 .avatar-button:active,
 .join-button:active {
-    background: #ff77a8;
-    border-bottom: none;
-    border-right: none;
-    margin-top: 4px;
+	background: #ff77a8;
+	border-bottom: none;
+	border-right: none;
+	margin-top: 4px;
 }
 
 .talk-button:hover,
@@ -220,22 +218,28 @@ canvas {
 
 /*Animate join to make sure people don't miss it*/
 @keyframes glowing {
-    0% { background-color: #ff004d; }
-    50% { background-color: #ff77a8;  }
-    100% { background-color: #ff004d;  }
+	0% {
+		background-color: #ff004d;
+	}
+
+	50% {
+		background-color: #ff77a8;
+	}
+
+	100% {
+		background-color: #ff004d;
+	}
 }
 
 .join-button {
-    animation: glowing 1300ms infinite;
+	animation: glowing 1300ms infinite;
 }
-
 
 /*LOBBY OVERLAYS*/
 #lobby-container {
 	display: block;
-    height: 100%;
+	height: 100%;
 }
-
 
 /* center on container */
 .content-center {
@@ -248,38 +252,46 @@ canvas {
 	text-align: center;
 }
 
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
-	background-image: url("assets/map/map_icon.png");
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
-	outline: none;
+/* map */
+#map-button {
+	z-index:1;
+	position: absolute;
+	font-family: monogram;
+	font-size: 32px;
+	line-height: 1em;
+	margin: 0px;
+	display: inline-block;
 	border: none;
+	text-align: center;
+	color: white;
+	background: #ff004d;
+	outline: none;
 	border-bottom: 4px solid#424242;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-1500%, 667%);
-  }
-  
-  .active {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 2px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	cursor: pointer;
+}
+#map-button:active {
 	border-bottom: none;
-    margin-top: 4px;
-  }
-  
-  .collapsible:hover {
-	box-shadow: 0 30px rgba(255,255, 255, 0.2) inset;
+	margin-top: 4px;
+}
 
-  }
-  
-  .content {
-	display: none;
+#map-button:hover {
+	background: #ff77a8;
+}
+
+#map {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-250%, -45%);
-  }
+	display: none;
+	z-index: 0;
+}
 
-
-
+#map-img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
