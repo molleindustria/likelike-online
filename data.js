@@ -116,7 +116,7 @@ module.exports.ROOMS = {
             hffec27: { cmd: "enter", room: "careRoom", label: "Care Room", point: [10, 86], enterPoint: [114, 86], obstacle: false },
             //projects
             h00ff00: { cmd: "text", txt: "Project by Edward Martin\nA prototype for a social networking app that uses your daily emotions to communicate with your friends and family.", align: "left", lines: 5, url: "https://2020-06-06-regard-socket-app.glitch.me/", label: "Regard.", point: [34, 78], obstacle: true },
-            hff0000: { cmd: "text", txt: "Project by Zhiqin Lu", align: "left", lines: 5, url: "https://observe-.glitch.me/", label: "Observe", point: [64, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "Project by Zhiqin Lu\nA web-based app to play and chat with images together.", align: "left", lines: 3, url: "https://observe-.glitch.me/", label: "Observe", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Maximilian Zimmerer\nCommon Denominator is a web-based interaction that uses computer vision and socket connections to merge people's faces in real-time. The motivation behind this project was to create moments of joy between a pair of users and offer a digital sense of togetherness.", align: "left", lines: 9, url: "https://common-denominator.glitch.me/", label: "Common Denominator", point: [92, 78], obstacle: true },
             hff00ff: { cmd: "text", txt: "Project by Thomas Bugg", align: "left", lines: 4, url: "https://manipulated-living.glitch.me/", label: "Manipulated Living", point: [100, 88], obstacle: true },
             //TV icons
@@ -217,7 +217,7 @@ module.exports.ROOMS = {
             hbe1250: { cmd: "enter", room: "securityRoom", label: "Security", point: [34, 94], enterPoint: [34, 74], obstacle: false },
             //projects
             hffff00: { cmd: "text", txt: "Project by Khalisha Tambunan\nIt's raining cats and dogs... and everything in between.", align: "left", lines: 3, url: "https://testkitsc.glitch.me/", label: "Kitschen Dreams", point: [34, 78], obstacle: true },
-            hff0000: { cmd: "text", txt: "Project by Kamil Sznajder\nA simple screen game, in which one becomes a lizard, sunning on a red rock. Using your phone flashlight, your task is to eat as much bugs as possible while watching out for predators.", align: "left", lines: 7, url: "https://time-to-eat.glitch.me/", label: "Time to eat Bug!", point: [94, 78], obstacle: true },
+            hff0000: { cmd: "text", txt: "Project by Kamil Sznajder\nA simple screen game, in which one becomes a lizard, running on a red rock. Using your phone flashlight, your task is to eat as much bugs as possible while watching out for predators.", align: "left", lines: 7, url: "https://time-to-eat.glitch.me/", label: "Time to eat Bug!", point: [94, 78], obstacle: true },
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://testkitsc.glitch.me/", label: "info", point: [34, 78], obstacle: true },
             h006b2d: { cmd: "text", txt: "click for presentation", url: "https://time-to-eat.glitch.me/", label: "info", point: [94, 78], obstacle: true }           
@@ -246,7 +246,7 @@ module.exports.ROOMS = {
             hff0000: { cmd: "text", txt: "Project by Sandro Valente\nThe Head controlled space exploration game that is about spreading goodwill to close enough planets. Who will be the best Starseed? Will any ever reach 200 max score? Upload your high score #starseeds to enter the prize draw! Live Long & Prosper!", align: "left", lines: 9, url: "https://starseeds-.glitch.me/", label: "Starseeds", point: [34, 78], obstacle: true },
             hffff00: { cmd: "text", txt: "Project by Lexy Garces Beavis\nA game inspired by the 1975 Arcade Game: Whac-A-Mole. Use your wrists to move around the rainbows to hit the sun. Encouraging movement as a form of self-care.", align: "left", lines: 6, url: "https://quaroutine-the-game1.glitch.me/", label: "Quaroutine", point: [64, 78], obstacle: true },
             h0000ff: { cmd: "text", txt: "Project by Dejana Draganić", align: "left", lines: 4, url: "https://shake-it-out-.glitch.me/", label: "Shake it Out!", point: [92, 78], obstacle: true },
-            hff00ff: { cmd: "text", txt: "Project by Martin Del Busto", align: "left", lines: 4, url: "https://pixelated.glitch.me/", label: "Pixelated", point: [10, 86], obstacle: true },
+            hff00ff: { cmd: "text", txt: "Project by Martin Del Busto\nPixelated is a game about choosing the correct pixelated image using your eyes. 12 questions, 2 pixelated images per question and one correct answer.", align: "left", lines: 7, url: "https://pixelated.glitch.me/", label: "Pixelated", point: [10, 86], obstacle: true },
             //TV icon
             h312783: { cmd: "text", txt: "click for presentation", url: "https://inky-simple-dryosaurus.glitch.me/", label: "info", point: [34, 78], obstacle: true },
             h00ffff: { cmd: "text", txt: "click for presentation", url: "https://eye-orchestra-final.glitch.me/", label: "info", point: [64, 78], obstacle: true },
