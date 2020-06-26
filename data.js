@@ -32,7 +32,7 @@ module.exports.ROOMS = {
         area: "cciOutside-areas.png",
         tint: "#fdeac8",
         bubblesY: 44,
-        spawn: [14, 84, 119, 92],
+        spawn: [14, 89, 119, 98],
         areaColors: {
             //h will be replaced by #
             hff77a8: { cmd: "enter", room: "securityRoom", label: "Security", point: [64, 87], enterPoint: [64, 90], obstacle: false  },
