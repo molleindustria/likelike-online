@@ -713,6 +713,30 @@ function adminCommand(adminSocket, str) {
                 io.sockets.emit("refresh");
                 break;
 
+            //send fullscreen message to everybody
+            case "visit":
+                var rooms = Object.keys(DATA.ROOMS);
+                var room = cmd[1];
+
+                if (!room) { // No room specified - list the rooms to the admin
+                    return adminSocket.emit("popup", "Please provide a room name: \n" + rooms.join(', '));
+                }
+                if (rooms.indexOf(room) == -1) { // Invalid room
+                    return adminSocket.emit("popup", "Invalid room name: " + room);
+                }
+
+                // Transfer everyone into the room unless they're already there
+                var players = Object.values(gameState.players)
+                var spawnZone = DATA.ROOMS[room].spawn;
+                players.forEach((p) => {
+                    if (p.room != room) {
+                        var sx = Math.round(spawnZone[0] + (Math.random() * (spawnZone[2] - spawnZone[0])))*2;
+                        var sy = Math.round(spawnZone[1] + (Math.random() * (spawnZone[3] - spawnZone[1])))*2;
+                        MOD.transferPlayer(p.id, p.room, room, sx, sy)
+                    }
+                });
+                break;
+
         }
     }
     catch (e) {
