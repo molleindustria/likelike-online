@@ -89,7 +89,7 @@ module.exports.initMod = function (io, gameState, DATA) {
             x: 23,
             y: 78,
             avatar: 1,
-            colors: [2, 2, 1, 5],
+            colors: [2, 2, 1, 2],
             labelColor: "#1e839d"
         });
 
