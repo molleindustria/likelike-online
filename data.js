@@ -276,6 +276,9 @@ module.exports.ROOMS = {
             //TV icons
             hf39200: { cmd: "text", txt: "click for presentation", url: "https://draw-together-again.glitch.me/", label: "info", point: [34, 78], obstacle: true },
             hff0000: { cmd: "text", txt: "click for presentation", url: "https://better-together.glitch.me/", label: "info", point: [92, 78], obstacle: true }
+        },
+        things:{
+            console: {file: "objects/palette.png", frames: 1, frameDelay: 0, position: [98, 85], label: "Giant Palette!"}
         }
     },
 
