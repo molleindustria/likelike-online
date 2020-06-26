@@ -783,7 +783,7 @@ setInterval(function () {
 
 
 //in my gallery people can swear but not use slurs, override bad-words list, and add my own, pardon for my french
-let myBadWords = ["chink", "cunt", "cunts", "fag", "fagging", "faggitt", "faggot", "faggs", "fagot", "fagots", "fags", "jap", "homo", "nigger", "niggers", "n1gger", "nigg3r"];
+let myBadWords = ["asshole", "chink", "cock", "cripple", "cunt", "cunts", "dick", "dickhead", "fag", "fagging", "faggitt", "faggot", "faggs", "fagot", "fagots", "fags", "fuck", "jap", "homo", "nigger", "niggers", "n1gger", "nigg3r", "shit"];
 var filter = new Filter({ emptyList: true });
 filter.addWords(...myBadWords);
 
