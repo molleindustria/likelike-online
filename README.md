@@ -1,4 +1,8 @@
-# LIKELIKE Online
+# Heart Projector Online
+
+This is a fork of the lovely LIKELIKE Online, which you should 100% check out.
+
+---
 
 The tiniest MMORPG. Choose an avatar and hang out with your friends in a virtual version of [LIKELIKE](http://likelike.org/shows) a videogame gallery in Pittsburgh, PA.
 
