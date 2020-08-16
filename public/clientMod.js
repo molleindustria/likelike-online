@@ -184,6 +184,74 @@ function experimentsDrawSprite(playerId, sprite, drawingFunction) {
 
 }
 
+/** things use the pre-stretch resolution
+ * for their positions, where players use
+ * the post-stretch resolution */
+function getThingPosition (thing) {
+  return thing.position
+    .map(n => n * ASSET_SCALE)
+}
+
+function getDistanceBetween (player, thing) {
+  const { x: x1, y: y1 } = player // players have x, y
+  const { x: x2, y: y2 } = thing.position
+
+  return distanceFormula(x1, y1, x2, y2)
+}
+
+function distanceFormula (x1, y1, x2, y2) {
+  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
+}
+
+function isNil (obj) {
+  return obj === undefined || obj === null
+}
+
+function isDefined (obj) {
+  return !isNil(obj)
+}
+
+function ensure (value, fallback) {
+  return isNil(value) ? fallback : value
+}
+
+function getSculptureSprite () {
+  const roomSprites = getSprites()
+
+  return roomSprites
+    .filter((sprite) => ensure(sprite.id, '').includes('sculpture'))
+    .find((sculpture) => sculpture.visible)
+}
+
+function clamp (min, value, max) {
+  return Math.max(Math.min(value, max), min)
+}
+
+/** prototyping the fire room's color shifting behaviour */
+function firstFloorDrawSprite(playerId, sprite, drawingFunction) {
+  if (players[playerId] != null) {
+    const player = players[playerId]
+    const sprite = getSculptureSprite()
+
+    if (isDefined(sprite)) {
+      const distance = getDistanceBetween(player, sprite)
+
+      // get a value between 0 and 150 which is roughly correct
+      // for the size of the room at the time of thie writing (2020-09-16)
+      const value = clamp(0, distance - 50, 150) / 150
+      const tintValue = (1 - value) * 255
+
+      push();
+      tint(tintValue, tintValue, tintValue);
+      drawingFunction();
+      noTint();
+      pop();
+    } else {
+      drawingFunction();
+    }
+  }
+}
+
 function mirrorRoomDrawSprite(playerId, sprite, drawingFunction) {
 
     if (players[playerId] != null) {
