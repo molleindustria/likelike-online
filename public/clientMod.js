@@ -192,9 +192,9 @@ function getThingPosition (thing) {
     .map(n => n * ASSET_SCALE)
 }
 
-function getDistanceBetween (player, thing) {
+function getDistanceBetween (player, position) {
   const { x: x1, y: y1 } = player // players have x, y
-  const { x: x2, y: y2 } = thing.position
+  const { x: x2, y: y2 } = position
 
   return distanceFormula(x1, y1, x2, y2)
 }
@@ -234,7 +234,7 @@ function firstFloorDrawSprite(playerId, sprite, drawingFunction) {
     const sprite = getSculptureSprite()
 
     if (isDefined(sprite)) {
-      const distance = getDistanceBetween(player, sprite)
+      const distance = getDistanceBetween(player, sprite.position)
 
       // get a value between 0 and 150 which is roughly correct
       // for the size of the room at the time of thie writing (2020-09-16)
@@ -248,6 +248,34 @@ function firstFloorDrawSprite(playerId, sprite, drawingFunction) {
       pop();
     } else {
       drawingFunction();
+    }
+  }
+}
+
+function setBubbleMessageAndUpdateWidth(bubble, message) {
+  bubble.message = message
+
+  bubble.tw = textWidth(bubble.message);
+  bubble.w = round(bubble.tw + TEXT_PADDING * 2);
+
+  bubble.x = round(bubble.px - bubble.w / 2);
+  if (bubble.x + bubble.w + BUBBLE_MARGIN > width) {
+    bubble.x = width - bubble.w - BUBBLE_MARGIN
+  }
+  if (bubble.x < BUBBLE_MARGIN) {
+    bubble.x = BUBBLE_MARGIN;
+  }
+}
+
+function firstFloorTalk (playerId, bubble) {
+  if (isDefined(playerId) && playerId != me.id) {
+    const player = players[playerId]
+
+    const distance = getDistanceBetween(me, player)
+    console.log(distance)
+
+    if (distance > 20) {
+      setBubbleMessageAndUpdateWidth(bubble, '...')
     }
   }
 }
