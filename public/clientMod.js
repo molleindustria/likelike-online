@@ -274,7 +274,7 @@ function firstFloorTalk (playerId, bubble) {
     const distance = getDistanceBetween(me, player)
     console.log(distance)
 
-    if (distance > 20) {
+    if (distance > 30) {
       setBubbleMessageAndUpdateWidth(bubble, '...')
     }
   }
