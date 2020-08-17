@@ -2,6 +2,15 @@
 
 This is a fork of the lovely LIKELIKE Online, which you should 100% check out.
 
+To run the project locally, add a `.env` file (see below) and the run the following commands:
+
+```
+yarn install
+yarn start
+```
+
+This will start the server and watch local files for changes. When you make a change you will need to refresh the browser, but you will not need to restart the server.
+
 ---
 
 The tiniest MMORPG. Choose an avatar and hang out with your friends in a virtual version of [LIKELIKE](http://likelike.org/shows) a videogame gallery in Pittsburgh, PA.
