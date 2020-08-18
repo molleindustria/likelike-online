@@ -43,6 +43,24 @@ module.exports.SOUNDS = [
 
 module.exports.ROOMS = {
 
+    heartProjectorGallery: {
+      bg: "heart-projector-gallery.png",
+      frames: 2,
+      frameDelay: 30,
+      avatarScale: 2,
+      tint: "#ffbbb8",
+      pageBg: "#ab5236",
+      bubblesY: 50,
+      spawn: [84, 92, 121, 99],
+      area: "heart-projector-gallery-areas.png",
+      areaColors: {
+
+      },
+      things: {
+          table: { file: "heart-projector-table.png", frames: 1, frameDelay: 1, position: [16, 37] }
+      }
+    },
+
     likelike: {
         //the background graphics, it can be a spreadsheet
         bg: "likelike-bg-pico.png",
