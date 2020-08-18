@@ -73,4 +73,4 @@ ADMINS=adminname1|pass1,adminname2|pass2
 PORT = 3000
 ```
 
-Admin names are reserved. Logging in as "adminname|pass" (nickname and password separated by a "|") will grant the user admin priviledges such as banning IP or sending special messages.
+The admin names are reserved. Logging in as "adminname|pass" (nickname and password separated by a "|") will grant the user admin priviledges such as banning IP or sending special messages.
