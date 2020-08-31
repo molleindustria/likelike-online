@@ -2,7 +2,7 @@
 //they are either related to the rooms or shared with the server 
 module.exports.SETTINGS = {
     //if not specified by the url where is the starting point
-    defaultRoom: "likelikeOutside",
+    defaultRoom: "powellAndClark",
     //minimum time between talk messages enforced by both client and server
     ANTI_SPAM: 1000,
     //shows up at first non lurking login
@@ -42,6 +42,27 @@ module.exports.SOUNDS = [
 ];
 
 module.exports.ROOMS = {
+
+    powellAndClark: {
+      bg: "powellAndClark.png",
+      avatarScale: 2,
+      tint: "#DAC7F0",
+      pageBg: "#3b2751",
+      bubblesY: 160,
+      spawn: [84, 92, 121, 99],
+      area: "powellAndClark-areas.png",
+      areaColors: {
+	//entrance
+            h7eff00: { cmd: "enter", room: "heartProjectorGallery", label: "entrance", point: [77, 80], enterPoint: [86, 116], obstacle: false },
+
+	//cabinet
+            he54cca: { cmd: "text", label: "by heart projector", txt: "by heart projector", align: "center", lines: 1, point: [14, 69], obstacle: true },
+
+            ha500ff: { cmd: "text", lines:2, txt: "by The Papercut Arcade \nthepapercutarcade.ca", align: "center", url: "https://thepapercutarcade.ca", label: "papercut", point: [40, 68], obstacle: false},
+
+	    h0000ff: { cmd: "text", label: "street", txt: "Unceded territory", align: "center", lines: 1, point: [50, 70], obstacle: false },
+      }
+    },
 
     heartProjectorGallery: {
       bg: "heart-projector-gallery.png",
