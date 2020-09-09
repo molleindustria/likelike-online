@@ -44,13 +44,13 @@ module.exports.SOUNDS = [
 module.exports.ROOMS = {
 
     powellAndClark: {
-      bg: "powellAndClark.png",
+      bg: "PowellAndClark.png",
       avatarScale: 2,
       tint: "#DAC7F0",
       pageBg: "#3b2751",
       bubblesY: 160,
-      spawn: [84, 92, 121, 99],
-      area: "powellAndClark-areas.png",
+      spawn: [5, 76, 70, 95],
+      area: "PowellAndClark-areas.png",
       areaColors: {
 	//entrance
             h7eff00: { cmd: "enter", room: "heartProjectorGallery", label: "entrance", point: [77, 80], enterPoint: [86, 116], obstacle: false },
