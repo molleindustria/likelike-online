@@ -43,22 +43,66 @@ module.exports.SOUNDS = [
 
 module.exports.ROOMS = {
 
-    heartProjectorGallery: {
-      bg: "heart-projector-gallery.png",
+    oldspaceBar: {
+      bg: "room_oldspace_anim_bar.png",
       frames: 2,
       frameDelay: 30,
       avatarScale: 2,
-      tint: "#ffbbb8",
-      pageBg: "#ab5236",
+      tint: "#ffffff",
+      pageBg: "#292929",
       bubblesY: 50,
-      spawn: [84, 92, 121, 99],
-      area: "heart-projector-gallery-areas.png",
+      spawn: [17, 84, 60, 95],
+      area: "room_oldspace_anim_bar_intmap.png",
       areaColors: {
-
+        h00ff00: { cmd: "enter", room: "oldspaceLounge", label: "Lounge", point: [4, 83], enterPoint: [124, 83], obstacle: false },
+        h0078ff: { cmd: "enter", room: "oldspaceOutside", label: "Outside", point: [112, 97], enterPoint: [8, 75], obstacle: false },
       },
-      things: {
-          table: { file: "heart-projector-table.png", frames: 1, frameDelay: 1, position: [16, 37] }
-      }
+    },
+
+    oldspaceLounge: {
+      bg: "room_oldspace_anim_lounge.png",
+      frames: 2,
+      frameDelay: 30,
+      avatarScale: 2,
+      tint: "#ffffff",
+      pageBg: "#292929",
+      bubblesY: 50,
+      spawn: [20, 85, 109, 95],
+      area: "room_oldspace_anim_lounge_intmap.png",
+      areaColors: {
+        hff00ea: { cmd: "enter", room: "oldspaceMain", label: "Arcade", point: [7, 80], enterPoint: [125, 79], obstacle: false },
+        h00ff00: { cmd: "enter", room: "oldspaceBar", label: "Bar", point: [124, 83], enterPoint: [4, 83], obstacle: false },
+      },
+    },
+
+    oldspaceMain: {
+      bg: "room_oldspace_anim_main.png",
+      frames: 2,
+      frameDelay: 30,
+      avatarScale: 2,
+      tint: "#ffffff",
+      pageBg: "#292929",
+      bubblesY: 50,
+      spawn: [82, 86, 118, 97],
+      area: "room_oldspace_anim_main_intmap.png",
+      areaColors: {
+        hff00ea: { cmd: "enter", room: "oldspaceLounge", label: "Lounge", point: [125, 79], enterPoint: [7, 80], obstacle: false },
+      },
+    },
+
+    oldspaceOutside: {
+      bg: "room_oldspace_anim_outside.png",
+      frames: 2,
+      frameDelay: 30,
+      avatarScale: 2,
+      tint: "#ffffff",
+      pageBg: "#292929",
+      bubblesY: 50,
+      spawn: [19, 79, 104, 93],
+      area: "room_oldspace_anim_outside_intmap.png",
+      areaColors: {
+        h0078ff: { cmd: "enter", room: "oldspaceBar", label: "Bar", point: [8, 75], enterPoint: [112, 97], obstacle: false },
+      },
     },
 
     likelike: {
