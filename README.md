@@ -11,6 +11,17 @@ yarn start
 
 This will start the server and watch local files for changes. When you make a change you will need to refresh the browser, but you will not need to restart the server.
 
+## Publishing
+
+When you are ready to publish new changes to glitch follow these steps:
+
+1. locally checkout production and set it to whatever head you want to publish
+2. force push production to glitch `git push -fu glitch production`
+3. login to the [glitch project][0]
+4. click tools -> terminal to open a terminal
+5. check that you are on the master branch and merge production into master (or set master to production if no merge is possible)
+6. refresh
+
 ---
 
 The tiniest MMORPG. Choose an avatar and hang out with your friends in a virtual version of [LIKELIKE](http://likelike.org/shows) a videogame gallery in Pittsburgh, PA.
@@ -74,3 +85,5 @@ PORT = 3000
 ```
 
 The admin names are reserved. Logging in as "adminname|pass" (nickname and password separated by a "|") will grant the user admin priviledges such as banning IP or sending special messages.
+
+[0]: https://glitch.com/edit/#!/variousauthors-heart-projector-online?path=README.md%3A1%3A0
