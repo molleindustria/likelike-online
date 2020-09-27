@@ -2,7 +2,7 @@
 //they are either related to the rooms or shared with the server 
 module.exports.SETTINGS = {
     //if not specified by the url where is the starting point
-    defaultRoom: "likelikeOutside",
+    defaultRoom: "powellAndClark",
     //minimum time between talk messages enforced by both client and server
     ANTI_SPAM: 1000,
     //shows up at first non lurking login
@@ -42,23 +42,89 @@ module.exports.SOUNDS = [
 ];
 
 module.exports.ROOMS = {
+    powellAndClark: {
+        bg: "PowellAndClark.png",
+        avatarScale: 2,
+        tint: "#DAC7F0",
+        pageBg: "#3b2751",
+        bubblesY: 160,
+        spawn: [5, 76, 70, 95],
+        area: "PowellAndClark-areas.png",
+        areaColors: {
+            // exits
+            h7eff00: { cmd: "enter", room: "oldspaceMain", label: "entrance", point: [77, 80], enterPoint: [107, 95], obstacle: false },
 
-    heartProjectorGallery: {
-      bg: "heart-projector-gallery.png",
-      frames: 2,
-      frameDelay: 30,
-      avatarScale: 2,
-      tint: "#ffbbb8",
-      pageBg: "#ab5236",
-      bubblesY: 50,
-      spawn: [84, 92, 121, 99],
-      area: "heart-projector-gallery-areas.png",
-      areaColors: {
+            // interior objects
+            he54cca: { cmd: "text", label: "by heart projector", txt: "by heart projector", align: "center", lines: 1, point: [14, 69], obstacle: true },
+            ha500ff: { cmd: "text", lines: 2, txt: "by The Papercut Arcade \nthepapercutarcade.ca", align: "center", url: "https://thepapercutarcade.ca", label: "papercut", point: [40, 68], obstacle: false },
+            h0000ff: { cmd: "text", label: "street", txt: "Unceded territory", align: "center", lines: 1, point: [50, 70], obstacle: false },
+        }
+    },
 
-      },
-      things: {
-          table: { file: "heart-projector-table.png", frames: 1, frameDelay: 1, position: [16, 37] }
-      }
+    oldspaceBar: {
+        bg: "room_oldspace_anim_bar.png",
+        frames: 2,
+        frameDelay: 30,
+        avatarScale: 2,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 50,
+        spawn: [17, 84, 60, 95],
+        area: "room_oldspace_anim_bar_intmap.png",
+        areaColors: {
+            // exits
+            h00ff00: { cmd: "enter", room: "oldspaceLounge", label: "Lounge", point: [4, 83], enterPoint: [124, 83], obstacle: false },
+            h0078ff: { cmd: "enter", room: "oldspaceOutside", label: "Outside", point: [112, 97], enterPoint: [8, 75], obstacle: false },
+        },
+    },
+
+    oldspaceLounge: {
+        bg: "room_oldspace_anim_lounge.png",
+        frames: 2,
+        frameDelay: 30,
+        avatarScale: 2,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 50,
+        spawn: [20, 85, 109, 95],
+        area: "room_oldspace_anim_lounge_intmap.png",
+        areaColors: {
+            // exits
+            hff00ea: { cmd: "enter", room: "oldspaceMain", label: "Arcade", point: [7, 80], enterPoint: [125, 79], obstacle: false },
+            h00ff00: { cmd: "enter", room: "oldspaceBar", label: "Bar", point: [124, 83], enterPoint: [4, 83], obstacle: false },
+        },
+    },
+
+    oldspaceMain: {
+        bg: "room_oldspace_anim_main.png",
+        frames: 2,
+        frameDelay: 30,
+        avatarScale: 2,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 50,
+        spawn: [82, 86, 118, 97],
+        area: "room_oldspace_anim_main_intmap.png",
+        areaColors: {
+            // exits
+            hff00ea: { cmd: "enter", room: "oldspaceLounge", label: "Lounge", point: [125, 79], enterPoint: [7, 80], obstacle: false },
+        },
+    },
+
+    oldspaceOutside: {
+        bg: "room_oldspace_anim_outside.png",
+        frames: 2,
+        frameDelay: 30,
+        avatarScale: 2,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 50,
+        spawn: [19, 79, 104, 93],
+        area: "room_oldspace_anim_outside_intmap.png",
+        areaColors: {
+            // exits
+            h0078ff: { cmd: "enter", room: "oldspaceBar", label: "Bar", point: [8, 75], enterPoint: [112, 97], obstacle: false },
+        },
     },
 
     likelike: {
