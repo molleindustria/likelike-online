@@ -125,6 +125,13 @@ module.exports.ROOMS = {
             // exits
             h0078ff: { cmd: "enter", room: "oldspaceBar", label: "Bar", point: [8, 75], enterPoint: [112, 97], obstacle: false },
         },
+		//list of sprites to create in the room
+        //sprites are rendered according to depth sort so they can appear above the avatars unlike the background
+        //they can be animated, mouse reactive and trigger commands like the areas above
+        things: {
+            //sprite spreadsheets only 1 row ok?
+            glitchMoon: { file: "glitchMoon.png", frames: 1, frameDelay: 1, position: [102, 2], id: "glitchMoon", visible: false }
+        }
     },
 
     likelike: {

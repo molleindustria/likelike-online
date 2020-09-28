@@ -252,6 +252,42 @@ function firstFloorDrawSprite(playerId, sprite, drawingFunction) {
   }
 }
 
+// BRENDAN STUFF START
+
+function oldspaceOutsideEnter(playerId, roomId) {
+    if (playerId == me.id) {
+		var p = players[playerId];
+		p.showGlitchMoon = (Math.random() > 0.9);
+		
+        var roomSprites = getSprites();
+        for (var i = 0; i < roomSprites.length; i++) {
+			
+			if (roomSprites[i].id == "glitchMoon") {
+				roomSprites[i].visible = p.showGlitchMoon;
+			}
+        }
+    }
+}
+
+//called every frame in a specific room - beware: this is client side, everything non deterministic and non server-driven
+//may misalign the players clients
+function oldspaceOutsideUpdate()
+{
+	if(me.showGlitchMoon) {
+		const sprite = getSprites()
+			.filter((sprite) => ensure(sprite.id, ''))
+			.find((s) => s.id == "glitchMoon");
+		
+		if (isDefined(sprite)) {
+			sprite.visible = (Math.random() > 0.001);
+		}
+	}
+	
+    //print("MOD: updating experiments");
+}
+
+// BRENDAN STUFF END
+
 function setBubbleMessageAndUpdateWidth(bubble, message) {
   bubble.message = message
 
