@@ -98,7 +98,7 @@ module.exports.ROOMS = {
     oldspaceMain: {
         bg: "room_oldspace_anim_main.png",
         frames: 2,
-        frameDelay: 30,
+        frameDelay: 60,
         avatarScale: 2,
         tint: "#ffffff",
         pageBg: "#292929",
@@ -109,6 +109,16 @@ module.exports.ROOMS = {
             // exits
             hff00ea: { cmd: "enter", room: "oldspaceLounge", label: "Lounge", point: [125, 79], enterPoint: [7, 80], obstacle: false },
         },
+		things: {
+			curationRightScreen: { file: "screenLarge.png", frames: 1, position: [88, 53], visible:false, label: "A game", command: { cmd: "text", txt: "The gameplay fills your senses . . .", align: "left", lines: 4, url: "https://trasevol-dog.itch.io/embrace", point: [91, 71] } },
+			curationRightPlacard: { file: "placardStraightOnWhite.png", frames: 1, position: [72, 55], visible:false, label: "A placard", command: { cmd: "text", txt: "Ayyyyy", align: "left", lines: 4, label: "A huggy game", point: [73, 71] } },
+
+            curationLeftScreen: { file: "screenMedium.png", frames: 1, position: [54, 55], visible:false, label: "A game", command: { cmd: "text", txt: "The gameplay fills your senses . . .", align: "left", lines: 4, url: "https://trasevol-dog.itch.io/embrace", point: [56, 71] } },
+            curationLeftPlacard: { file: "placardStraightOnWhite.png", frames: 1, position: [67, 55], visible:false, label: "A placard", command: { cmd: "text", txt: "Ayyyyy", align: "left", lines: 4, label: "A huggy game", point: [68, 71] } },
+
+            curationProjectorScreen: { file: "screenProjector.png", frames: 1, position: [10, 21], visible:false, label: "A game", command: { cmd: "text", txt: "The gameplay fills your senses . . .", align: "left", lines: 4, url: "https://trasevol-dog.itch.io/embrace", point: [25, 78] } },
+            curationProjectorPlacard: { file: "placardQuarterTurnRightWhite.png", frames: 1, position: [22, 50], visible:false, label: "A placard", command: { cmd: "text", txt: "Ayyyyy", align: "left", lines: 4, label: "A huggy game", point: [25, 72] } },
+		}
     },
 
     oldspaceOutside: {

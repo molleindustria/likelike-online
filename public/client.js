@@ -765,8 +765,8 @@ function newGame() {
 
                             var thing = ROOMS[p.room].things[tId];
 
-                            createThing(thing, tId);
-
+                            const newSprite = createThing(thing, tId);
+							newSprite.roomId = p.room;
                         }//
 
 
@@ -1079,7 +1079,8 @@ function newGame() {
             print("Change property " + t.property + " of " + t.thingId + " in room " + t.room + " to " + t.value);
 
             //recreate it
-            createThing(dataThing, t.thingId);
+			const newSprite = createThing(dataThing, t.thingId);
+			newSprite.roomId = t.room;
         }
         else {
             //print("Warning: I can't find " + t.thingId + " in room " + t.room);
@@ -2409,6 +2410,25 @@ function createThing(thing, id) {
 
     newSprite.scale = ASSET_SCALE;
 
+	newSprite.originalDraw = newSprite.draw;
+    newSprite.draw = function () {
+		const roomId = newSprite.roomId;
+		
+		if (!thing.ignore) {
+			if (thing.transparent)
+				tint(255, 100);
+			
+			if(roomId && window[roomId + "DrawThing"] != null) {
+				window[roomId + "DrawThing"](id, thing, newSprite.originalDraw);
+			}
+			else {
+				newSprite.originalDraw();
+			}
+			if (thing.transparent)
+				noTint();
+		}
+	};
+	
     if (thing.visible != null) {
         newSprite.visible = thing.visible;
     }

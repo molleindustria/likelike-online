@@ -254,6 +254,153 @@ function firstFloorDrawSprite(playerId, sprite, drawingFunction) {
 
 // BRENDAN STUFF START
 
+var curationData = {
+    rooms: {
+        oldspaceMain: {
+            right: {
+                thingId: "Right",
+                gradientPath:"assets/monitorGradientGlow1.png"
+            },
+            left: {
+                thingId: "Left",
+                gradientPath:"assets/monitorGradientGlow1.png"
+            },
+            projector: {
+                thingId: "Projector",
+                gradientPath:"assets/monitorGradientGlow1.png"
+            },
+        }
+    }
+}
+
+function oldspaceMainEnter(playerId, roomId)
+{
+	const roomCurationData = curationData.rooms[roomId];
+	
+	if (playerId == me.id) {
+		for (var m in roomCurationData) {
+		    const cd = roomCurationData[m];
+			cd.gradientImg = loadImage(cd.gradientPath);
+		}
+    }
+}
+
+function oldspaceMainUpdate()
+{
+	const roomSprites = getSprites();
+	
+	/*
+	const tintGradient = roomSprites
+		.filter((sprite) => ensure(sprite.id, '').includes('tintGradient'))
+		.find((s) => true);
+	
+	const tintImage = tintGradient.animation.getFrameImage();
+	
+	const tintColor = tintImage.get(0,0);
+	*/
+	
+	const roomId = "oldspaceMain";
+	
+	const roomCurationData = curationData.rooms[roomId];
+	
+	var closestCuration = null;
+	closestDistance = 0.0;
+	for (var roomName in roomCurationData) {
+	    const cd = roomCurationData[roomName];
+	    
+		var marker = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Screen"];
+		if(marker == null) {
+            marker = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Placard"];
+        }
+		
+		if(marker != null) {
+            const pcPosition = marker.command.point;
+            const distance = distanceFormula(pcPosition[0] * ASSET_SCALE, pcPosition[1] * ASSET_SCALE, me.x, me.y);
+
+            if(closestCuration == null || distance < closestDistance) {
+                closestCuration = cd;
+                closestDistance = distance;
+            }
+        }
+	}
+	
+	var highlightedCuration = null;
+	
+	if(closestDistance < 50) {
+		highlightedCuration = closestCuration;
+	}
+	
+	for (var roomName in roomCurationData)
+	{
+        const cd = roomCurationData[roomName];
+
+        const screen = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Screen"];
+        if(screen != null) {
+            screen.visible = true;
+        }
+        
+        const placard = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Placard"];
+        if(placard != null) {
+            placard.visible = true;
+        }
+        
+		const isHighlighted = cd === highlightedCuration;
+		
+		if(isHighlighted)
+		{
+			const l = cd.gradientImg.width * cd.gradientImg.height;
+
+            if(screen != null) {
+                if(screen.index == null) {
+                    screen.index = 0;
+                } else {
+                    screen.index = (screen.index + 1) % l;
+                }
+
+                const x = screen.index % cd.gradientImg.width;
+                const y = Math.floor(screen.index / cd.gradientImg.width);
+                const pixel = cd.gradientImg.get(x, y);
+
+                screen.tint = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+            }
+
+            if(placard != null) {
+                if(placard.index == null) {
+                    placard.index = 1;
+                } else {
+                    placard.index = (placard.index + 1) % l;
+                }
+
+                const x = placard.index % cd.gradientImg.width;
+                const y = Math.floor(placard.index / cd.gradientImg.width);
+                const pixel = cd.gradientImg.get(x, y);
+
+                placard.tint = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+            }
+		}
+		else
+		{
+            if(screen != null) {
+                screen.tint = "#ffffffff";
+            }
+
+            if(placard != null) {
+                placard.tint = "#e2e1e8ff";
+            }
+		}
+	}
+}
+
+function oldspaceMainDrawThing(thingId, sprite, drawingFunction)
+{
+    const thing = ROOMS.oldspaceMain.things[thingId];
+	if(thing.tint != null) {
+		tint(thing.tint);
+	}
+	
+	drawingFunction();
+}
+
 function oldspaceOutsideEnter(playerId, roomId) {
     if (playerId == me.id) {
 		var p = players[playerId];
