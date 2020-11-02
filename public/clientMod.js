@@ -259,15 +259,28 @@ var curationData = {
         oldspaceMain: {
             right: {
                 thingId: "Right",
-                gradientPath:"assets/monitorGradientGlow1.png"
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
             },
             left: {
                 thingId: "Left",
-                gradientPath:"assets/monitorGradientGlow1.png"
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
+            },
+			tableLeft: {
+                thingId: "TableLeft",
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
+            },
+			tableRight: {
+                thingId: "TableRight",
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
             },
             projector: {
                 thingId: "Projector",
-                gradientPath:"assets/monitorGradientGlow1.png"
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
             },
         }
     }
@@ -280,7 +293,8 @@ function oldspaceMainEnter(playerId, roomId)
 	if (playerId == me.id) {
 		for (var m in roomCurationData) {
 		    const cd = roomCurationData[m];
-			cd.gradientImg = loadImage(cd.gradientPath);
+			cd.screenGradientImg = loadImage(cd.screenGradientPath);
+			cd.placardGradientImg = loadImage(cd.placardGradientPath);
 		}
     }
 }
@@ -308,20 +322,21 @@ function oldspaceMainUpdate()
 	for (var roomName in roomCurationData) {
 	    const cd = roomCurationData[roomName];
 	    
-		var marker = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Screen"];
-		if(marker == null) {
-            marker = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Placard"];
-        }
+		checkMarker(ROOMS.oldspaceMain.things["curation" + cd.thingId + "Screen"]);
+		checkMarker(ROOMS.oldspaceMain.things["curation" + cd.thingId + "Placard"]);
 		
-		if(marker != null) {
-            const pcPosition = marker.command.point;
-            const distance = distanceFormula(pcPosition[0] * ASSET_SCALE, pcPosition[1] * ASSET_SCALE, me.x, me.y);
+		function checkMarker(marker)
+		{
+			if(marker != null) {
+				const pcPosition = marker.command.point;
+				const distance = distanceFormula(pcPosition[0] * ASSET_SCALE, pcPosition[1] * ASSET_SCALE, me.x, me.y);
 
-            if(closestCuration == null || distance < closestDistance) {
-                closestCuration = cd;
-                closestDistance = distance;
-            }
-        }
+				if(closestCuration == null || distance < closestDistance) {
+					closestCuration = cd;
+					closestDistance = distance;
+				}
+			}
+		}
 	}
 	
 	var highlightedCuration = null;
@@ -334,46 +349,51 @@ function oldspaceMainUpdate()
 	{
         const cd = roomCurationData[roomName];
 
-        const screen = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Screen"];
+        var screen = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Screen"];
         if(screen != null) {
             screen.visible = true;
         }
-        
-        const placard = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Placard"];
+		
+        var placard = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Placard"];
         if(placard != null) {
             placard.visible = true;
         }
         
-		const isHighlighted = cd === highlightedCuration;
+		var screenGlow = ROOMS.oldspaceMain.things["curation" + cd.thingId + "ScreenGlow"];
+		var isHighlighted = cd === highlightedCuration;
 		
 		if(isHighlighted)
 		{
-			const l = cd.gradientImg.width * cd.gradientImg.height;
-
-            if(screen != null) {
-                if(screen.index == null) {
-                    screen.index = 0;
+            if(screenGlow != null) {
+				const screenLength = cd.screenGradientImg.width * cd.screenGradientImg.height;
+				
+				//screenGlow.visible = true;
+				
+                if(screenGlow.index == null) {
+                    screenGlow.index = 0;
                 } else {
-                    screen.index = (screen.index + 1) % l;
+                    screenGlow.index = (screenGlow.index + 1) % screenLength;
                 }
 
-                const x = screen.index % cd.gradientImg.width;
-                const y = Math.floor(screen.index / cd.gradientImg.width);
-                const pixel = cd.gradientImg.get(x, y);
+                const x = screenGlow.index % cd.screenGradientImg.width;
+                const y = Math.floor(screenGlow.index / cd.screenGradientImg.width);
+                const pixel = cd.screenGradientImg.get(x, y);
 
-                screen.tint = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+                screenGlow.tint = color(pixel[0], pixel[1], pixel[2], pixel[3]);
             }
 
             if(placard != null) {
+				const placardLength = cd.placardGradientImg.width * cd.placardGradientImg.height;
+				
                 if(placard.index == null) {
                     placard.index = 1;
                 } else {
-                    placard.index = (placard.index + 1) % l;
+                    placard.index = (placard.index + 1) % placardLength;
                 }
 
-                const x = placard.index % cd.gradientImg.width;
-                const y = Math.floor(placard.index / cd.gradientImg.width);
-                const pixel = cd.gradientImg.get(x, y);
+                const x = placard.index % cd.placardGradientImg.width;
+                const y = Math.floor(placard.index / cd.placardGradientImg.width);
+                const pixel = cd.placardGradientImg.get(x, y);
 
                 placard.tint = color(pixel[0], pixel[1], pixel[2], pixel[3]);
             }
@@ -382,6 +402,10 @@ function oldspaceMainUpdate()
 		{
             if(screen != null) {
                 screen.tint = "#ffffffff";
+            }
+			
+			if(screenGlow != null) {
+                screenGlow.tint = "#00000000";
             }
 
             if(placard != null) {

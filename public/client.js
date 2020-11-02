@@ -2404,7 +2404,12 @@ function createThing(thing, id) {
     var newSprite = createSprite(floor(thing.position[0] + sw / 2) * ASSET_SCALE + ox, floor(thing.position[1] + sh / 2) * ASSET_SCALE + oy);
     newSprite.addAnimation("default", animation);
 
-    newSprite.depthOffset = floor(sh / 2) - 4; //4 magic fucking number due to rounding
+	var depthAdjust = 0;
+	if(thing.depthAdjust != null) {
+		depthAdjust = thing.depthAdjust;
+	}
+	
+    newSprite.depthOffset = floor(sh / 2) - 4 + depthAdjust; //4 magic fucking number due to rounding
 
     newSprite.id = id;
 
@@ -2414,7 +2419,7 @@ function createThing(thing, id) {
     newSprite.draw = function () {
 		const roomId = newSprite.roomId;
 		
-		if (!thing.ignore) {
+		if (!thing.ignore && (thing.visible == null || thing.visible == true)) {
 			if (thing.transparent)
 				tint(255, 100);
 			
@@ -2424,8 +2429,8 @@ function createThing(thing, id) {
 			else {
 				newSprite.originalDraw();
 			}
-			if (thing.transparent)
-				noTint();
+			
+			noTint();
 		}
 	};
 	
