@@ -252,6 +252,213 @@ function firstFloorDrawSprite(playerId, sprite, drawingFunction) {
   }
 }
 
+// BRENDAN STUFF START
+
+var curationData = {
+    rooms: {
+        oldspaceMain: {
+            right: {
+                thingId: "Right",
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
+            },
+            left: {
+                thingId: "Left",
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
+            },
+			tableLeft: {
+                thingId: "TableLeft",
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
+            },
+			tableRight: {
+                thingId: "TableRight",
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
+            },
+            projector: {
+                thingId: "Projector",
+                screenGradientPath:"assets/monitorGradientGlow1.png",
+                placardGradientPath:"assets/monitorGradientGlow1.png"
+            },
+        }
+    }
+}
+
+function oldspaceMainEnter(playerId, roomId)
+{
+	const roomCurationData = curationData.rooms[roomId];
+	
+	if (playerId == me.id) {
+		for (var m in roomCurationData) {
+		    const cd = roomCurationData[m];
+			cd.screenGradientImg = loadImage(cd.screenGradientPath);
+			cd.placardGradientImg = loadImage(cd.placardGradientPath);
+		}
+    }
+}
+
+function oldspaceMainUpdate()
+{
+	const roomSprites = getSprites();
+	
+	/*
+	const tintGradient = roomSprites
+		.filter((sprite) => ensure(sprite.id, '').includes('tintGradient'))
+		.find((s) => true);
+	
+	const tintImage = tintGradient.animation.getFrameImage();
+	
+	const tintColor = tintImage.get(0,0);
+	*/
+	
+	const roomId = "oldspaceMain";
+	
+	const roomCurationData = curationData.rooms[roomId];
+	
+	var closestCuration = null;
+	closestDistance = 0.0;
+	for (var roomName in roomCurationData) {
+	    const cd = roomCurationData[roomName];
+	    
+		checkMarker(ROOMS.oldspaceMain.things["curation" + cd.thingId + "Screen"]);
+		checkMarker(ROOMS.oldspaceMain.things["curation" + cd.thingId + "Placard"]);
+		
+		function checkMarker(marker)
+		{
+			if(marker != null) {
+				const pcPosition = marker.command.point;
+				const distance = distanceFormula(pcPosition[0] * ASSET_SCALE, pcPosition[1] * ASSET_SCALE, me.x, me.y);
+
+				if(closestCuration == null || distance < closestDistance) {
+					closestCuration = cd;
+					closestDistance = distance;
+				}
+			}
+		}
+	}
+	
+	var highlightedCuration = null;
+	
+	if(closestDistance < 50) {
+		highlightedCuration = closestCuration;
+	}
+	
+	for (var roomName in roomCurationData)
+	{
+        const cd = roomCurationData[roomName];
+
+        var screen = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Screen"];
+        if(screen != null) {
+            screen.visible = true;
+        }
+		
+        var placard = ROOMS.oldspaceMain.things["curation" + cd.thingId + "Placard"];
+        if(placard != null) {
+            placard.visible = true;
+        }
+        
+		var screenGlow = ROOMS.oldspaceMain.things["curation" + cd.thingId + "ScreenGlow"];
+		var isHighlighted = cd === highlightedCuration;
+		
+		if(isHighlighted)
+		{
+            if(screenGlow != null) {
+				const screenLength = cd.screenGradientImg.width * cd.screenGradientImg.height;
+				
+				//screenGlow.visible = true;
+				
+                if(screenGlow.index == null) {
+                    screenGlow.index = 0;
+                } else {
+                    screenGlow.index = (screenGlow.index + 1) % screenLength;
+                }
+
+                const x = screenGlow.index % cd.screenGradientImg.width;
+                const y = Math.floor(screenGlow.index / cd.screenGradientImg.width);
+                const pixel = cd.screenGradientImg.get(x, y);
+
+                screenGlow.tint = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+            }
+
+            if(placard != null) {
+				const placardLength = cd.placardGradientImg.width * cd.placardGradientImg.height;
+				
+                if(placard.index == null) {
+                    placard.index = 1;
+                } else {
+                    placard.index = (placard.index + 1) % placardLength;
+                }
+
+                const x = placard.index % cd.placardGradientImg.width;
+                const y = Math.floor(placard.index / cd.placardGradientImg.width);
+                const pixel = cd.placardGradientImg.get(x, y);
+
+                placard.tint = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+            }
+		}
+		else
+		{
+            if(screen != null) {
+                screen.tint = "#ffffffff";
+            }
+			
+			if(screenGlow != null) {
+                screenGlow.tint = "#00000000";
+            }
+
+            if(placard != null) {
+                placard.tint = "#e2e1e8ff";
+            }
+		}
+	}
+}
+
+function oldspaceMainDrawThing(thingId, sprite, drawingFunction)
+{
+    const thing = ROOMS.oldspaceMain.things[thingId];
+	if(thing.tint != null) {
+		tint(thing.tint);
+	}
+	
+	drawingFunction();
+}
+
+function oldspaceOutsideEnter(playerId, roomId) {
+    if (playerId == me.id) {
+		var p = players[playerId];
+		p.showGlitchMoon = (Math.random() > 0.9);
+		
+        var roomSprites = getSprites();
+        for (var i = 0; i < roomSprites.length; i++) {
+			
+			if (roomSprites[i].id == "glitchMoon") {
+				roomSprites[i].visible = p.showGlitchMoon;
+			}
+        }
+    }
+}
+
+//called every frame in a specific room - beware: this is client side, everything non deterministic and non server-driven
+//may misalign the players clients
+function oldspaceOutsideUpdate()
+{
+	if(me.showGlitchMoon) {
+		const sprite = getSprites()
+			.filter((sprite) => ensure(sprite.id, ''))
+			.find((s) => s.id == "glitchMoon");
+		
+		if (isDefined(sprite)) {
+			sprite.visible = (Math.random() > 0.001);
+		}
+	}
+	
+    //print("MOD: updating experiments");
+}
+
+// BRENDAN STUFF END
+
 function setBubbleMessageAndUpdateWidth(bubble, message) {
   bubble.message = message
 

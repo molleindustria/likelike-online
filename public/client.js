@@ -765,8 +765,8 @@ function newGame() {
 
                             var thing = ROOMS[p.room].things[tId];
 
-                            createThing(thing, tId);
-
+                            const newSprite = createThing(thing, tId);
+							newSprite.roomId = p.room;
                         }//
 
 
@@ -1079,7 +1079,8 @@ function newGame() {
             print("Change property " + t.property + " of " + t.thingId + " in room " + t.room + " to " + t.value);
 
             //recreate it
-            createThing(dataThing, t.thingId);
+			const newSprite = createThing(dataThing, t.thingId);
+			newSprite.roomId = t.room;
         }
         else {
             //print("Warning: I can't find " + t.thingId + " in room " + t.room);
@@ -2403,12 +2404,36 @@ function createThing(thing, id) {
     var newSprite = createSprite(floor(thing.position[0] + sw / 2) * ASSET_SCALE + ox, floor(thing.position[1] + sh / 2) * ASSET_SCALE + oy);
     newSprite.addAnimation("default", animation);
 
-    newSprite.depthOffset = floor(sh / 2) - 4; //4 magic fucking number due to rounding
+	var depthAdjust = 0;
+	if(thing.depthAdjust != null) {
+		depthAdjust = thing.depthAdjust;
+	}
+	
+    newSprite.depthOffset = floor(sh / 2) - 4 + depthAdjust; //4 magic fucking number due to rounding
 
     newSprite.id = id;
 
     newSprite.scale = ASSET_SCALE;
 
+	newSprite.originalDraw = newSprite.draw;
+    newSprite.draw = function () {
+		const roomId = newSprite.roomId;
+		
+		if (!thing.ignore && (thing.visible == null || thing.visible == true)) {
+			if (thing.transparent)
+				tint(255, 100);
+			
+			if(roomId && window[roomId + "DrawThing"] != null) {
+				window[roomId + "DrawThing"](id, thing, newSprite.originalDraw);
+			}
+			else {
+				newSprite.originalDraw();
+			}
+			
+			noTint();
+		}
+	};
+	
     if (thing.visible != null) {
         newSprite.visible = thing.visible;
     }
