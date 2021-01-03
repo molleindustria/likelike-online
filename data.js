@@ -52,13 +52,89 @@ module.exports.ROOMS = {
         area: "PowellAndClark-areas.png",
         areaColors: {
             // exits
-            h7eff00: { cmd: "enter", room: "oldspaceMain", label: "entrance", point: [77, 80], enterPoint: [107, 95], obstacle: false },
+            h7eff00: { cmd: "enter", room: "stairwell", label: "Stairwell", point: [77, 80], enterPoint: [51, 98], obstacle: false },
+            hff0000: { cmd: "enter", room: "elevator", label: "Entrance", point: [114, 89], enterPoint: [56, 73], obstacle: false },
 
             // interior objects
             he54cca: { cmd: "text", label: "by heart projector", txt: "by heart projector", align: "center", lines: 1, point: [14, 69], obstacle: true },
             ha500ff: { cmd: "text", lines: 2, txt: "by The Papercut Arcade \nthepapercutarcade.ca", align: "center", url: "https://thepapercutarcade.ca", label: "papercut", point: [40, 68], obstacle: false },
             h0000ff: { cmd: "text", label: "street", txt: "Unceded territory", align: "center", lines: 1, point: [50, 70], obstacle: false },
         }
+    },
+
+    stairwell: {
+        bg: "stairwell.png",
+        avatarScale: 2,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 160,
+        spawn: [17, 84, 60, 95],
+        area: "stairwell-areas.png",
+        areaColors: {
+            // exits
+            h00ffff: { cmd: "enter", room: "oldspaceLounge", label: "Heart Projector", point: [67, 59], enterPoint: [50, 70], obstacle: false },
+            hff002a: { cmd: "enter", room: "TPCAHallway", label: "The Papercut Arcade", point: [67, 59], enterPoint: [66, 99], obstacle: false },
+        },
+    },
+
+    elevator: {
+        bg: "elevator.png",
+        avatarScale: 2,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 160,
+        spawn: [17, 84, 60, 95],
+        area: "elevator-areas.png",
+        areaColors: {
+            // exits
+            h00ffff: { cmd: "enter", room: "oldspaceLounge", label: "Heart Projector", point: [66, 60], enterPoint: [50, 70], obstacle: false },
+            hff002a: { cmd: "enter", room: "TPCAHallway", label: "The Papercut Arcade", point: [66, 60], enterPoint: [65, 90], obstacle: false },
+        },
+    },
+
+    TPCAHallway: {
+        bg: "TPCAhallway.png",
+        avatarScale: 1.5,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 160,
+        spawn: [17, 84, 60, 95],
+        area: "TPCAhallway-areas.png",
+        areaColors: {
+            // exits
+            hff0000: { cmd: "enter", room: "TPCAGhostsOnlyRoom", label: "GHOSTS ONLY Room", point: [33, 13], enterPoint: [116, 78], obstacle: false },
+            h00ff00: { cmd: "enter", room: "TPCAMapRoom", label: "War Room", point: [121, 52], enterPoint: [8, 75], obstacle: false },
+            hf000ff: { cmd: "enter", room: "TPCATavern", label: "Tavern", point: [121, 52], enterPoint: [3, 50], obstacle: false },
+            h0000ff: { cmd: "enter", room: "TPCAFireRoom", label: "Bonfire", point: [97, 4], enterPoint: [3, 50], obstacle: false },
+        },
+    },
+
+    TPCAGhostsOnlyRoom: {
+        bg: "GhostsOnlyRoom.png",
+        avatarScale: 1,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 160,
+        spawn: [17, 84, 60, 95],
+        area: "GhostsOnlyRoom-areas.png",
+        areaColors: {
+            // exits
+            ff0000: { cmd: "enter", room: "TPCAHallway", label: "out", point: [4, 15], enterPoint: [32, 16], obstacle: false },
+        },
+    },
+
+    TPCAMapRoom: {
+        bg: "MapRoom1.png",
+        avatarScale: 2,
+        tint: "#ffffff",
+        pageBg: "#292929",
+        bubblesY: 160,
+        spawn: [17, 84, 60, 95],
+        area: "MapRoom-areas.png",
+        areaColors: {
+            // exits
+            ff0000: { cmd: "enter", room: "TPCAHallway", label: "out", point: [4, 15], enterPoint: [32, 16], obstacle: false },
+        },
     },
 
     oldspaceBar: {
