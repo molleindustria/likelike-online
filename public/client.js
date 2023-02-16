@@ -121,6 +121,11 @@ var paletteIndex = 0;
 var LABEL_NEUTRAL_COLOR = "#FFFFFF";
 var UI_BG = "#000000";
 
+//button midpoint from the center 
+var AVATAR_MENU_MID = 80;
+var AVATAR_BUTTON_W = 16;    
+
+
 //global vars! I love global vars ///////////////////
 
 //preloaded images
@@ -1148,10 +1153,10 @@ function update() {
         textFont(font, FONT_SIZE * 2);
         textAlign(CENTER, BASELINE);
         fill(0);
-        text("Body", 24 * ASSET_SCALE, 44 * ASSET_SCALE);
-        text("Color", 105 * ASSET_SCALE, 44 * ASSET_SCALE);
+        text("Body", round(WIDTH/2 - AVATAR_MENU_MID), round(HEIGHT/2 - AVATAR_BUTTON_W));
+        text("Color", round(WIDTH/2 + AVATAR_MENU_MID), round(HEIGHT/2 - AVATAR_BUTTON_W));
 
-        text("Choose your avatar", 64 * ASSET_SCALE, 18 * ASSET_SCALE);
+        text("Choose your avatar", round(WIDTH/2), round(HEIGHT/2 - 3*AVATAR_H));
 
         menuGroup.draw();
 
@@ -1549,25 +1554,28 @@ function avatarSelection() {
     var ss = loadSpriteSheet(arrowButton, 28, 28, 3);
     var animation = loadAnimation(ss);
 
-    //the position is the bottom left
-    previousBody = createSprite(8 * ASSET_SCALE + 14, 50 * ASSET_SCALE + 14);
+
+    //buttons y
+    var by = round(HEIGHT/2 + AVATAR_BUTTON_W);
+
+    previousBody = createSprite(WIDTH/2 - AVATAR_MENU_MID - AVATAR_BUTTON_W, by);
     previousBody.addAnimation("default", animation);
     previousBody.animation.stop();
     previousBody.mirrorX(-1);
     menuGroup.add(previousBody);
 
-    nextBody = createSprite(24 * ASSET_SCALE + 14, 50 * ASSET_SCALE + 14);
+    nextBody = createSprite(WIDTH/2 - AVATAR_MENU_MID + AVATAR_BUTTON_W, by);
     nextBody.addAnimation("default", animation);
     nextBody.animation.stop();
     menuGroup.add(nextBody);
 
-    previousColor = createSprite(90 * ASSET_SCALE + 14, 50 * ASSET_SCALE + 14);
+    previousColor = createSprite(WIDTH/2 + AVATAR_MENU_MID - AVATAR_BUTTON_W, by);
     previousColor.addAnimation("default", animation);
     previousColor.animation.stop();
     previousColor.mirrorX(-1);
     menuGroup.add(previousColor);
 
-    nextColor = createSprite(106 * ASSET_SCALE + 14, 50 * ASSET_SCALE + 14);
+    nextColor = createSprite(WIDTH/2 + AVATAR_MENU_MID + AVATAR_BUTTON_W, by);
     nextColor.addAnimation("default", animation);
     nextColor.animation.stop();
     menuGroup.add(nextColor);

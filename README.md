@@ -18,6 +18,7 @@ Licensed under a GNU Lesser General Public License v2.1.
 
 ![](promo.gif)
 
+
 ## Publishing on Glitch
 
 **Glitch** is a community and a suite of online tools to develop web applications.
